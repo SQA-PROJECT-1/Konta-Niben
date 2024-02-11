@@ -3,7 +3,7 @@ const express = require('express')
 const app = express()
 const PORT = 5000
 const connectDB = require("./config/db");
-
+const productRouter = require('./routes/productRoute')
 
 app.listen(PORT,(req,res)=>{
     console.log(`App is running on port ${PORT}`)
@@ -12,3 +12,5 @@ app.listen(PORT,(req,res)=>{
 connectDB();
 
 app.use(express.json());
+
+app.use("/api/products",productRouter)
