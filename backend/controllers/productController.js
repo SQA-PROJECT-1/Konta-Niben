@@ -42,7 +42,7 @@ const deleteProducts = async(req,res)=>{
         res.status(200).json(products)
     }
     catch(error) {
-        res.status(500).json("Enternal server error")
+        res.status(500).json("Internal server error")
     }
 }
 
@@ -54,7 +54,45 @@ const updateProducts = async(req,res)=>{
        res.status(200).json(updatedProduct);     
     }
     catch(error) {
-        res.status(500).json("Enternal server error")
+        res.status(500).json("Internal server error")
     }
 }
-module.exports = { setProducts,getProducts,deleteProducts,updateProducts};
+
+const searchProducts = async(req,res)=>{
+    try {
+        const { product_name } = req.body
+
+        const pipeline = [];
+
+        if(product_name.length > 0) {
+            const matchCondition = {};
+
+            if(product_name.length > 0) {
+                const cleanedProductName = product_name.replace(/\s+/g, ' ').trim();
+
+                matchCondition.product_name = { $regex: new RegExp(cleanedProductName, 'i') };
+            }
+
+            pipeline.push({
+                $match: matchCondition
+            });
+
+            if(pipeline.length > 0) {
+                const result = await Product.aggregate(pipeline);
+                res.json(result);
+            }
+            else {
+                //return the suggestions of similar products
+            }
+        }
+    } catch (error) {
+        res.status(500).json("Internal server error")
+    }
+}
+module.exports = { 
+    setProducts,
+    getProducts,
+    deleteProducts,
+    updateProducts,
+    searchProducts
+};
