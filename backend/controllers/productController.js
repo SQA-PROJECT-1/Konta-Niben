@@ -58,3 +58,5 @@ const updateProducts = async(req,res)=>{
     }
 }
 module.exports = { setProducts,getProducts,deleteProducts,updateProducts};
+
+ 
