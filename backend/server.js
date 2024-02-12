@@ -16,3 +16,5 @@ app.use(express.json());
 app.use(cors());
 
 app.use("/api/products",productRouter)
+const cartRoute = require ("./routes/addToCart");
+app.use('/api', cartRoute);
