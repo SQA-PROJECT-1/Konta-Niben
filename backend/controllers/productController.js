@@ -58,6 +58,27 @@ const updateProducts = async(req,res)=>{
     }
 }
 
+//In postman use this: localhost:5000/api/products/sortProducts?sortBy=product_price
+const sortProducts = async (req, res) => {
+    try {
+        const { sortBy } = req.query;
+
+        let sortOption = {};
+
+        if (sortBy === 'product_name' || sortBy === 'product_price') {
+            sortOption[sortBy] = 1;
+        } else {
+            return res.status(400).json({ error: "Invalid sort option" });
+        }
+
+        const sortedProducts = await Product.find().sort(sortOption);
+
+        res.status(200).json(sortedProducts);
+    } catch (error) {
+        res.status(500).json("Server error");
+    }
+};
+
 const searchProducts = async(req,res)=>{
     try {
         const { product_name } = req.body
@@ -82,17 +103,20 @@ const searchProducts = async(req,res)=>{
                 res.json(result);
             }
             else {
-                //return the suggestions of similar products
+                const allProducts = await Product.find();
+                res.json(allProducts)
             }
         }
     } catch (error) {
         res.status(500).json("Internal server error")
     }
 }
+
 module.exports = { 
     setProducts,
     getProducts,
     deleteProducts,
     updateProducts,
-    searchProducts
+    searchProducts,
+    sortProducts
 };
