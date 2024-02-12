@@ -2,7 +2,7 @@ const Product = require('../models/productModel')
 
 
 const setProducts= async (req, res) => {
-    const {productId,productName,productPrice}=req.body;
+    const {productId,productName,productPrice,productCategory,productSubcategory,productDescription}=req.body;
     
     if (!productId || !productName || !productPrice) {
         return res.status(400).json({ error: "id,name,price fields are required." });
@@ -11,7 +11,10 @@ const setProducts= async (req, res) => {
         const productObj = {
             productId:productId,
             productName: productName,
-            productPrice: productPrice
+            productPrice: productPrice,
+            productCategory: productCategory,
+            productSubcategory: productSubcategory,
+            productDescription: productDescription
         }
 
         const newProduct = new Product(productObj)
