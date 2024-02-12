@@ -58,14 +58,14 @@ const updateProducts = async(req,res)=>{
     }
 }
 
-//In postman use this: localhost:5000/api/products/sortProducts?sortBy=product_price
+//In postman use this: localhost:5000/api/products/sortProducts?sortBy=productPrice
 const sortProducts = async (req, res) => {
     try {
         const { sortBy } = req.query;
 
         let sortOption = {};
 
-        if (sortBy === 'product_name' || sortBy === 'product_price') {
+        if (sortBy === 'productName' || sortBy === 'productPrice') {
             sortOption[sortBy] = 1;
         } else {
             return res.status(400).json({ error: "Invalid sort option" });
@@ -81,17 +81,21 @@ const sortProducts = async (req, res) => {
 
 const searchProducts = async(req,res)=>{
     try {
-        const { product_name } = req.body
+        const { productName, productCategory } = req.body
 
         const pipeline = [];
 
-        if(product_name.length > 0) {
+        if(productName.length > 0 || productCategory > 0) {
             const matchCondition = {};
 
-            if(product_name.length > 0) {
-                const cleanedProductName = product_name.replace(/\s+/g, ' ').trim();
+            if (productCategory.length > 0) {
+                matchCondition.productCategory = productCategory;
+            }
 
-                matchCondition.product_name = { $regex: new RegExp(cleanedProductName, 'i') };
+            if(productName.length > 0) {
+                const cleanedProductName = productName.replace(/\s+/g, ' ').trim();
+
+                matchCondition.productName = { $regex: new RegExp(cleanedProductName, 'i') };
             }
 
             pipeline.push({
