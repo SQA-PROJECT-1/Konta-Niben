@@ -2,16 +2,16 @@ const Product = require('../models/productModel')
 
 
 const setProducts= async (req, res) => {
-    const {product_id,product_name,product_price}=req.body;
+    const {productId,productName,productPrice}=req.body;
     
-    if (!product_id || !product_name || !product_price) {
+    if (!productId || !productName || !productPrice) {
         return res.status(400).json({ error: "id,name,price fields are required." });
     }
     try {
         const productObj = {
-            product_id:product_id,
-            product_name: product_name,
-            product_price: product_price
+            productId:productId,
+            productName: productName,
+            productPrice: productPrice
         }
 
         const newProduct = new Product(productObj)
@@ -34,8 +34,8 @@ const getProducts = async(req,res)=>{
 
 const deleteProducts = async(req,res)=>{
     try{
-        const id = req.params.product_id
-        const products = await Product.findOneAndDelete({product_id:id})
+        const id = req.params.productId
+        const products = await Product.findOneAndDelete({productId:id})
         if(!products) {
             return res.status(404).json("product not fount")
         }
@@ -48,9 +48,10 @@ const deleteProducts = async(req,res)=>{
 
 const updateProducts = async(req,res)=>{
     try{
-       const id = parseInt(req.params.product_id)
+       const id = parseInt(req.params.productId)
+       console.log(id)
        const product = req.body
-       const updatedProduct = await Product.findOneAndUpdate({product_id:id},product,{new:true})
+       const updatedProduct = await Product.findOneAndUpdate({productId:id},product,{new:true})
        res.status(200).json(updatedProduct);     
     }
     catch(error) {
