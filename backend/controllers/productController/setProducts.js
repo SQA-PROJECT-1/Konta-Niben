@@ -11,6 +11,7 @@ const setProducts= async (req, res) => {
         const productObj = {
             productId:productId,
             productName: productName,
+            
             productPrice: productPrice,
             productCategory: productCategory,
             productSubcategory: productSubcategory,
