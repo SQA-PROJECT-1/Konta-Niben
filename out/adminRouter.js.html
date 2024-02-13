@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: adminRouter.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,39 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: adminRouter.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Module for handling admin-related routes.
+ * @module adminRouter
+ */
 
+const { adminDashboard } = require('../controllers/adminController/adminDashboard');
+const router = require('express').Router();
 
-    <h3> </h3>
+/**
+ * Route for accessing the admin dashboard.
+ * @name GET/admin
+ * @function
+ * @memberof module:adminRouter
+ * @inner
+ * @param {string} path - Express route path.
+ * @param {Function} middleware - Middleware function to handle the request.
+ * @returns {Object} Express router object.
+ */
+router.get("/", adminDashboard);
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = router;
+</code></pre>
+        </article>
+    </section>
 
 
 
