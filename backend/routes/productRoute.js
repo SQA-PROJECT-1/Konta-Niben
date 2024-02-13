@@ -1,11 +1,17 @@
-const {setProducts,getProducts,deleteProducts,updateProducts, searchProducts, sortProducts} = require('../controllers/productController')
-const router = require('express').Router();
+const {updateProducts} = require('../controllers/productController/updateProducts')
+const {getProducts} = require('../controllers/productController/getProducts')
+const {deleteProducts} = require('../controllers/productController/deleteProducts')
+const {setProducts} = require('../controllers/productController/setProducts');
+const { sortProducts } = require('../controllers/productController/sortProducts');
+const { searchProducts } = require('../controllers/productController/searchProducts');
 
+
+const router = require('express').Router();
 
 router.post("/",setProducts)
 router.get("/",getProducts)
-router.delete("/:product_id",deleteProducts)
-router.put("/:product_id",updateProducts)
+router.delete("/:productId",deleteProducts)
+router.put("/:productId",updateProducts)
+router.get("/sortProducts",sortProducts)
 router.post("/searchProducts",searchProducts)
-router.get("/sortProducts", sortProducts);
 module.exports = router;
