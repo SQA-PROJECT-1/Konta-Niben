@@ -1,0 +1,26 @@
+import React from 'react'
+import { Link } from 'react-router-dom'
+
+const ProductComponents = ({ product }) => {
+    return (
+        <div class="max-w-sm rounded overflow-hidden shadow-lg">
+            <img src="https://th.bing.com/th/id/R.857b26dafe5b74439d5fcfc23b77aa1a?rik=cZdp5iaYNAxWTA&riu=http%3a%2f%2fwww.liveadmins.com%2fwp-content%2fuploads%2f2015%2f09%2fProduct-Launch.jpg&ehk=tqhzE2p1F9XQzyKdEXTPZHADJpLq8vcw3fLXgv25J%2bE%3d&risl=&pid=ImgRaw&r=0" />
+            <div class="px-6 py-4">
+                <div class="font-bold text-xl mb-2">{product.productName}</div>
+                <p class="text-gray-700 text-base">
+                    Price: {product.productPrice}
+                </p>
+                <p class="text-gray-700 text-base">
+                    Category: {product.productCategory}
+                </p>
+            </div>
+            <div class="px-6 pt-4 pb-2">
+                <Link to="/dashboard/products/details" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">See Details</Link>
+                <Link to="/dashboard/products/update" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Update</Link>
+                <Link to="/dashboard/products/delete" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Delete</Link>
+            </div>
+        </div>
+    )
+}
+
+export default ProductComponents
