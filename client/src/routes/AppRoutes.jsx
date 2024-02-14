@@ -6,6 +6,7 @@ import Dashboard from '../dashboard/pages/Dashboard'
 import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
+import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -36,7 +37,7 @@ const AppRoutes = () => {
                 },
                 {
                     path:'/dashboard/products/:id',
-                    element:<DashboardProductDetails/>
+                    element:<DashboardProductsDetails/>
                 }
             ]
         }

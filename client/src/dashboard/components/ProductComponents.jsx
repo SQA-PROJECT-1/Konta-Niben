@@ -25,7 +25,7 @@ const ProductComponents = ({ product }) => {
             </div>
             <div class="px-6 pt-4 pb-2">
                 <Link
-                to={`/dashboard/products/details/${product.productId}`}
+                to={`/dashboard/products/${product.productId}`}
                     className="bg-amber-600 text-white px-3 py-1 rounded-md">
                     Details
                 </Link>
