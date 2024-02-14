@@ -1,7 +1,12 @@
 // controllers/wishlistController.js
 
-const WishList = require('../models/wishListModel'); 
-
+const WishList = require('../../models/wishListModel'); 
+/**
+ * Retrieves all wishlist items for a given user.
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A Promise representing the completion of the operation.
+ */
 // Get all wishlist items for a user
 exports.getAllWishlistItems = async (req, res) => {
   const { userId } = req.body; // Assuming userId is passed as a parameter in the URL
@@ -17,6 +22,12 @@ exports.getAllWishlistItems = async (req, res) => {
   }
 };
 
+/**
+ * Adds a product to the wishlist for a specific user.
+ * @param {Object} req - The request object containing userId and productId.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A Promise representing the completion of the operation.
+ */
 // Add product to wishlist
 exports.addToWishlist = async (req, res) => {
   const { userId, productId } = req.body;
@@ -40,6 +51,12 @@ exports.addToWishlist = async (req, res) => {
   }
 };
 
+/**
+ * Removes a product from the wishlist of a specific user.
+ * @param {Object} req - The request object containing userId and productId.
+ * @param {Object} res - The response object.
+ * @returns {Promise<void>} - A Promise representing the completion of the operation.
+ */
 // Remove product from wishlist
 exports.removeFromWishlist = async (req, res) => {
   const { userId, productId } = req.body;
