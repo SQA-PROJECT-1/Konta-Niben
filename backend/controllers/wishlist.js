@@ -1,3 +1,4 @@
+const User = require('../models/userModel')
 const addToWishlist = async (req, res) => {
    const {id}=req.user;
    const {prodId}=req.body;
