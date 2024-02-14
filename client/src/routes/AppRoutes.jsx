@@ -1,23 +1,35 @@
 import React from 'react'
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import Body from '../pages/Body'
 import HomePage from '../pages/HomePage'
-import Dashboard from '../pages/Dashboard'
+import Login from '../pages/Login'
+import Dashboard from '../dashboard/pages/Dashboard'
+import DashboardBody from '../dashboard/pages/DashboardBody'
+import AddProducts from '../dashboard/pages/AddProducts'
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
             path: '/',
-            element: <Body />,
+            element: <Login />,
             children: [
                 {
-                    index: true,
+                    path:"/home",
                     element: <HomePage />
                 }]
         },
         {
             path: '/dashboard',
             element: <Dashboard />,
+            children: [
+                {
+                  path: '/dashboard',
+                  element: <DashboardBody />
+                },
+                {
+                    path: '/dashboard/addProducts',
+                    element: <AddProducts/>
+                },
+            ]
         }
     ])
     return (
