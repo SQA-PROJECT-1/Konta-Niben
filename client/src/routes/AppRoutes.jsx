@@ -34,6 +34,10 @@ const AppRoutes = () => {
                     path: '/dashboard/products',
                     element: <DashboardProducts/>
                 },
+                {
+                    path:'/dashboard/products/:id',
+                    element:<DashboardProductDetails/>
+                }
             ]
         }
     ])

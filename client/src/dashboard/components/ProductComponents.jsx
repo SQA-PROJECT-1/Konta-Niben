@@ -24,7 +24,11 @@ const ProductComponents = ({ product }) => {
                 </p>
             </div>
             <div class="px-6 pt-4 pb-2">
-                <Link to="/dashboard/products/details/" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">See Details</Link>
+                <Link
+                to={`/dashboard/products/details/${product.productId}`}
+                    className="bg-amber-600 text-white px-3 py-1 rounded-md">
+                    Details
+                </Link>
                 <Link to="/dashboard/products/update" class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">Update</Link>
                 <Link
                     onClick={() => handleDelete(product.productId)}
