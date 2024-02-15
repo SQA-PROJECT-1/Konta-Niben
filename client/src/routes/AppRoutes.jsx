@@ -25,7 +25,7 @@ const AppRoutes = () => {
             children: [
                 {
                   path: '/dashboard',
-                  element: <DashboardBody />
+                  element: <DashboardBody />,
                 },
                 {
                     path: '/dashboard/addProducts',
