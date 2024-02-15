@@ -7,6 +7,7 @@ const { updateProducts } = require('../controllers/productController/updateProdu
 const { getProducts } = require('../controllers/productController/getProducts');
 const { deleteProducts } = require('../controllers/productController/deleteProducts');
 const { setProducts } = require('../controllers/productController/setProducts');
+const {getProductsById} = require('../controllers/productController/getProductsById');
 
 const router = require('express').Router();
 
@@ -57,5 +58,7 @@ router.delete("/:productId", deleteProducts);
  * @returns {Object} Express router object.
  */
 router.put("/:productId", updateProducts);
+
+router.get("/:productId",getProductsById)
 
 module.exports = router;
