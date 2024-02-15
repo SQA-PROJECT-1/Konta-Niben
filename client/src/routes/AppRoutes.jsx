@@ -14,11 +14,10 @@ const AppRoutes = () => {
         {
             path: '/',
             element: <Login />,
-            children: [
-                {
-                    path:"/home",
-                    element: <HomePage />
-                }]
+        },
+        {
+            path:'/home',
+            element: <HomePage />
         },
         {
             path: '/dashboard',
