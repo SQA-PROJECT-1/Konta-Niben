@@ -24,6 +24,12 @@ const productSchema = new mongoose.Schema({
         type: String,
         enum: ['instock', 'stockout'],
         default: 'instock'
+    },
+    productBrandName: {
+        type: String
+    },
+    productQuantity:{
+        type: Number
     }
 });
 

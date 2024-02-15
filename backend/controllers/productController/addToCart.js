@@ -1,24 +1,36 @@
-const mongoose = require('mongoose');
 const User = require("../../models/userModel");
-
+const Cart = require("../../models/cartModel");
 /**
  * Add a product to the user's cart.
- * @param {Object} req - The Express request object representing the HTTP request..
- * @param {Object} res - The Express response object representing the HTTP response.
- * @returns {Promise<void>} - A Promise that resolves when the product is successfully added to the user's cart.
- * @throws {Error} If there is an error while adding the product to the cart.
+ * @async
+ * @param {Object} req - The request object.
+ * @param {Object} res - The response object.
+ * @param {string} req.body.userId - The ID of the user.
+ * @param {string} req.body.productId - The ID of the product to add to the cart.
+ * @returns {Promise<void>} A promise that resolves when the product is added to the cart.
  */
 const addToCart = async (req, res) => {
     try {
-        const { userId, productId, productName, productCategory, productPrice } = req.body;
-
-        const user = await User.findOne({ userId });
+        const { userId, productId } = req.body;
+        
+        // Check if both userId and productId are provided
+        if (!userId || !productId) {
+            return res.status(400).send({ success: false, msg: "Both userId and productId are required" });
+        }
+        console.log("monira hello...")
+        // Check if the user exists
+        const user = await User.findOne({userId:userId});
+        console.log(user)
+        console.log("monira hello")
         if (!user) {
             return res.status(404).send({ success: false, msg: "User not found" });
         }
 
-        user.cart.push({ productId, productName, productCategory, productPrice });
-        await user.save();
+        // Create a new cart item
+        const cartItem = new Cart({ userId, productId });
+        
+        // Save the cart item
+        await cartItem.save();
 
         res.status(200).send({ success: true, msg: "Product added to cart successfully" });
     } catch (error) {
