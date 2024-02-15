@@ -14,14 +14,12 @@ const userSchema = new mongoose.Schema({
     },
     userRole: {
         type: String,
-        default: 'user'
-    },
-    cart: [{
-        productId: Number,
-        productName: String,
-        productCategory: String,
-        productPrice: Number
-    }]
-});
+        default: 'user' 
+      },
+      userPassword:{
+        type: String,
+        required: true
+      }
+})
 
 module.exports = mongoose.model('User', userSchema);

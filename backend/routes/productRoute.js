@@ -8,6 +8,7 @@ const { getProducts } = require('../controllers/productController/getProducts');
 const { deleteProducts } = require('../controllers/productController/deleteProducts');
 const { setProducts } = require('../controllers/productController/setProducts');
 const { searchAndSortProducts } = require('../controllers/productController/searchAndSortProducts');
+const {getProductsById} = require('../controllers/productController/getProductsById');
 
 const router = require('express').Router();
 
@@ -73,5 +74,7 @@ router.put("/:productId", updateProducts);
  */
 
 router.post("/searchAndSortProducts", searchAndSortProducts)
+
+router.get("/:productId",getProductsById)
 
 module.exports = router;

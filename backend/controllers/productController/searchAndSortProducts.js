@@ -19,59 +19,118 @@ const Product = require("../../models/productModel");
  * If any error occurs during the execution, it logs the error and sends a 500 status code with a 'Server error' message.
  */
 
+// const searchAndSortProducts = async (req, res) => {
+//     try {
+//       const { productName, productCategory, productBrandName, priceMin, priceMax } = req.body;
+//       const { sortBy } = req.query;
+  
+//       // Construct the match condition for searching
+//       const matchCondition = {};
+      
+//       if (productCategory && productCategory.length > 0) {
+//         matchCondition.productCategory = productCategory;
+//       }
+
+//       if (productBrandName && productBrandName.length > 0) {
+//         matchCondition.productBrandName = productBrandName;
+//       }
+  
+//       if (productName && productName.length > 0) {
+//         const cleanedProductName = productName.replace(/\s+/g, " ").trim();
+//         matchCondition.productName = {
+//           $regex: new RegExp(cleanedProductName, "i"),
+//         };
+//       }
+      
+//       // Add price range filter to the match condition
+//       if (priceMin !== undefined && priceMax !== undefined) {
+//         matchCondition.productPrice = { $gte: parseInt(priceMin), $lte: parseInt(priceMax) };
+//       }
+//       // Construct the aggregation pipeline
+//       const pipeline = [];
+  
+//       // Add the $match stage with the constructed match condition
+//       pipeline.push({
+//         $match: matchCondition
+//       });
+  
+//       // Add the $sort stage based on sortBy parameter
+//       const sortOption = {};
+//       if (sortBy === "productPrice" || sortBy === "productName") {
+//         sortOption[sortBy] = 1;
+//         pipeline.push({
+//           $sort: sortOption
+//         });
+//       }
+  
+//       // Execute the aggregation pipeline
+//       const searchResult = await Product.aggregate(pipeline);
+  
+//       res.status(200).json(searchResult);
+//     } catch (error) {
+//       console.error(error);
+//       res.status(500).json("Server error");
+//     }
+//   };
+  
 const searchAndSortProducts = async (req, res) => {
-    try {
+  try {
       const { productName, productCategory, productBrandName, priceMin, priceMax } = req.body;
       const { sortBy } = req.query;
-  
+
       // Construct the match condition for searching
       const matchCondition = {};
-      
+
+      const orConditions = [];
+
+      if (productName && productName.length > 0) {
+          const cleanedProductName = productName.replace(/\s+/g, " ").trim();
+          orConditions.push({ productName: { $regex: new RegExp(cleanedProductName, "i") } });
+      }
+
       if (productCategory && productCategory.length > 0) {
-        matchCondition.productCategory = productCategory;
+          orConditions.push({ productCategory });
       }
 
       if (productBrandName && productBrandName.length > 0) {
-        matchCondition.productBrandName = productBrandName;
+          orConditions.push({ productBrandName });
       }
-  
-      if (productName && productName.length > 0) {
-        const cleanedProductName = productName.replace(/\s+/g, " ").trim();
-        matchCondition.productName = {
-          $regex: new RegExp(cleanedProductName, "i"),
-        };
+
+      if (orConditions.length > 0) {
+          matchCondition.$or = orConditions;
       }
-      
+
       // Add price range filter to the match condition
       if (priceMin !== undefined && priceMax !== undefined) {
-        matchCondition.productPrice = { $gte: parseInt(priceMin), $lte: parseInt(priceMax) };
+          matchCondition.productPrice = { $gte: parseInt(priceMin), $lte: parseInt(priceMax) };
       }
+
       // Construct the aggregation pipeline
       const pipeline = [];
-  
+
       // Add the $match stage with the constructed match condition
       pipeline.push({
-        $match: matchCondition
+          $match: matchCondition
       });
-  
+
       // Add the $sort stage based on sortBy parameter
       const sortOption = {};
       if (sortBy === "productPrice" || sortBy === "productName") {
-        sortOption[sortBy] = 1;
-        pipeline.push({
-          $sort: sortOption
-        });
+          sortOption[sortBy] = 1;
+          pipeline.push({
+              $sort: sortOption
+          });
       }
-  
+
       // Execute the aggregation pipeline
       const searchResult = await Product.aggregate(pipeline);
-  
+
       res.status(200).json(searchResult);
-    } catch (error) {
+  } catch (error) {
       console.error(error);
       res.status(500).json("Server error");
-    }
-  };
-  
+  }
+};
+
 
 module.exports = { searchAndSortProducts };
