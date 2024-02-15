@@ -9,11 +9,11 @@ const WishList = require('../../models/wishListModel');
  */
 // Get all wishlist items for a user
 exports.getAllWishlistItems = async (req, res) => {
-  const { userId } = req.body; // Assuming userId is passed as a parameter in the URL
+  const { userId } = req.query; // Assuming userId is passed as a parameter in the URL
 
   try {
     // Find all wishlist items for the given userId
-    const wishlistItems = await WishList.find({ userId });
+    const wishlistItems = await WishList.find({userId});
 
     res.status(200).json(wishlistItems);
   } catch (error) {
@@ -30,7 +30,8 @@ exports.getAllWishlistItems = async (req, res) => {
  */
 // Add product to wishlist
 exports.addToWishlist = async (req, res) => {
-  const { userId, productId } = req.body;
+  const { userId, productId } = req.query;
+  console.log('sakib mollah'+userId)
 
   try {
     // Check if the product is already in the wishlist
@@ -59,8 +60,8 @@ exports.addToWishlist = async (req, res) => {
  */
 // Remove product from wishlist
 exports.removeFromWishlist = async (req, res) => {
-  const { userId, productId } = req.body;
-
+  const { userId, productId } = req.query;
+  console.log(req.query);
   try {
     // Find and remove the wishlist item
     await WishList.findOneAndDelete({ userId, productId });
@@ -71,3 +72,28 @@ exports.removeFromWishlist = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
+
+/**
+ * Checks if a product already exists in the wishlist for a specific user.
+ * @param {string} userId - The user ID.
+ * @param {string} productId - The product ID.
+ * @returns {Promise<boolean>} - A Promise representing whether the product exists in the wishlist or not.
+ */
+exports.isProductInWishlist = async (req,res) => {
+   
+  const { userId, productId } = req.query;
+
+  try {
+    const existingWishlistItem = await WishList.findOne({ userId, productId });
+    console.log(existingWishlistItem)
+    if(!existingWishlistItem){
+      
+      return res.status(200).json({statusCode:1,message:"ok"});
+    }
+    return res.status(200).json({statusCode:2,message:"not ok"});
+  } catch (error) {
+    console.error(error);
+    throw new Error('Error checking wishlist for product');
+  }
+};
+

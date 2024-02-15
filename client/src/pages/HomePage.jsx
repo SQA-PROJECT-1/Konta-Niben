@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import axios, { HttpStatusCode } from 'axios';
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 
@@ -9,6 +9,7 @@ const HomePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [wish,setWish] = useState('');
 
   useEffect(() => {
       // Fetch products from API
@@ -35,8 +36,34 @@ const HomePage = () => {
     setProducts(result.data)
   })
 }
+const wishListUpdate = async (productId) => {
+  const userId = 1;
+  try {
+    // Check if the product is already in the wishlist
+    const checkResponse = await axios.get(`http://localhost:5000/api/wishList/check/?userId=${userId}&productId=${productId}`);
+    console.log(checkResponse.data.statusCode);
 
-  return (
+    if (checkResponse.data.statusCode==2) {
+      // If the product exists, remove it from the wishlist
+      // alert(checkResponse.data.statusCode)
+      await axios.delete(`http://localhost:5000/api/wishList?userId=${userId}&productId=${productId}`);
+      
+      console.log('Product removed from wishlist successfully');
+    } else {
+      // If the product doesn't exist, add it to the wishlist
+    console.log(productId)
+      await axios.post(`http://localhost:5000/api/wishList/?userId=${userId}&productId=${productId}`);
+      console.log('Product added to wishlist successfully');
+    }
+  } catch (error) {
+    console.error('Error updating wishlist:', error);
+  }
+};
+
+const getAllWishList = async() =>{
+  const userId=1;
+  const checkResponse = await axios.get(`http://localhost:5000/api/wishList/?userId=${userId}`);
+    console.log(checkResponse.data  return (
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-semibold mb-4">Products</h2>
       <div className="flex mb-4">
@@ -49,7 +76,7 @@ const HomePage = () => {
           <option value="productName">Name</option>
         </select>
         <button onClick={fetchProducts} className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
-        <button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
+        <button onClick={getAllWishList} className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
         <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 hover:"><MdOutlineShoppingCart /></button>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
@@ -60,7 +87,7 @@ const HomePage = () => {
             <div className="text-gray-600">Price: ${product.productPrice}</div>
             <div className='flex'>
             <button className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add to Cart</button>
-            <button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
+            <button onClick={() => wishListUpdate(product.productId)} className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
             </div>
           </div>
         ))}

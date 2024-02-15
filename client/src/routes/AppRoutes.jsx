@@ -8,6 +8,7 @@ import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+import WishList from '../pages/WishList'
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -18,6 +19,10 @@ const AppRoutes = () => {
         {
             path:'/home',
             element: <HomePage />
+        },
+        {
+            path:'/wishList',
+            element: <WishList />
         },
         {
             path: '/dashboard',

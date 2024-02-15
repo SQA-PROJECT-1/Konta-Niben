@@ -3,7 +3,7 @@
  * @module routes/wishlist
  */
 
-const { addToWishlist, removeFromWishlist, getAllWishlistItems } = require('../controllers/productController/wishList');
+const { addToWishlist, removeFromWishlist, getAllWishlistItems, isProductInWishlist } = require('../controllers/productController/wishList');
 
 const router = require('express').Router();
 
@@ -39,5 +39,6 @@ router.delete("/", removeFromWishlist);
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
 router.get("/", getAllWishlistItems);
+router.get("/check",isProductInWishlist);
 
 module.exports = router;
