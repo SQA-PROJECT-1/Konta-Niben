@@ -8,7 +8,7 @@ const { getProducts } = require('../controllers/productController/getProducts');
 const { deleteProducts } = require('../controllers/productController/deleteProducts');
 const { setProducts } = require('../controllers/productController/setProducts');
 const {getProductsById} = require('../controllers/productController/getProductsById');
-const { addToCart } = require('../controllers/productController/addToCart');
+
 
 const router = require('express').Router();
 
@@ -59,27 +59,21 @@ router.delete("/:productId", deleteProducts);
  * @returns {Object} Express router object.
  */
 router.put("/:productId", updateProducts);
+
 /**
- * Route for showing a product by ID..
- * @name PUT/products/:productId
+ * Middleware function to handle searching and sorting products.
+ * @name searchAndSortProducts
  * @function
  * @memberof module:productRouter
  * @inner
- * @param {string} path - Express route path.
- * @param {Function} middleware - Middleware function to handle the request.
- * @returns {Object} Express router object.
+ * @param {object} req - Express request object containing search and sort parameters.
+ * @param {object} req.body - Request body containing search parameters like productName, productCategory, productBrandName, etc.
+ * @param {object} req.query - Query parameters containing sorting options like sortBy.
+ * @param {object} res - Express response object to send the search results.
+ * @returns {Promise<void>} - Promise representing the completion of the function.
  */
-router.get("/:productId",getProductsById);
-/**
- * Route for create a product by ID.
- * @name PUT/products/:productId
- * @function
- * @memberof module:productRouter
- * @inner
- * @param {string} path - Express route path.
- * @param {Function} middleware - Middleware function to handle the request.
- * @returns {Object} Express router object.
- */
-router.post("/addToCart",addToCart)
+
+
+router.get("/:productId",getProductsById)
 
 module.exports = router;

@@ -7,6 +7,7 @@ const connectDB = require("./config/db");
 const productRouter = require('./routes/productRoute');
 const adminRouter = require('./routes/adminRouter');
 const userRouter = require('./routes/userRouter');
+const addToCartRouter = require('./routes/addTocartRouter');
 
 app.listen(PORT, () => {
     console.log(`App is running on port ${PORT}`);
@@ -26,3 +27,4 @@ app.use(express.json());
 app.use("/api/products", productRouter);
 app.use("/api/admin", adminRouter);
 app.use("/api/users", userRouter);
+app.use("/api/addTocart",addToCartRouter)
