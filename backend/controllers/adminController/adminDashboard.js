@@ -12,34 +12,33 @@ const User = require('../../models/userModel')
 
 /**
  * Retrieves statistics and information of products and users for the admin dashboard.
+ * This function aggregates data from the Product and User models to generate insights and metrics
+ * for display on the admin dashboard.
  * @async
  * @function adminDashboard
- * @param {Object} req - The request object sent.
- * @param {Object} res - The response object used to send data back.
+ * @param {Object} req - The request object sent by the client. It contains information about the HTTP request.
+ * @param {Object} res - The response object used to send data back to the client. It allows setting the HTTP response status and sending JSON data.
  * @returns {Promise<void>} A Promise that resolves when the dashboard data is successfully retrieved and sent, or rejects if an error occurs.
  * @throws {Error} If an error occurs during the retrieval or processing of dashboard data.
  */
 const adminDashboard = async (req, res) => {
     try {
        
-        const countOverallProducts = await Product.find().countDocuments();
-        
-       
+        const countOverallProducts = await Product.countDocuments();
+        const countTotalUsers = await User.countDocuments();
+
         const productsByCategory = await Product.aggregate([
             { $group: { _id: "$productCategory", count: { $sum: 1 } } }
         ]);
 
-       
         const productsBySubcategory = await Product.aggregate([
             { $group: { _id: "$productSubcategory", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }
         ]);
 
-      
         const productsByBrand = await Product.aggregate([
             { $group: { _id: "$productBrandName", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }
         ]);
 
-   
         const formattedCategories = productsByCategory.map(category => ({
             /**
              * The name of the product category.
@@ -60,7 +59,6 @@ const adminDashboard = async (req, res) => {
             products: productsBySubcategory.filter(subcategory => subcategory.products[0].productCategory === category._id)
         }));
 
-      
         const formattedBrands = productsByBrand.map(brand => ({
             /**
              * The name of the brand.
@@ -81,10 +79,6 @@ const adminDashboard = async (req, res) => {
             products: brand.products
         }));
 
-      
-        const countTotalUsers = await User.find().countDocuments();
-
-        
         return res.status(200).json({
             countOverallProducts,
             formattedCategories,
@@ -92,13 +86,9 @@ const adminDashboard = async (req, res) => {
             countTotalUsers
         });
     } catch (error) {
-        
-        console.error("Error in adminDashboard:", error);
-        res.status(500).json("Internal server error");
-        throw error;
+       
+        return res.status(500).json({ error: "Internal server error" });
     }
 }
 
 module.exports = { adminDashboard };
-
-
