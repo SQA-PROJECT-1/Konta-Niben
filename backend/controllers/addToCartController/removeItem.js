@@ -9,7 +9,7 @@ const CartList = require('../../models/cartModel');
 exports.removeItem = async (req, res) => {
     const { userId, productId } = req.query;
      try {
-      // Find and remove the wishlist item
+      // Find and remove the cart item
       await CartList.findOneAndDelete({ userId, productId });
   
       res.status(200).json({ message: 'Product removed from cart successfully' });
