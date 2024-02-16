@@ -17,8 +17,7 @@ exports.getAllWishlistItems = async (req, res) => {
 
     res.status(200).json(wishlistItems);
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+     res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -31,8 +30,7 @@ exports.getAllWishlistItems = async (req, res) => {
 // Add product to wishlist
 exports.addToWishlist = async (req, res) => {
   const { userId, productId } = req.query;
-  console.log('sakib mollah'+userId)
-
+ 
   try {
     // Check if the product is already in the wishlist
     const existingWishlistItem = await WishList.findOne({ userId, productId });
@@ -61,8 +59,7 @@ exports.addToWishlist = async (req, res) => {
 // Remove product from wishlist
 exports.removeFromWishlist = async (req, res) => {
   const { userId, productId } = req.query;
-  console.log(req.query);
-  try {
+   try {
     // Find and remove the wishlist item
     await WishList.findOneAndDelete({ userId, productId });
 
@@ -85,15 +82,13 @@ exports.isProductInWishlist = async (req,res) => {
 
   try {
     const existingWishlistItem = await WishList.findOne({ userId, productId });
-    console.log(existingWishlistItem)
-    if(!existingWishlistItem){
+     if(!existingWishlistItem){
       
       return res.status(200).json({statusCode:1,message:"ok"});
     }
     return res.status(200).json({statusCode:2,message:"not ok"});
   } catch (error) {
-    console.error(error);
-    throw new Error('Error checking wishlist for product');
+     throw new Error('Error checking wishlist for product');
   }
 };
 
