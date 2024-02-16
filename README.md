@@ -40,38 +40,51 @@ These instructions will help you set up and run the project on your local machin
 
 1. Clone the repository:
 
-   bash
+   ```bash
    git clone git@github.com:SQA-PROJECT-1/Konta-Niben.git
 
    cd client
+   
    npm install
+   
    npm run dev
 
    cd ..
+   
    cd backend
+   
    npm install
+   
    added .env file in the existing folder
+   
    npm install dotenv
+   
    npm run dev
+   ```
    
 
 ### Testing
 
 2. Search and sort testing:
 
-   bash
+   ```bash
    npm test
+   ```
    
 
 ### JSdoc
 
 3. Search and sort documentation:
 
-   bash
+   ```bash
    cd backend
+   
    cd controllers
+   
    cd productControllers
+   
    cd out
+   
    open searchAndSortProducts.js.html click mouse right click and "open with Live server" button.
-
+    ```
    
