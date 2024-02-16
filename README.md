@@ -1,6 +1,6 @@
 # Installation 
-git clone <repository-url>
-cd <repository-directory>
+##git clone <repository-url>
+##cd <repository-directory>
 cd backend
 npm install
 npm run dev
