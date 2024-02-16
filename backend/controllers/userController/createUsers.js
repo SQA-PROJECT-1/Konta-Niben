@@ -15,15 +15,17 @@ const User = require('../../models/userModel')
 
 const createUsers = async(req,res)=>{
     try{
-        const {userId,userName,userEmail} = req.body
+        const {userId,userName,userEmail,userRole,userPassword} = req.body
 
-        if(!userId|| !userName || !userEmail ) {
-            return res.status(400).json("Please enter userId, userName, userEmail")
+        if(!userId|| !userName || !userEmail || !userRole || !userPassword) {
+            return res.status(400).json("Please enter userId, userName, userEmail, userRole, password")
         }
         const userObj = {
             userId: userId,
             userName: userName,
-            userEmail:userEmail
+            userEmail: userEmail,
+            userRole: userRole,
+            userPassword: userPassword
         }
         
         const user = new User(userObj)
