@@ -1,3 +1,13 @@
+## Overview
+The Admin Dashboard feature is designed to provide administrators with valuable insights and metrics about products and users within the system. It aggregates data from the backend server and presents it in a user-friendly interface for easy visualization and analysis.
+
+## Features
+- Display total number of products and users.
+
+- Visualize product statistics by category, subcategory, and brand.
+
+- Utilizes charts to present data in a clear and intuitive manner.
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -50,7 +60,7 @@ These instructions will help you set up and run the project on your local machin
 
    then login is required and login with- Email: tazim@gmail.com and Password: 123
 
-   then use this link(http://localhost:5173/home) to get to the home page where searching and sorting are done.
+   then use this link(http://localhost:5173/home) to get to the dashboard page 
    ```
    
 
