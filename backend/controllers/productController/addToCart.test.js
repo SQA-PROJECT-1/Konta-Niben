@@ -1,3 +1,14 @@
+// Importing the module to be tested
+const { addToCart } = require('./addToCart');
+
+// Mocking the dependencies
+jest.mock('../../models/userModel');
+jest.mock('../../models/cartModel');
+
+// Mocking the actual implementations of the UserModel and CartModel
+const User = require('../../models/userModel');
+const Cart = require('../../models/cartModel');
+
 describe('addToCart function', () => {
     test('should return success when valid userId and productId are provided', async () => {
         // Mocking the findOne method of User model to return a user
@@ -18,6 +29,7 @@ describe('addToCart function', () => {
         expect(res.send).toHaveBeenCalledWith({ success: true, msg: 'Product added to cart successfully' });
     });
 
+    // Add more test cases as needed
     test('should return error when userId is missing', async () => {
         // Mock request and response objects
         const req = { body: { productId: 'validProductId' } };
@@ -30,7 +42,6 @@ describe('addToCart function', () => {
         expect(res.status).toHaveBeenCalledWith(400);
         expect(res.send).toHaveBeenCalledWith({ success: false, msg: 'Both userId and productId are required' });
     });
-
     test('should return error when productId is missing', async () => {
         // Mock request and response objects
         const req = { body: { userId: 'validUserId' } };
@@ -43,7 +54,6 @@ describe('addToCart function', () => {
         expect(res.status).toHaveBeenCalledWith(400);
         expect(res.send).toHaveBeenCalledWith({ success: false, msg: 'Both userId and productId are required' });
     });
-
     test('should return error when user is not found', async () => {
         // Mocking the findOne method of User model to return null (user not found)
         User.findOne.mockResolvedValue(null);
@@ -60,5 +70,4 @@ describe('addToCart function', () => {
         expect(res.send).toHaveBeenCalledWith({ success: false, msg: 'User not found' });
     });
 
-    // Add more test cases to cover additional scenarios as needed
 });
