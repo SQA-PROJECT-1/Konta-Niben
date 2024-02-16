@@ -1,6 +1,12 @@
-# Project Name
+# Project Name: Konta-Niben
 
-Short project description goes here.
+Here Searching and sorting are done for finding products using some criteria.
+
+You can search using product name, category, and brand.
+
+You can give a price range from minPrice to maxPrice to filter products within your budget.
+
+You can sort products in ascending order: sortBy price or sortBy name.
 
 ## Table of Contents
 
@@ -41,25 +47,31 @@ These instructions will help you set up and run the project on your local machin
 1. Clone the repository:
 
    ```bash
+   go to any directory and then open your terminal using cmd
+   
    git clone git@github.com:SQA-PROJECT-1/Konta-Niben.git
 
+   cd backend
+   
+   npm install
+   
+   npm install dotenv
+   
+   npm run dev
+
+   cd ..
+   
    cd client
    
    npm install
    
    npm run dev
 
-   cd ..
-   
-   cd backend
-   
-   npm install
-   
-   added .env file in the existing folder
-   
-   npm install dotenv
-   
-   npm run dev
+   follow the link to get the web application (link like this: http://localhost:5173/)
+
+   then login is required and login with- Email: tazim@gmail.com and Password: 123
+
+   then use this link(http://localhost:5173/home) to get to the home page where searching and sorting are done.
    ```
    
 
@@ -85,6 +97,6 @@ These instructions will help you set up and run the project on your local machin
    
    cd out
    
-   open searchAndSortProducts.js.html click mouse right click and "open with Live server" button.
+   open searchAndSortProducts.js.html click the mouse right click and "open with Live server" button.
     ```
    
