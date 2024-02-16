@@ -3,9 +3,10 @@ import axios from 'axios';
 import { FiHeart } from 'react-icons/fi';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import Modal from 'react-modal';
+import { useNavigate } from 'react-router-dom';   
 
 const HomePage = () => {
-  
+  const navigate = useNavigate();
   const [products, setProducts] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('');
@@ -179,7 +180,7 @@ const HomePage = () => {
     const checkResponse = await axios.get(
       `http://localhost:5000/api/wishList/?userId=${userId}`
     );
-    console.log(checkResponse.data);
+    console.log(checkResponse.data); navigate('/wishlist', { state: { wishListData: checkResponse.data } });
   };
 
   return (
