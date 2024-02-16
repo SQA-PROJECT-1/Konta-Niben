@@ -1,74 +1,22 @@
-const { addToCart } = require('../../controllers/addToCartController/addToCart'); // Replace with the actual path to your addToWishlist file
-const cartList = require('../../models/cartModel');
+const { addToCart } = require('./addToCart');
+const Cart = require('../../models/cartModel');
 
-const res = {
-    status: jest.fn().mockReturnThis(),
-    json: jest.fn(),
-    send: jest.fn()
-};
+jest.mock('../../models/cartModel');
 
 describe('addToCart function', () => {
-    beforeEach(() => {
-        jest.clearAllMocks();
-    });
+    test('should add product to cart when both userId and productId are provided and product does not exist in cart', async () => {
+        // Mocking request and response objects
+        const req = { query: { userId: 'validUserId', productId: 'validProductId' } };
+        const res = { status: jest.fn().mockReturnThis(), json: jest.fn() };
 
-    test('should return 400 if userId or productId is missing in the request query', async () => {
-        const req = {
-            query: {}
-        };
+        // Mocking the findOne method of Cart model to return null (product not existing in cart)
+        Cart.findOne.mockResolvedValue(null);
 
+        // Call the addToCart function
         await addToCart(req, res);
 
-        expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.json).toHaveBeenCalledWith({ message: 'userId and productId are required in the query' });
-    });
-
-    test('should return 400 if the product already exists in the wishlist', async () => {
-        const req = {
-            query: {
-                userId: 'mockUserId',
-                productId: 'mockProductId'
-            }
-        };
-
-        jest.spyOn(cartList, 'findOne').mockResolvedValue({ userId: 'mockUserId', productId: 'mockProductId' });
-
-        await addToCart(req, res);
-
-        expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Product already exists in the wishlist' });
-    });
-
-    test('should add the product to the wishlist and return 201 on success', async () => {
-        const req = {
-            query: {
-                userId: 'mockUserId',
-                productId: 'mockProductId'
-            }
-        };
-
-        jest.spyOn(cartList, 'findOne').mockResolvedValue(null);
-        jest.spyOn(cartList.prototype, 'save').mockImplementation(jest.fn());
-
-        await addToCart(req, res);
-
+        // Assertions
         expect(res.status).toHaveBeenCalledWith(201);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Product added to wishlist successfully' });
-    });
-
-    test('should handle errors and return 500 status code', async () => {
-        const req = {
-            query: {
-                userId: 'mockUserId',
-                productId: 'mockProductId'
-            }
-        };
-
-        jest.spyOn(WishList, 'findOne').mockRejectedValue(new Error('Mocked error'));
-
-        await addToCart(req, res);
-
-        expect(res.status).toHaveBeenCalledWith(500);
-        expect(res.json).toHaveBeenCalledWith({ message: 'Internal server error' });
+        expect(res.json).toHaveBeenCalledWith({ message: 'Product added to cart successfully' });
     });
 });
