@@ -26,87 +26,65 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>/**
- * Imports the Product model from the productModel file.
- * @const {Object}
- */
-const Product = require('../../models/productModel')
+            <pre class="prettyprint source linenums"><code>const Product = require('../../models/productModel');
+const User = require('../../models/userModel');
 
 /**
- * Imports the User model from the userModel file.
- * @const {Object}
+ * Performs an aggregation operation on the Product collection using the provided pipeline.
+ * @param {Array} pipeline - The pipeline describing the aggregation stages.
+ * @returns {Promise&lt;Array>} A promise resolving to an array representing the result of the aggregation operation.
+ */ 
+const aggregateData = async (pipeline) => {
+    return await Product.aggregate(pipeline);
+};
+
+/**
+
+* Formats aggregated data by associating each item with its name, count,
+* and filtered products based on a provided filter function.
+* @param {Array} data - The aggregated data to be formatted.c
+* @param {Function} filterFn - A function used to filter products.
+* @param {Array} productsBySubcategory - The aggregated data of products grouped by subcategory.
+* @returns {Array} The formatted data with name, count, and filtered products.
+*/
+const formatData = (data, filterFn, productsBySubcategory) => data.map(item => ({
+    name: item._id,
+    count: item.count,
+    products: filterFn ? filterFn(productsBySubcategory, item._id) : []
+}));
+
+/**
+ * Filters the subcategories based on the specified category ID.
+ * @param {Array} subcategories - The subcategories to be filtered.
+ * @param {string} categoryId - The ID of the category.
+ * @returns {Array} The filtered subcategories.
  */
-const User = require('../../models/userModel')
+const filterSubcategories = (subcategories, categoryId) => {
+    return subcategories.filter(subcategory => subcategory.products[0].productCategory === categoryId);
+};
 
 /**
  * Retrieves statistics and information of products and users for the admin dashboard.
- * This function aggregates data from the Product and User models to generate insights and metrics
+ * Aggregates data from the Product and User models to generate insights and metrics
  * for display on the admin dashboard.
  * @async
  * @function adminDashboard
- * @param {Object} req - The request object sent by the client. It contains information about the HTTP request.
- * @param {Object} res - The response object used to send data back to the client. It allows setting the HTTP response status and sending JSON data.
+ * @param {Object} req - The request object sent by the client.
+ * @param {Object} res - The response object used to send data back to the client.
  * @returns {Promise&lt;void>} A Promise that resolves when the dashboard data is successfully retrieved and sent, or rejects if an error occurs.
- * @throws {Error} If an error occurs during the retrieval or processing of dashboard data.
  */
 const adminDashboard = async (req, res) => {
     try {
        
         const countOverallProducts = await Product.countDocuments();
         const countTotalUsers = await User.countDocuments();
+        const productsByCategory = await aggregateData([{ $group: { _id: "$productCategory", count: { $sum: 1 } } }]);
+        const productsBySubcategory = await aggregateData([{ $group: { _id: "$productSubcategory", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }]);
+        const productsByBrand = await aggregateData([{ $group: { _id: "$productBrandName", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }]);
+        const formattedCategories = formatData(productsByCategory, filterSubcategories, productsBySubcategory);
+        const formattedBrands = formatData(productsByBrand, null, null);
 
-        const productsByCategory = await Product.aggregate([
-            { $group: { _id: "$productCategory", count: { $sum: 1 } } }
-        ]);
-
-        const productsBySubcategory = await Product.aggregate([
-            { $group: { _id: "$productSubcategory", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }
-        ]);
-
-        const productsByBrand = await Product.aggregate([
-            { $group: { _id: "$productBrandName", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }
-        ]);
-
-        const formattedCategories = productsByCategory.map(category => ({
-            /**
-             * The name of the product category.
-             * @type {string}
-             */
-            name: category._id,
-
-            /**
-             * The number of products within this category.
-             * @type {number}
-             */
-            count: category.count,
-
-            /**
-             * Array of products grouped under this category.
-             * @type {Object[]}
-             */
-            products: productsBySubcategory.filter(subcategory => subcategory.products[0].productCategory === category._id)
-        }));
-
-        const formattedBrands = productsByBrand.map(brand => ({
-            /**
-             * The name of the brand.
-             * @type {string}
-             */
-            name: brand._id,
-            
-            /**
-             * The number of products associated with this brand.
-             * @type {number}
-             */
-            count: brand.count,
-
-            /**
-             * Array of products associated with this brand.
-             * @type {Object[]}
-             */
-            products: brand.products
-        }));
-
+       
         return res.status(200).json({
             countOverallProducts,
             formattedCategories,
@@ -114,10 +92,10 @@ const adminDashboard = async (req, res) => {
             countTotalUsers
         });
     } catch (error) {
-       
-        return res.status(500).json({ error: "Internal server error" });
+        
+        return res.status(500).json({ error: "Internal server error. Please try again later." });
     }
-}
+};
 
 module.exports = { adminDashboard };
 </code></pre>
@@ -130,13 +108,13 @@ module.exports = { adminDashboard };
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Product">Product</a></li><li><a href="global.html#User">User</a></li><li><a href="global.html#adminDashboard">adminDashboard</a></li><li><a href="global.html#count">count</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#products">products</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#adminDashboard">adminDashboard</a></li><li><a href="global.html#aggregateData">aggregateData</a></li><li><a href="global.html#filterSubcategories">filterSubcategories</a></li><li><a href="global.html#formatData">formatData</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Feb 16 2024 17:14:11 GMT+0600 (Bangladesh Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Feb 16 2024 23:37:28 GMT+0600 (Bangladesh Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

@@ -2,14 +2,17 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Chart as ChartJS } from 'chart.js/auto'
 import { Bar,Pie } from 'react-chartjs-2'
 
-const Chart = ({ data }) => {
+const GenericChart = ({ data, Component }) => {
   const key = data ? data.datasets[0].data.length : 0;
-  return data ? <Bar key={key} data={data} /> : null;
+  return data ? <Component key={key} data={data} /> : null;
+};
+
+const Chart = ({ data }) => {
+  return <GenericChart data={data} Component={Bar} />;
 };
 
 const PieChart = ({ data }) => {
-  const key = data ? data.datasets[0].data.length : 0;
-  return data ? <Pie key={key} data={data} /> : null;
+  return <GenericChart data={data} Component={Pie} />;
 };
 
 const DashboardBody = () => {
@@ -25,55 +28,58 @@ const DashboardBody = () => {
     })
   },[])
  
-  const categoryData = dashboardData.formattedCategories && {
-    labels: dashboardData.formattedCategories.map(category => category.name),
-    datasets: [{
-      label: 'Products by Category',
-      data: dashboardData.formattedCategories.map(category => category.count),
-      backgroundColor: 'rgba(75, 192, 192, 0.2)',
-      borderColor: 'rgba(75, 192, 192, 1)',
-      borderWidth: 1,
-    }],
-  };
-
-  const subcategoryData = dashboardData.formattedCategories && {
-    labels: dashboardData.formattedCategories.flatMap(category => category.products.map(subcategory => subcategory._id)),
-    datasets: [{
-      label: 'Products by Subcategory',
-      data: dashboardData.formattedCategories.flatMap(category => category.products.map(subcategory => subcategory.count)),
-      backgroundColor: 'rgba(255, 159, 64, 0.2)',
-      borderColor: 'rgba(255, 159, 64, 1)',
-      borderWidth: 1,
-    }],
-  };
-
-  const brandData = dashboardData.formattedBrands && {
-    labels: dashboardData.formattedBrands.map(brand => brand.name),
-    datasets: [
-      {
-        label: 'Products by Brand',
-        data: dashboardData.formattedBrands.map(brand => brand.count),
-        backgroundColor: [
-          'rgba(255, 99, 132, 0.2)',
-          'rgba(54, 162, 235, 0.2)',
-          'rgba(255, 206, 86, 0.2)',
-          'rgba(75, 192, 192, 0.2)',
-          'rgba(153, 102, 255, 0.2)',
-          'rgba(255, 159, 64, 0.2)',
-        ],
-        borderColor: [
-          'rgba(255, 99, 132, 1)',
-          'rgba(54, 162, 235, 1)',
-          'rgba(255, 206, 86, 1)',
-          'rgba(75, 192, 192, 1)',
-          'rgba(153, 102, 255, 1)',
-          'rgba(255, 159, 64, 1)',
-        ],
+  const formatChartData = (data, labelKey, dataKey, backgroundColor, borderColor) => {
+    if (!data) return null; 
+    return {
+      labels: data.map(item => item[labelKey]),
+      datasets: [{
+        label: `Products by ${labelKey.charAt(0).toUpperCase() + labelKey.slice(1)}`,
+        data: data.map(item => item[dataKey]),
+        backgroundColor,
+        borderColor,
         borderWidth: 1,
-      },
-    ],
+      }],
+    };
   };
-
+  
+  const categoryData = formatChartData(
+    dashboardData.formattedCategories,
+    'name',
+    'count',
+    'rgba(75, 192, 192, 0.2)',
+    'rgba(75, 192, 192, 1)'
+  );
+  
+  const subcategoryData = formatChartData(
+    dashboardData.formattedCategories ? dashboardData.formattedCategories.flatMap(category => category.products) : null,
+    '_id',
+    'count',
+    'rgba(255, 159, 64, 0.2)',
+    'rgba(255, 159, 64, 1)'
+  );
+  
+  const brandData = formatChartData(
+    dashboardData.formattedBrands,
+    'name',
+    'count',
+    [
+      'rgba(255, 99, 132, 0.2)',
+      'rgba(54, 162, 235, 0.2)',
+      'rgba(255, 206, 86, 0.2)',
+      'rgba(75, 192, 192, 0.2)',
+      'rgba(153, 102, 255, 0.2)',
+      'rgba(255, 159, 64, 0.2)',
+    ],
+    [
+      'rgba(255, 99, 132, 1)',
+      'rgba(54, 162, 235, 1)',
+      'rgba(255, 206, 86, 1)',
+      'rgba(75, 192, 192, 1)',
+      'rgba(153, 102, 255, 1)',
+      'rgba(255, 159, 64, 1)',
+    ]
+  );
+  
   return (
     <div className="text-center text-lg">
       <h1 className="font-bold text-3xl p-4">Admin Dashboard</h1>
@@ -90,7 +96,7 @@ const DashboardBody = () => {
         <h2>Subcategory-wise Products</h2><br />
         {subcategoryData && <Chart data={subcategoryData} />}
       </div>
-      <div className="">
+      <div>
         <h2>Brand-wise Products</h2><br />
         {brandData && <PieChart data={brandData}/>}
       </div>
