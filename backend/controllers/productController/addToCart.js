@@ -21,14 +21,13 @@ const addToCart = async (req, res) => {
         // Check if the user exists
         const user = await User.findOne({userId:userId});
         console.log(user)
-        console.log("monira hello")
         if (!user) {
             return res.status(404).send({ success: false, msg: "User not found" });
         }
 
         // Create a new cart item
         const cartItem = new Cart({ userId, productId });
-        
+        console.log(cartItem)
         // Save the cart item
         await cartItem.save();
 
