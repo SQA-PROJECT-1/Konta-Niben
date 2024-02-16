@@ -1,7 +1,9 @@
 #To Rul this file 
-##step 01 goto front-end Install npm : "npm install" Install axios: "npm install axios" Install react-router-dom: "npm install react-router-dom"
+##step 01 
+goto front-end Install npm : "npm install" Install axios: "npm install axios" Install react-router-dom: "npm install react-router-dom"
 
-##step 02 goto backend Install npm : "npm install" install cors,dotenv,express,jsonwebtoken,mongoose,nodemon : "npm install cors dotenv express jsonwebtoken mongoose nodemon"
+##step 02 
+goto backend Install npm : "npm install" install cors,dotenv,express,jsonwebtoken,mongoose,nodemon : "npm install cors dotenv express jsonwebtoken mongoose nodemon"
 
 #For Testing: 
 install jest : "npm install jest"
