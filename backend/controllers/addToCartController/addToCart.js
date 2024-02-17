@@ -1,7 +1,7 @@
 const Cart = require('../../models/cartModel');
 
 /**
- * Adds a product to the wishlist for a specific user.
+ * Adds a product to the cart for a specific user.
  * @param {Object} req - The request object containing userId and productId.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
