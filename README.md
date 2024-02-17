@@ -82,7 +82,7 @@ These instructions will help you set up and run the project on your local machin
    
    cd addToCartController
 
-   jsdoc adminDashboard.js
+   jsdoc addToCart.js
    
    cd out
    
