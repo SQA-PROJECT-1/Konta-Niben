@@ -37,6 +37,7 @@ const HomePage = () => {
 }
 
   return (
+    
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-semibold mb-4">Products</h2>
       <div className="flex mb-4">
