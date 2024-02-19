@@ -48,11 +48,11 @@ These instructions will help you set up and run the project on your local machin
    
    cd client
 
+   npm install
+
    npm install chart.js
 
    npm install react-chartjs-2 chart.js
-   
-   npm install
    
    npm run dev
 
