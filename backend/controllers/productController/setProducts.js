@@ -17,7 +17,7 @@ const Product = require('../../models/productModel')
  * @throws {Error} If the required fields (productId, productName, productPrice) are missing in the request body, or if an error occurs during the creation and saving of the product.
  */
 const setProducts = async (req, res) => {
-    const { productId, productName, productPrice, productCategory, productSubcategory, productDescription ,productBrandName,productQuantity} = req.body;
+    const { productId, productName, productPrice, productCategory, productSubcategory, productDescription ,productBrandName,productQuantity, productTargetedSkinType,productTargetedAge,productTargetedConcerns } = req.body;
 
     if (!productId || !productName || !productPrice || !productBrandName || !productQuantity) {
         return res.status(400).json({ error: "id, name, price fields are required." });
@@ -32,7 +32,10 @@ const setProducts = async (req, res) => {
             productSubcategory: productSubcategory,
             productDescription: productDescription,
             productBrandName : productBrandName,
-            productQuantity : productQuantity
+            productQuantity : productQuantity,
+            productTargetedSkinType: productTargetedSkinType,
+            productTargetedAge: productTargetedAge,
+            productTargetedConcerns: productTargetedConcerns,
         };
 
         const newProduct = new Product(productObj);

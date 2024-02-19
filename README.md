@@ -1,12 +1,28 @@
 # Project Name: Konta-Niben
 
+### Searching/Sorting 
+
 Here Searching and sorting are done for finding products using some criteria.
 
-You can search using product name, category, and brand.
+## Features
 
-You can give a price range from minPrice to maxPrice to filter products within your budget.
+- You can search using product name, category, and brand.
 
-You can sort products in ascending order: sortBy price or sortBy name.
+- You can give a price range from minPrice to maxPrice to filter products within your budget.
+
+- You can sort products in ascending order: sortBy price or sortBy name.
+
+### Admin Dashboard
+
+The Admin Dashboard feature is designed to provide administrators with valuable insights and metrics about products and users within the system. It aggregates data from the backend server and presents it in a user-friendly interface for easy visualization and analysis.
+
+## Features
+- Display total number of products and users.
+
+- Visualize product statistics by category, subcategory, and brand.
+
+- Utilizes charts to present data in a clear and intuitive manner.
+
 
 ## Table of Contents
 
@@ -64,6 +80,10 @@ These instructions will help you set up and run the project on your local machin
    cd client
    
    npm install
+
+   npm install chart.js
+
+   npm install react-chartjs-2 chart.js
    
    npm run dev
 
@@ -71,15 +91,19 @@ These instructions will help you set up and run the project on your local machin
 
    then login is required and login with- Email: tazim@gmail.com and Password: 123
 
+   then use this link(http://localhost:5173) to get to the dashboard page 
+
    then use this link(http://localhost:5173/home) to get to the home page where searching and sorting are done.
    ```
    
 
 ### Testing
 
-2. Search and sort testing:
-
    ```bash
+   cd backend
+	
+   npm install -g jest
+
    npm test
    ```
    
@@ -97,6 +121,22 @@ These instructions will help you set up and run the project on your local machin
    
    cd out
    
-   open searchAndSortProducts.js.html click the mouse right click and "open with Live server" button.
+   open searchAndSortProducts.js.html click the mouse right click and "open with Live server"   
+    button.
+    ```
+   Admin Dashboaed documentation:
+
+   ```bash
+   cd backend
+   
+   cd controllers
+   
+   cd adminController
+
+   jsdoc adminDashboard.js
+   
+   cd out
+   
+   open adminDashboard.js.html click the mouse right click and "open with Live server" button.
     ```
    
