@@ -112,7 +112,15 @@
 
 
 <div class="description">
-    This function performs a search, filter, and sort operation on products based on the provided criteria.It extracts product search and filter parameters from the request body and query parameters.It constructs a MongoDB aggregation pipeline to execute the search, filter, and sort operations.The function first constructs a match condition based on the provided product category, brand name, and name (with regex match).If price range parameters (priceMin and priceMax) are provided, it adds a price range filter to the match condition.Then, it constructs the aggregation pipeline with the $match stage using the constructed match condition.If sortBy parameter is provided and it's either 'productPrice' or 'productName', it adds a $sort stage to the pipeline based on the sortBy parameter.Finally, it executes the aggregation pipeline using the Product model and sends the search results as a JSON response.If any error occurs during the execution, it logs the error and sends a 500 status code with a 'Server error' message.
+    This function performs a search, filter, and sort operation on products based on the provided criteria.
+It extracts product search and filter parameters from the request body and query parameters.
+It constructs a MongoDB aggregation pipeline to execute the search, filter, and sort operations.
+The function first constructs a match condition based on the provided product category, brand name, and name (with regex match).
+If price range parameters (priceMin and priceMax) are provided, it adds a price range filter to the match condition.
+Then, it constructs the aggregation pipeline with the $match stage using the constructed match condition.
+If sortBy parameter is provided and it's either 'productPrice' or 'productName', it adds a $sort stage to the pipeline based on the sortBy parameter.
+Finally, it executes the aggregation pipeline using the Product model and sends the search results as a JSON response.
+If any error occurs during the execution, it logs the error and sends a 500 status code with a 'Server error' message.
 </div>
 
 
