@@ -8,6 +8,8 @@ const productRouter = require('./routes/productRoute')
 const adminRouter = require('./routes/adminRouter')
 const userRouter = require('./routes/userRouter')
 const wishListRouter = require('./routes/wishListRouter')
+const ratingRoute=require("./routes/reviewSystemRoute");
+const reviewRoute=require("./routes/reviewSystemRoute");
 
 app.listen(PORT,(req,res)=>{
     console.log(`App is running on port ${PORT}`)
@@ -28,3 +30,4 @@ app.use("/api/products",productRouter)
 app.use("/api/admin",adminRouter)
 app.use("/api/users",userRouter)
 app.use("/api/wishList",wishListRouter)
+app.use("/api/products/review",reviewRoute)

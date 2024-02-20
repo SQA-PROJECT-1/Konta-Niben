@@ -2,20 +2,27 @@ const mongoose = require('mongoose');
 
 const productReviewSchema = new mongoose.Schema({
     productId: {
-        type:Number,
+        type: Number,
+        ref: 'Product',
         required: true,
-        ref: 'Product' // Assuming you have a Product model for products
     },
     userId: {
         type: Number,
+        ref: 'User',
         required: true,
-        ref: 'User' // Assuming you have a User model for users
     },
     message: {
         type: String,
-        required: true
-    }
+        required: true,
+    },
+    rating: {
+        type: Number,
+        required: true,
+    },
 });
+
+// Create a compound index to ensure uniqueness of userId for a specific productId
+productReviewSchema.index({ productId: 1, userId: 1 }, { unique: true });
 
 const ProductReview = mongoose.model('ProductReview', productReviewSchema);
 
