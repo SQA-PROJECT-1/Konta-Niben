@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
+import HomepageNavabar from '../components/HomepageNavbar';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -38,6 +39,8 @@ const HomePage = () => {
 
   return (
     
+    <div> 
+      <HomepageNavabar/>
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-semibold mb-4">Products</h2>
       <div className="flex mb-4">
@@ -67,6 +70,7 @@ const HomePage = () => {
         ))}
       </div>
     </div>
+  </div>
   );
 };
 
