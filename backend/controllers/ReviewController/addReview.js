@@ -12,7 +12,7 @@ const Product = require('../../models/productModel'); // Assuming you have a Pro
  */
 exports.addOrUpdateReview = async (req, res) => {
     const { productId, userId, message, rating } = req.body;
-    try {
+     try {
         // Upsert the review
         const result = await ProductReview.findOneAndUpdate(
             { productId, userId },
