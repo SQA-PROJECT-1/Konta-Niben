@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
+import { FaStar } from 'react-icons/fa';
+import AddReviewModal from './AddReviewModal';
 
 import {
     Card,
@@ -13,17 +15,78 @@ import {
 const DashboardProductsDetails = () => {
     const { id } = useParams()
     const [product, setProduct] = useState([])
+    const [isModalOpen, setModalOpen] = useState(false);
+    const [rating, setRating] = useState(0);
+    const openModal = () => setModalOpen(true);
+  const closeModal = () => setModalOpen(false);
 
-    useEffect(() => {
-        axios.get(`http://localhost:5000/api/products/${id}`)
-            .then((response) => {
-                const data = response.data
-                setProduct(data)
-            })
-            .catch((error) => {
-                console.log("Error fetching book data:", error);
-            });
-    })
+  const handleAddReview = async (reviewData) => {
+    const { message, rating } = reviewData;
+    const productId = id; // Assuming 'id' is in scope
+    const userId = 1; // Replace with your actual user ID
+  
+    try {
+      // Make a POST request to your API
+      const response = await axios.post('http://localhost:5000/api/products/review/addOrUpdate', {
+        productId,
+        userId,
+        message,
+        rating,
+      });
+      setRating(response.data.data.averageRating);
+    //  console.log('Review added successfully:', response.data.data.averageRating);
+  
+      // You may want to update the rating state or fetch updated data here
+    } catch (error) {
+      console.error('Error adding review:', error);
+      // Handle error appropriately (e.g., show an error message to the user)
+    }
+  };
+
+
+    const renderStars = () => {
+      const filledStars = rating > 0 ? Math.min(rating, 5) : 0;
+      const emptyStars = 5 - filledStars;
+
+      const stars = [];
+
+      for (let i = 0; i < filledStars; i++) {
+          stars.push(<FaStar key={i} color="#FFD700" size={20} />);
+      }
+
+      for (let i = 0; i < emptyStars; i++) {
+          stars.push(<FaStar key={`empty-${i}`} color="#CCCCCC" size={20} />);
+      }
+
+      return (
+        <div className="flex">
+          {stars}
+        </div>
+      );
+  };
+
+  useEffect(() => {
+    axios.get(`http://localhost:5000/api/products/${id}`)
+        .then((response) => {
+            const data = response.data;
+            setProduct(data);
+        })
+        .catch((error) => {
+            console.log("Error fetching book data:", error);
+        });
+
+    axios.get(`http://localhost:5000/api/products/review/review?productId=${id}`)
+        .then((response) => {
+            const data = response.data;
+            console.log('sakib');
+            console.log(data.data.averageRating);
+            setRating(data.data.averageRating);
+        })
+        .catch((error) => {
+            console.error('Error fetching product rating:', error);
+        });
+}, [id]); 
+
     return (
        <div className=" h-screen flex items-center justify-center bg-teal-50 mt-5">
       <Card className="w-full max-w-[70rem] h-3/4 flex-row gap-10">
@@ -70,12 +133,23 @@ const DashboardProductsDetails = () => {
               <span className="font-bold">Product Description : </span>
               {product.productDescription}
             </p>
-            
-          </Typography>
+            <p>
+            <span className="font-bold"> </span> <br></br>
+            {/* Add stars here */}  {renderStars()}
+            <br></br>
+            <button   onClick={openModal} className="bg-green-600 text-white px-3 py-1 rounded-md m-2">Add review</button> 
+            <button className="bg-red-600 text-white px-3 py-1 rounded-md">View all review</button>
+
+            <AddReviewModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddReview} />
         
+        </p>
+          </Typography>
+       
         </CardBody>
       </Card>
+    
     </div>
+    
     )
 }
 

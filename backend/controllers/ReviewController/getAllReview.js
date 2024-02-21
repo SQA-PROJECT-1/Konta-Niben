@@ -11,7 +11,9 @@ const Product = require('../../models/productModel'); // Assuming you have a Pro
  * @returns {Promise<void>} A Promise that resolves when the reviews and average rating are successfully retrieved, or rejects if an error occurs.
  */
 exports.getAllReviewsForProduct = async (req, res) => {
-    const { productId } = req.body; // Use req.params to get the productId from the URL parameters
+    
+    const {  productId } = req.query;
+    // Use req.params to get the productId from the URL parameters
     try {
         // Find all reviews for the specified product
         const reviews = await ProductReview.find({ productId });
