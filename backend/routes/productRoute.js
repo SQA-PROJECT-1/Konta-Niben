@@ -35,7 +35,7 @@ router.post("/", setProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.get("/", authorization,getProducts);
+router.get("/",getProducts);
 
 /**
  * Route for deleting a product by ID.
@@ -47,7 +47,7 @@ router.get("/", authorization,getProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.delete("/:productId", authorization,deleteProducts);
+router.delete("/:productId",deleteProducts);
 
 /**
  * Route for updating a product by ID.
@@ -59,8 +59,8 @@ router.delete("/:productId", authorization,deleteProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.put("/:productId", authorization,updateProducts);
+router.put("/:productId",updateProducts);
 
-router.get("/:productId",authorization, getProductsById)
+router.get("/:productId", getProductsById)
 
 module.exports = router;
