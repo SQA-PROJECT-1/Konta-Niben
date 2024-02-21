@@ -1,5 +1,5 @@
 /**
- * Express router for managing wishlist operations.
+ * Express router for managing cart operations.
  * @module routes/addToCart
  */
 
@@ -8,7 +8,7 @@ const { addToCart, removeItem, getAllCartList } = require('../controllers/produc
 const router = require('express').Router();
 
 /**
- * Route to add a product to the wishlist.
+ * Route to add a product to the cart.
  * @name POST/AddToCart
  * @function
  * @memberof module:routes/cartlist
@@ -19,7 +19,7 @@ const router = require('express').Router();
 router.post("/", addToCart);
 
 /**
- * Route to remove a product from the wishlist.
+ * Route to remove a product from the cart.
  * @name DELETE/cartlist
  * @function
  * @memberof module:routes/cartlist
@@ -30,8 +30,8 @@ router.post("/", addToCart);
 router.delete("/:productId", removeItem);
 
 /**
- * Route to get all wishlist items for a user.
- * @name GET/wishlist
+ * Route to get all cart items for a user.
+ * @name GET/Cartlist
  * @function
  * @memberof module:routes/wishlist
  * @param {Object} req - The request object.

@@ -1,20 +1,29 @@
-const CartList = require('../../models/cartModel'); 
-/**
- * Removes a product from the wishlist of a specific user.
- * @param {Object} req - The request object containing userId and productId.
- * @param {Object} res - The response object.
- * @returns {Promise<void>} - A Promise representing the completion of the operation.
- */
-// Remove product from wishlist
-exports.removeItem = async (req, res) => {
-    const { userId, productId } = req.query;
-     try {
-      // Find and remove the cart item
-      await CartList.findOneAndDelete({ userId, productId });
-  
-      res.status(200).json({ message: 'Product removed from cart successfully' });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Internal server error' });
-    }
-  };
+// models/Wishlist.js
+
+const mongoose = require('mongoose');
+
+const cartSchema = new mongoose.Schema({
+  userId: {
+    type: String,
+    required: true,
+    ref: 'User',
+  },
+  productId: {
+    type: Number,
+    ref: 'Product',
+    required: true
+  }
+  // paymentStatus:{
+  //   type:Boolean,
+  //   default:false,
+  // },
+  // transactionId:{
+  //   type:String,
+  // }
+},{
+  timestamps:true,
+});
+
+const Cart = mongoose.model('Cart', cartSchema);
+
+module.exports = Cart;
