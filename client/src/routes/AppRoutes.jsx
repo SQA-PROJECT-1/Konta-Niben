@@ -7,6 +7,8 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import ProductDetails from '../pages/ProductDetails'
+
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -16,7 +18,13 @@ const AppRoutes = () => {
         },
         {
             path:'/home',
-            element: <HomePage />
+            element: <HomePage />,
+           
+        },
+        {
+                path: '/home/details/:id',
+                element:<ProductDetails/>
+            
         },
         {
             path: '/dashboard',
@@ -37,9 +45,11 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/products/:id',
                     element:<DashboardProductsDetails/>
-                }
+                },
+                
             ]
-        }
+        },
+        
     ])
     return (
         <div><RouterProvider router={routes} /></div>
