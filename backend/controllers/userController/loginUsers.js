@@ -27,7 +27,7 @@ const loginUser = async (req, res) => {
       userObj = user.toJSON(user);
       userObj["accessToken"] = accessToken;
       userObj["refreshToken"] = refreshToken;
-      res.status(201).json(userObj.accessToken);
+      res.status(201).json({token:userObj.accessToken,userId:user._id});
     } catch (error) {
       console.log(error);
       res.status(400).json("User khuje paoa jaccche na");

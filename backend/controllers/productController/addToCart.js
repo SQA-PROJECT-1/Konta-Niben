@@ -31,13 +31,13 @@ exports.getAllCartList = async (req, res) => {
 // Add product to wishlist
 exports.addToCart = async (req, res) => {
   const { userId, productId } = req.query;
- console.log(userId);
+  
   try {
     // Check if the product is already in the wishlist
     const existingCartItem = await Cart.findOne({ userId, productId });
 
     if (existingCartItem) {
-      return res.status(400).json({ message: 'Product already exists in the wishlist' });
+      return res.status(400).json({ message: 'Product already exists in the cartlist' });
     }
 
     // If not, add it to the wishlist
@@ -59,19 +59,21 @@ exports.addToCart = async (req, res) => {
  */
 // Remove product from wishlist
 exports.removeItem = async (req, res) => {
-  const productId = (req.params._id);
+  // const { productId } = req.query;
+  const productId = (req.params.productId);
+  console.log("php: ");
   console.log(productId);
-   try {
-    const  product = await Cart.findOneAndDelete({_id:productId})
-        console.log(product)
-        if (product) {
-            res.status(200).json(product);//Product removed from Cart successfully
-        } else {
-            res.status(404).json("Product not found!");
-        }
+  try {
+    const product = await Cart.findOneAndDelete({ productId: productId });
+    console.log(product);
+    if (product) {
+      res.status(200).json(product); // Product removed from Cart successfully
+    } else {
+      res.status(404).json({ error: "Product not found" });
+    }
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: 'Internal server error' });
+    res.status(500).json({ error: 'Internal server error' });
   }
 };
 

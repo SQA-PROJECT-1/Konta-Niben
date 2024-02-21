@@ -27,7 +27,7 @@ router.post("/", addToCart);
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-router.delete("/:_id", removeItem);
+router.delete("/:productId", removeItem);
 
 /**
  * Route to get all wishlist items for a user.

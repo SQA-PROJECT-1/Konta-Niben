@@ -20,7 +20,7 @@ const Login = () => {
         try {
             const response = await axios.post(loginUrl, userCredentials);
             console.log(form.email.value)
-            localStorage.setItem('set-token-for-user', response.data);
+            localStorage.setItem('set-token-for-user', JSON.stringify(response.data));
             alert("login successfull")
             form.reset();
             navigate("/dashboard");

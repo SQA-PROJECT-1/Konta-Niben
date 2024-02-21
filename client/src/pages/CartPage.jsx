@@ -35,10 +35,29 @@ const CartPage = () => {
       });
   }, []);
 
-  const removeFromCart = (_id) => {
-     axios.delete(`https://localhost:5000/api/addTocart/${_id}`)
-     .then(res=>console.log(res.data));
+  const removeFromCart = (productId) => {
+    axios.delete(`http://localhost:5000/api/addToCart/${productId}`)
+      .then(res => console.log(res.data))
+      .catch(error => console.error(error)); // Handle error from Axios request
+      window.location.reload();
   };
+
+  const makePayment = (totalPrice) => {
+    const storedData = localStorage.getItem('set-token-for-user');
+    const data=JSON.parse(storedData)
+    axios 
+      .post(
+        `http://localhost:5000/api/payment/initiated?userId=${data?.userId}&amount=${totalPrice}`
+      )
+      .then((response) => {
+        console.log(response.data);
+        // @ts-ignore
+        window.location.replace(response.data)
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+      });
+  }
 
   return (
     <div className="container mx-auto px-4">
@@ -55,13 +74,13 @@ const CartPage = () => {
                 <h3 className="text-lg font-semibold mb-2">{products.find(product => product.productId === item.productId)?.productName}</h3>
                 <h3 className="text-gray-600">Price: ${products.find(product => product.productId === item.productId)?.productPrice}</h3>
               </div>
-              <button onClick={() => removeFromCart(item._id)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">Remove</button>
+              <button onClick={() => removeFromCart(item?.productId)} className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 focus:outline-none focus:bg-red-600">Remove</button>
             </div>
           </li>
         ))}
       </ul>
       <p className="text-lg font-semibold mt-4">Total Price: ${totalPrice}</p>
-      <button className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 mt-4">Order and Payment</button>
+      <button onClick={()=> makePayment(totalPrice)} className="px-6 py-3 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 mt-4">Order and Payment</button>
     </>
   )}
 </div>

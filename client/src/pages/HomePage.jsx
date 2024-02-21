@@ -3,8 +3,6 @@ import axios from "axios";
 import { FiHeart } from "react-icons/fi";
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { Link } from "react-router-dom";
-// import jwt_decode from 'jsonwebtoken';
-// import jwt_decode from 'jwt-decode';
 
 const HomePage = () => {
   const [products, setProducts] = useState([]);
@@ -12,8 +10,9 @@ const HomePage = () => {
   const [sortBy, setSortBy] = useState("");
   const [minPrice, setMinPrice] = useState("");
   const [maxPrice, setMaxPrice] = useState("");
+  const [token,setToken]=useState()
   // const [userId, setUserId] = useState(1); 
-  const [userInfo, setUserInfo] = useState('');
+  // const [userInfo, setUserInfo] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
@@ -47,41 +46,22 @@ const HomePage = () => {
       });
   };
 
-  const addProductToCart = ({_id,productId}) => {
+  const addProductToCart = (productId) => {
+    const storedData = localStorage.getItem('set-token-for-user');
+    const data=JSON.parse(storedData)
     axios 
       .post(
-        `http://localhost:5000/api/addToCart?userId=${_id}&productId=${productId}`
+        `http://localhost:5000/api/addToCart?userId=${data?.userId}&productId=${productId}`
       )
       .then((response) => {
         console.log(response.data.message);
-        setUserId(1);
       })
       .catch((error) => {
         console.error("Error adding product to cart:", error);
       });
   };
   //token
-  useEffect(() => {
-    const isUser = localStorage.getItem('set-token-for-user');
-    if (isUser) {
-      setIsAuthenticated(true);
-    }
-  }, [isAuthenticated]);
-
-  useEffect(() => {
-    fetch("http://localhost:5000/api/users", {
-      method: 'GET',
-      headers: {
-        authorization: `Bearer ${localStorage.getItem(`set-token-for-user`)} `
-      }
-    })
-      .then(response => response.json())
-      .then(data => {
-        setUserInfo(data)
-      }
-      )
-  }, [isAuthenticated])
-  console.log(userInfo);
+  
 
   return (
     <div className="container mx-auto px-4">
@@ -146,18 +126,18 @@ const HomePage = () => {
             </div>
             <div className="text-gray-600">Price: ${product.productPrice}</div>
             <div className="flex">
-              {/* <button
-                onClick={() => addProductToCart({ userId, productId: product.productId })}
+              <button
+                onClick={() => addProductToCart(product.productId)}
                 className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
               >
                 Add to Cart
-              </button> */}
-              {
-          isAuthenticated ? (<button onClick={(e) => addProductToCart({ _id:userInfo._id, productId: product.productId })} className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add to Cart</button>)
+              </button>
+              {/* {
+          isAuthenticated ? (<button onClick={(e) => addProductToCart(product.productId )} className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add to Cart</button>)
             : (
               <Link to='/login' className='px-2 py-1 rounded-md hover:bg-teal-800 active:bg-teal-700'>Login</Link>
             )
-        }
+        } */}
               <button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
                 <FiHeart />
               </button>
