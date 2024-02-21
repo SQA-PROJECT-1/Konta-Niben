@@ -9,6 +9,8 @@ const { deleteProducts } = require('../controllers/productController/deleteProdu
 const { setProducts } = require('../controllers/productController/setProducts');
 const {getProductsById} = require('../controllers/productController/getProductsById');
 
+const authorization = require('../middleware/auth')
+
 const router = require('express').Router();
 
 /**
@@ -33,7 +35,7 @@ router.post("/", setProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.get("/", getProducts);
+router.get("/", authorization,getProducts);
 
 /**
  * Route for deleting a product by ID.
@@ -45,7 +47,7 @@ router.get("/", getProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.delete("/:productId", deleteProducts);
+router.delete("/:productId", authorization,deleteProducts);
 
 /**
  * Route for updating a product by ID.
@@ -57,8 +59,8 @@ router.delete("/:productId", deleteProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.put("/:productId", updateProducts);
+router.put("/:productId", authorization,updateProducts);
 
-router.get("/:productId",getProductsById)
+router.get("/:productId",authorization, getProductsById)
 
 module.exports = router;
