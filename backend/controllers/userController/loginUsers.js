@@ -3,9 +3,8 @@ const jwt = require("jsonwebtoken");
 
 
 const loginUser = async (req, res) => {
-    const { email, userPassword } = req.body;
-    const user = await User.findOne({ email: email });
-    //console.log(userPassword+" "+user.userPassword)
+    const { userEmail, userPassword } = req.body;
+    const user = await User.findOne({ userEmail: userEmail });
     if (!user) {
       return res.status(401).json("User not found");
     }
@@ -15,19 +14,20 @@ const loginUser = async (req, res) => {
      
     try {
       const accessToken = await jwt.sign(
-        { email: user.email, id: user._id },
+        { email: user.userEmail, id: user._id },
         process.env.JWT_SECRET,
         { expiresIn: "1000000d" }
       );
       const refreshToken = await jwt.sign(
-        { email: user.email, id: user._id },
+        { email: user.userEmail, id: user._id },
         process.env.JWT_SECRET,
         { expiresIn: "1000000d" }
       );
       userObj = user.toJSON(user);
       userObj["accessToken"] = accessToken;
       userObj["refreshToken"] = refreshToken;
-      res.status(201).json(userObj.accessToken);
+      userObj["userRole"] = user.userRole
+      res.status(201).json(userObj);
     } catch (error) {
       console.log(error);
       res.status(400).json("User khuje paoa jaccche na");
