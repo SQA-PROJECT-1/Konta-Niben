@@ -45,31 +45,4 @@ exports.addOrUpdateReview = async (req, res) => {
         throw error;
     }
 };
-
-/**
- * Controller function to get all reviews for a product.
- *
- * @async
- * @function getAllReviewsForProduct
- * @param {Object} req - The request object containing productId in the request params.
- * @param {Object} res - The response object used to send data back.
- * @returns {Promise<void>} A Promise that resolves when the reviews are successfully retrieved, or rejects if an error occurs.
- */
-exports.getAllReviewsForProduct = async (req, res) => {
-    const { productId } = req.body;
-    try {
-        // Find all reviews for the specified product
-        const reviews = await ProductReview.find({ productId });
-
-        res.status(200).json({
-            message: 'Reviews retrieved successfully',
-            data: {
-                reviews,
-            },
-        });
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-        throw error;
-    }
-};
+ 
