@@ -8,7 +8,7 @@ import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 import ProductDetails from '../pages/ProductDetails'
-
+import CartPage from '../pages/CartPage'
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -25,6 +25,10 @@ const AppRoutes = () => {
                 path: '/home/details/:id',
                 element:<ProductDetails/>
             
+        },
+        {
+            path:'/home/cart',
+            element: <CartPage />
         },
         {
             path: '/dashboard',

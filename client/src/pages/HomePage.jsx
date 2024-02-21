@@ -9,6 +9,8 @@ const HomePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   useEffect(() => {
       // Fetch products from API
@@ -35,6 +37,21 @@ const HomePage = () => {
     setProducts(result.data)
   })
 }
+const addProductToCart = (productId) => {
+    
+    const storedData = localStorage.getItem('set-token-for-user');
+    const data=JSON.parse(storedData)
+    axios 
+      .post(
+        `http://localhost:5000/api/addToCart?userId=${data?.userId}&productId=${productId}`
+      )
+      .then((response) => {
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+      });
+  };
 
   return (
     <div className="container mx-auto px-4">
@@ -50,7 +67,11 @@ const HomePage = () => {
         </select>
         <button onClick={fetchProducts} className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Search</button>
         <button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 hover:"><MdOutlineShoppingCart /></button>
+        <Link to={'/home/cart'} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        <button>
+          <MdOutlineShoppingCart />
+        </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map(product => (
@@ -64,7 +85,7 @@ const HomePage = () => {
                     className="bg-amber-600 text-white px-3 py-1 rounded-md">
                     Details
                 </Link>
-            <button className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add to Cart</button>
+            <button onClick={() => addProductToCart(product.productId)} className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">Add to Cart</button>
             <button className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"><FiHeart /></button>
             </div>
           </div>
