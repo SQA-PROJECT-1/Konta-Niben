@@ -18,8 +18,7 @@ const HomepageNavabar = () => {
                     <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
-                                <Link to="/recommendation" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recommendation</Link>
-                                {/* Adjust the 'to' attribute above to match the path where your ProductRecommendationForm component is rendered */}
+                                <Link to="/recommendation-form" className="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Recommendation</Link>
                                 <Link to="" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Beauty Tips</Link>
                                 <Link to="" className="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Community</Link>
                             </div>
@@ -29,8 +28,7 @@ const HomepageNavabar = () => {
             </div>
             <div className="sm:hidden" id="mobile-menu">
                 <div className="space-y-1 px-2 pb-3 pt-2">
-                    <Link to="/recommendation" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Recommendation</Link>
-                    {/* Adjust the 'to' attribute above to match the path where your ProductRecommendationForm component is rendered */}
+                    <Link to="/recommendation-form" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Recommendation</Link>
                     <Link to="" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Beauty Tips</Link>
                     <Link to="" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Community</Link>
                 </div>

@@ -9,6 +9,7 @@ import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 import ProductRecommendationForm from '../pages/ProductRecommendationForm'
 
+
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
@@ -42,9 +43,11 @@ const AppRoutes = () => {
             ]
         },
         {
-            path:'/recommendation',
+            path:'/recommendation-form',
             element: <ProductRecommendationForm />
-        }
+            
+        },
+      
 
 
     ])
