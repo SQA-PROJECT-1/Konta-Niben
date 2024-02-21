@@ -20,7 +20,7 @@ const setProducts = async (req, res) => {
     const { productId, productName, productPrice, productCategory, productSubcategory, productDescription ,productBrandName,productQuantity, productTargetedSkinType,productTargetedAge,productTargetedConcerns } = req.body;
 
     if (!productId || !productName || !productPrice || !productBrandName || !productQuantity) {
-        return res.status(400).json({ error: "id, name, price fields are required." });
+        return res.status(400).json({ error: "id, name, price and quantity fields are required." });
     }
 
     try {  

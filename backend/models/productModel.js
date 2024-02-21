@@ -35,7 +35,8 @@ const productSchema = new mongoose.Schema({
         type: String
     }, 
     productTargetedAge: {
-        type: Number
+        type: Number,
+        default: 0
     }, 
     productTargetedConcerns: {
         type: String

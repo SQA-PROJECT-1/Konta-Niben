@@ -1,6 +1,21 @@
 import React from "react";
 import { FiHeart } from 'react-icons/fi';
 
+/**
+ * A React component representing a product card.
+ * 
+ * This component displays details of a product including its name, category, subcategory, price, and availability.
+ * It also provides options to add the product to cart and to add it to wishlist.
+ * 
+ * @param {Object} props - The props object containing product.
+ * @param {Object} props.product - The product object containing details of the product.
+ * @param {string} props.product.productName - The name of the product.
+ * @param {string} props.product.productCategory - The category of the product.
+ * @param {string} props.product.productSubcategory - The subcategory of the product.
+ * @param {number} props.product.productPrice - The price of the product.
+ * @param {string} props.product.availability - The availability status of the product.
+ * @returns {JSX.Element} The JSX representation of the product card component.
+ */
 const ProductCard = ({ product }) => (
   <div className="bg-white rounded-lg shadow-xl border p-4">
     <div className="text-lg font-semibold mb-2 h-16">{product.productName}</div>

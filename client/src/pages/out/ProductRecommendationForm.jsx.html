@@ -1,13 +1,41 @@
-import React, { useState, useEffect } from "react";
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ProductRecommendationForm.jsx</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ProductRecommendationForm.jsx</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React, { useState, useEffect } from "react";
 import axios from "axios";
 import ProductRecommendationDisplay from "../components/ProductRecommendationDisplay";
 
 const SelectInput = ({ name, label, value, onChange, options, required }) => (
-  <div className="mb-4">
-    <label htmlFor={name} className="block text-gray-700 font-bold mb-2">
+  &lt;div className="mb-4">
+    &lt;label htmlFor={name} className="block text-gray-700 font-bold mb-2">
       {label}:
-    </label>
-    <select
+    &lt;/label>
+    &lt;select
       name={name}
       id={name}
       value={value}
@@ -15,14 +43,14 @@ const SelectInput = ({ name, label, value, onChange, options, required }) => (
       className="w-full border border-gray-300 rounded-sm px-4 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
       required={required}
     >
-      <option value="">{`Select ${label}`}</option>
+      &lt;option value="">{`Select ${label}`}&lt;/option>
       {options.map((option) => (
-        <option key={option} value={option}>
+        &lt;option key={option} value={option}>
           {option}
-        </option>
+        &lt;/option>
       ))}
-    </select>
-  </div>
+    &lt;/select>
+  &lt;/div>
 );
 
 /**
@@ -76,30 +104,29 @@ const ProductRecommendationForm = () => {
       };
       
   return (
-    <div>
-    <div className="mt-20 p-6 flex content-between gap-3">
-      <div className="h-[500px] w-[600px] mx-16">
-        <img src="../../src/assets/recommendation pic.jpg" alt="" />
-      </div>
-      <div className="border w-[600px] p-5">
-        <form onSubmit={handleSubmit}>
-          <SelectInput 
+    &lt;div>
+    &lt;div className="mt-20 p-6 flex content-between gap-3">
+      &lt;div className="h-[500px] w-[600px] mx-16">
+        &lt;img src="../../src/assets/recommendation pic.jpg" alt="" />
+      &lt;/div>
+      &lt;div className="border w-[600px] p-5">
+        &lt;form onSubmit={handleSubmit}>
+          &lt;SelectInput 
             name="productCategory"
             label="Product Category"
-            required
             value={formData.productCategory}
             onChange={handleChange}
             options={productCategories}
             
           />
-          <div className="mb-4">
-            <label
+          &lt;div className="mb-4">
+            &lt;label
               htmlFor="productTargetedAge"
               className="block text-gray-700 font-bold mb-2"
             >
               Age:
-            </label>
-            <input
+            &lt;/label>
+            &lt;input
               type="number"
               name="productTargetedAge"
               id="productTargetedAge"
@@ -108,9 +135,9 @@ const ProductRecommendationForm = () => {
               className="w-full border border-gray-300 rounded-sm px-4 py-2 focus:outline-none focus:bg-white focus:border-blue-500"
             
             />
-          </div>
+          &lt;/div>
 
-          <SelectInput
+          &lt;SelectInput
             name="productTargetedSkinType"
             label="Skin Type"
             value={formData.productTargetedSkinType}
@@ -118,10 +145,9 @@ const ProductRecommendationForm = () => {
             options={["Oily", "Dry", "Normal", "Sensitive", "Combination"]}
             required
           />
-          <SelectInput
+          &lt;SelectInput
             name="productTargetedConcerns"
             label="Concerns"
-            required
             value={formData.productTargetedConcerns}
             onChange={handleChange}
             options={[
@@ -135,19 +161,42 @@ const ProductRecommendationForm = () => {
             ]}
             
           />
-          <button
+          &lt;button
             type="submit"
             className="bg-gray-800 text-white px-4 py-2 my-4 rounded-md hover:bg-gray-700 focus:outline-none focus:bg-blue-600"
           >
             Get Recommendations
-          </button>
-        </form>
-      </div>
-      </div>
-      <div className="mt-10">
-      <ProductRecommendationDisplay recommendedProducts={recommendedProducts} />
-      </div>
-    </div>
+          &lt;/button>
+        &lt;/form>
+      &lt;/div>
+      &lt;/div>
+      &lt;div className="mt-10">
+      &lt;ProductRecommendationDisplay recommendedProducts={recommendedProducts} />
+      &lt;/div>
+    &lt;/div>
   );
  };
 export default ProductRecommendationForm;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#ProductRecommendationForm">ProductRecommendationForm</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Feb 22 2024 01:01:31 GMT+0600 (Bangladesh Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

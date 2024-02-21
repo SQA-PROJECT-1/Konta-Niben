@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="searchAndSortProducts"><span class="type-signature">(async) </span>searchAndSortProducts<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="getProductRecommendation"><span class="type-signature">(async) </span>getProductRecommendation<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Object}</span></h4>
     
 
     
@@ -112,7 +112,7 @@
 
 
 <div class="description">
-    This function performs a search, filter, and sort operation on products based on the provided criteria.It extracts product search and filter parameters from the request body and query parameters.It constructs a MongoDB aggregation pipeline to execute the search, filter, and sort operations.The function first constructs a match condition based on the provided product category, brand name, and name (with regex match).If price range parameters (priceMin and priceMax) are provided, it adds a price range filter to the match condition.Then, it constructs the aggregation pipeline with the $match stage using the constructed match condition.If sortBy parameter is provided and it's either 'productPrice' or 'productName', it adds a $sort stage to the pipeline based on the sortBy parameter.Finally, it executes the aggregation pipeline using the Product model and sends the search results as a JSON response.If any error occurs during the execution, it logs the error and sends a 500 status code with a 'Server error' message.
+    Retrieves product recommendations based on specified criteria.This function fetches products from the database that match the provided criteria such as product category,targeted age group, targeted concerns, and targeted skin type.
 </div>
 
 
@@ -154,7 +154,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">Object</span>
 
 
             
@@ -164,7 +164,174 @@
 
             
 
-            <td class="description last">Express request object containing product search and filter parameters.</td>
+            <td class="description last">The request object containing product category, targeted age, skin type and concerns.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>body</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The request body.
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>productCategory</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The category of the product.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>productTargetedAge</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The targeted age group for the product.(optional)</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>productTargetedSkinType</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The targeted skin type for the product.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>productTargetedConcerns</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The concerns the product targets.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -177,7 +344,7 @@
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">Object</span>
 
 
             
@@ -187,7 +354,7 @@
 
             
 
-            <td class="description last">Express response object to send the search results.</td>
+            <td class="description last">The response object to send back to the client.</td>
         </tr>
 
     
@@ -228,7 +395,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="searchAndSortProducts.js.html">searchAndSortProducts.js</a>, <a href="searchAndSortProducts.js.html#line3">line 3</a>
+        <a href="getProductRecommendation.js.html">getProductRecommendation.js</a>, <a href="getProductRecommendation.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -258,7 +425,7 @@
 <dl>
     <dt>
         <div class="param-desc">
-        - Throws an error if there's any issue during the execution.
+        If an error occurs while fetching recommendations.
         </div>
     </dt>
     <dd></dd>
@@ -286,7 +453,7 @@
 
         
 <div class="param-desc">
-    - Promise representing the completion of the function.
+    The recommended products based on the specified criteria.
 </div>
 
 
@@ -297,7 +464,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Promise.&lt;void></span>
+<span class="param-type">Object</span>
 
 
     </dd>
@@ -325,13 +492,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#searchAndSortProducts">searchAndSortProducts</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#getProductRecommendation">getProductRecommendation</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 14 2024 11:52:24 GMT+0600 (Bangladesh Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Feb 22 2024 00:16:17 GMT+0600 (Bangladesh Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
