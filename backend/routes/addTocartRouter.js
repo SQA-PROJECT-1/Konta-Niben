@@ -4,7 +4,6 @@
  */
 
 const { addToCart, removeItem, getAllCartList } = require('../controllers/productController/addToCart');
-
 const router = require('express').Router();
 
 /**

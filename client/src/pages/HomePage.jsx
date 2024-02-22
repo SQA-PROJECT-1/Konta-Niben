@@ -41,6 +41,7 @@ const addProductToCart = (productId) => {
     
     const storedData = localStorage.getItem('set-token-for-user');
     const data=JSON.parse(storedData)
+   
     axios 
       .post(
         `http://localhost:5000/api/addToCart?userId=${data?.userId}&productId=${productId}`
