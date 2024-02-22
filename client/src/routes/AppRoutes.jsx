@@ -8,6 +8,11 @@ import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+import { SecureRoute } from './SecureRoute'
+import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
+
+
+const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -26,23 +31,27 @@ const AppRoutes = () => {
             children: [
                 {
                   path: '/dashboard',
-                  element: <DashboardBody />
+                  element: secureRouteWrapper(<DashboardBody />)
                 },
                 {
                     path: '/dashboard/addProducts',
-                    element: <AddProducts/>
+                    element: secureRouteWrapper(<AddProducts/>)
                 },
                 {
                     path: '/dashboard/products',
-                    element: <DashboardProducts/>
+                    element: secureRouteWrapper(<DashboardProducts/>)
                 },
                 {
                     path:'/dashboard/products/details/:id',
-                    element:<DashboardProductsDetails/>
+                    element:secureRouteWrapper(<DashboardProductsDetails/>)
                 },
                 {
                     path:'/dashboard/products/update/:id',
-                    element:<DashboardUpdateProducts/>
+                    element:secureRouteWrapper(<DashboardUpdateProducts/>)
+                },
+                {
+                    path:'/dashboard/adminProfile',
+                    element:secureRouteWrapper(<DashboardAdminProfile/>)
                 }
             ]
         }

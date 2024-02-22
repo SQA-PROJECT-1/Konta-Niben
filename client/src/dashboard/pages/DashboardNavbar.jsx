@@ -1,7 +1,20 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 
 const DashboardNavbar = () => {
+
+  const [profile,setProfile] = useState([])
+  useEffect(()=>{
+    const token = localStorage.getItem('set-token-for-user');
+     fetch('http://localhost:5000/api/users/profile', {
+      headers: {
+          'Authorization': `Bearer ${token}`
+      }})
+     .then(response => response.json())
+     .then(data => {
+      setProfile(data) 
+    })
+  })
   return (
         
         <nav class="bg-gray-800">
@@ -17,13 +30,16 @@ const DashboardNavbar = () => {
           </svg>
         </button>
       </div>
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+      <div class="flex flex-1 items-center lg:justify-between sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
             <Link to="/dashboard" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</Link>
             <Link to="/dashboard/addProducts" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Add Products</Link>
             <Link to="/dashboard/products" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Products</Link>
           </div>
+        </div>
+        <div class=" flex space-x-4">
+        <Link to="/dashboard/adminProfile" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">{profile.userName}</Link>
         </div>
       </div>
     </div>
@@ -33,6 +49,7 @@ const DashboardNavbar = () => {
         <Link to="/dashboard" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</Link>
         <Link to="/dashboard/addProducts" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Add Products</Link>
         <Link to="/dashboard/products" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</Link>
+        <Link to="/dashboard/adminProfile" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{profile.userName}</Link>
     </div>
 </div>
 
