@@ -6,7 +6,7 @@ const Cart = require('../../models/cartModel');
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-// Add product to wishlist
+// Add product to cart
 exports.addToCart = async (req, res) => {
     const { userId, productId } = req.query;
 

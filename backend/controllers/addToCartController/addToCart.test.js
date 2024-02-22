@@ -1,4 +1,4 @@
-const { addToCart } = require('.addToCartController/addToCart');
+const { addToCart } = require('./addTocart');
 const Cart = require('../../models/cartModel');
 
 jest.mock('../../models/cartModel');
