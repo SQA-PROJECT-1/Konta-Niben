@@ -3,6 +3,8 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { FaStar } from 'react-icons/fa';
 import AddReviewModal from './AddReviewModal';
+import { Link ,useNavigate} from 'react-router-dom'
+
 
 import {
     Card,
@@ -78,8 +80,7 @@ const DashboardProductsDetails = () => {
     axios.get(`http://localhost:5000/api/products/review/review?productId=${id}`)
         .then((response) => {
             const data = response.data;
-            console.log('sakib');
-            console.log(data.data.averageRating);
+           
             setRating(data.data.averageRating);
         })
         .catch((error) => {
@@ -138,14 +139,20 @@ const DashboardProductsDetails = () => {
             {/* Add stars here */}  {renderStars()}
             <br></br>
             <button   onClick={openModal} className="bg-green-600 text-white px-3 py-1 rounded-md m-2">Add review</button> 
-            <button className="bg-red-600 text-white px-3 py-1 rounded-md">View all review</button>
-
+            <Link
+            to={`/dashboard/products/review/${id}`}
+            className="bg-amber-600 text-white px-3 py-1 rounded-md">
+            View all review
+        </Link>
+ 
             <AddReviewModal isOpen={isModalOpen} onClose={closeModal} onSubmit={handleAddReview} />
         
         </p>
+        
           </Typography>
        
         </CardBody>
+        
       </Card>
     
     </div>

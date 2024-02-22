@@ -8,6 +8,7 @@ import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+import AllReviews from '../dashboard/pages/AllReview'
 import WishList from '../pages/WishList'
 
 const AppRoutes = () => {
@@ -43,6 +44,10 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/products/details/:id',
                     element:<DashboardProductsDetails/>
+                },
+                  {
+                    path:'/dashboard/products/review/:id',
+                    element:<AllReviews/>
                 },
                 {
                     path:'/dashboard/products/update/:id',
