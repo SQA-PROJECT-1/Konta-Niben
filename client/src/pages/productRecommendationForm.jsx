@@ -86,7 +86,6 @@ const ProductRecommendationForm = () => {
           <SelectInput 
             name="productCategory"
             label="Product Category"
-            required
             value={formData.productCategory}
             onChange={handleChange}
             options={productCategories}
@@ -116,12 +115,11 @@ const ProductRecommendationForm = () => {
             value={formData.productTargetedSkinType}
             onChange={handleChange}
             options={["Oily", "Dry", "Normal", "Sensitive", "Combination"]}
-            required
+            
           />
           <SelectInput
             name="productTargetedConcerns"
             label="Concerns"
-            required
             value={formData.productTargetedConcerns}
             onChange={handleChange}
             options={[

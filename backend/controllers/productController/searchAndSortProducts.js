@@ -73,7 +73,7 @@ const searchAndSortProducts = async (req, res) => {
 
       res.status(200).json(searchResult);
   } catch (error) {
-      console.error(error);
+     // console.error(error);
       res.status(500).json("Server error");
   }
 };
