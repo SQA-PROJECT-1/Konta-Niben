@@ -25,6 +25,10 @@ const getProductRecommendation = async (req, res) => {
             return res.status(400).json({ error: 'Please provide product category, targeted concerns, and targeted skin type.' });
         }
 
+        if (productTargetedAge && productTargetedAge < 0) {
+            return res.status(400).json({ error: 'Age cannot be negative.' });
+        }
+
         const conditions = {
             productCategory,
             productTargetedConcerns, 
@@ -37,10 +41,15 @@ const getProductRecommendation = async (req, res) => {
 
         const recommendedProducts = await Product.find(conditions);
 
-        res.status(200).json(recommendedProducts);
+        if (recommendedProducts.length === 0) {
+            return res.status(404).json({ error: 'No recommended products found for the specified category.' });
+        }
+     
+        return res.status(200).json(recommendedProducts);
+
     } catch (error) {
-        console.error('Error recommending products:', error);
-        res.status(500).json({ error: 'An error occurred.' });
+        //console.error('Error recommending products:', error);
+        return res.status(500).json({ error: 'An error occurred.' });
     }
 };
 
