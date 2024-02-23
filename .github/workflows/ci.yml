@@ -36,14 +36,6 @@ jobs:
       working-directory: client
       run: npm install
 
-    - name: Run Backend Development Server
-      working-directory: backend
-      run: timeout 10s npm run dev --if-present
-
-    - name: Run Client Development Server
-      working-directory: client
-      run: timeout 10s npm run dev --if-present
-
     - name: Run Backend Jest Tests
       working-directory: backend
       run: npm test
