@@ -11,8 +11,8 @@ const User = require('../../models/userModel')
 
 const showAllUsers = async(req,res)=>{
     try{
-      const allUsers =await User.find()
-      if(!allUsers){
+      const allUsers = await User.find({ userRole: { $ne: 'admin' } });
+      if(!allUsers || allUsers.length==0){
         return res.status(400).json("User not found")
       }
       res.status(200).json(allUsers)
