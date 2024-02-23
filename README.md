@@ -1,12 +1,11 @@
 # Project Name: Konta-Niben
 
-Here Searching and sorting are done for finding products using some criteria.
+Here Add to cart and product details are implemented of our project.
 
-You can search using product name, category, and brand.
+User can add product to their cart.
 
-You can give a price range from minPrice to maxPrice to filter products within your budget.
+User can view the product details.
 
-You can sort products in ascending order: sortBy price or sortBy name.
 
 ## Table of Contents
 
