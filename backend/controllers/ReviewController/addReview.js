@@ -12,6 +12,22 @@ const Product = require('../../models/productModel'); // Assuming you have a Pro
  */
 exports.addOrUpdateReview = async (req, res) => {
     const { productId, userId, message, rating } = req.body;
+    if(userId==undefined){
+        return res.status(400).json({ message: 'userId is required in the request body' });
+
+    }
+    if(rating==undefined){
+        return res.status(400).json({ message: 'rating is required in the request body' });
+
+    }
+    if(rating>5||rating<0){
+        return res.status(400).json({ message: 'Rating must be in the range of 0 to 5' });
+
+    }
+    if(productId==undefined){
+        return res.status(400).json({ message: 'productId is required in the request body' });
+
+    }
      try {
         // Upsert the review
         const result = await ProductReview.findOneAndUpdate(
@@ -44,5 +60,6 @@ exports.addOrUpdateReview = async (req, res) => {
         res.status(500).json({ message: 'Internal server error' });
         throw error;
     }
+    
 };
  
