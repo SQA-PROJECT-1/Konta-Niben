@@ -1,3 +1,4 @@
+
 # Project Name: Konta-Niben
 
 ### Searching/Sorting 
@@ -47,6 +48,7 @@ The Admin Dashboard feature is designed to provide administrators with valuable 
 
 Longer project description and goals.
 
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -72,13 +74,21 @@ These instructions will help you set up and run the project on your local machin
    npm install
    
    npm install dotenv
+
+   npm install cors    
+
+   npm install nodemon
+
+   npm i express
+
+   npm install mongoose
    
    npm run dev
 
    cd ..
    
    cd client
-   
+
    npm install
 
    npm install chart.js
@@ -94,6 +104,7 @@ These instructions will help you set up and run the project on your local machin
    then use this link(http://localhost:5173) to get to the dashboard page 
 
    then use this link(http://localhost:5173/home) to get to the home page where searching and sorting are done.
+
    ```
    
 
@@ -110,7 +121,7 @@ These instructions will help you set up and run the project on your local machin
 
 ### JSdoc
 
-3. Search and sort documentation:
+    Search and sort documentation:
 
    ```bash
    cd backend
