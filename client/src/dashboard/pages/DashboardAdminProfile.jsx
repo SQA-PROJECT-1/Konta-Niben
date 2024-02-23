@@ -20,6 +20,11 @@ const DashboardAdminProfile = () => {
         setProfile(data) 
       })
     })
+
+  const handleClick=()=>{
+    localStorage.removeItem('set-token-for-user')
+    window.location.reload()
+  }
   return (
     <div className=" h-screen flex items-center justify-center bg-teal-50 mt-5">
       <Card className="w-full max-w-[70rem] h-3/4 flex-row gap-10">
@@ -47,6 +52,7 @@ const DashboardAdminProfile = () => {
             <p>
               <span className="font-bold"> Id: </span> {profile.userId}
             </p>
+            <button  onClick={handleClick}className="bg-red-600 text-white px-3 py-2 mt-10 rounded-lg">Logout</button>
           </Typography>
         
         </CardBody>
