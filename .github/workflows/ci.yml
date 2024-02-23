@@ -38,11 +38,11 @@ jobs:
 
     - name: Run Backend Development Server
       working-directory: backend
-      run: npm run dev --if-present
+      run: timeout 10s npm run dev --if-present
 
     - name: Run Client Development Server
       working-directory: client
-      run: npm run dev --if-present
+      run: timeout 10s npm run dev --if-present
 
     - name: Run Backend Jest Tests
       working-directory: backend
