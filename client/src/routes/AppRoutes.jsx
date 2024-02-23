@@ -10,6 +10,7 @@ import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetail
 import ProductRecommendationForm from '../pages/ProductRecommendationForm'
 
 
+
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
