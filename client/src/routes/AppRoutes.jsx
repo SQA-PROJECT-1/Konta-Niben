@@ -7,17 +7,18 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import ProductRecommendationForm from '../pages/ProductRecommendationForm'
+
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
             path: '/',
             element: <Login />,
-            children: [
-                {
-                    path:"/home",
-                    element: <HomePage />
-                }]
+        },
+        {
+            path:'/home',
+            element: <HomePage />
         },
         {
             path: '/dashboard',
@@ -40,7 +41,15 @@ const AppRoutes = () => {
                     element:<DashboardProductsDetails/>
                 }
             ]
-        }
+        },
+        {
+            path:'/recommendation-form',
+            element: <ProductRecommendationForm />
+            
+        },
+      
+
+
     ])
     return (
         <div><RouterProvider router={routes} /></div>
