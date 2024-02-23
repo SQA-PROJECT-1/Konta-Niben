@@ -41,8 +41,7 @@ const addProductToCart = (productId) => {
     
     // const storedData = localStorage.getItem('set-token-for-user');
     // const data=JSON.parse(storedData)
-    // const data=JSON.parse(storedData)
-    // alert(data)
+  
    const userId=1;
    
     axios 
