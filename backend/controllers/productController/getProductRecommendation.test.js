@@ -18,9 +18,9 @@ describe('getProductRecommendation', () => {
             json: jest.fn()
         };
         jest.spyOn(Product, 'find').mockResolvedValue([{}]);
-    
+        
         await getProductRecommendation(req, res);
-        console.log(res);
+        //console.log(res);
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.json).toHaveBeenCalledWith([{}]);
     });
@@ -83,6 +83,28 @@ describe('getProductRecommendation', () => {
     expect(res.status).toHaveBeenCalledWith(400);
     expect(res.json).toHaveBeenCalledWith({ error: 'Age cannot be negative.' }); 
 });
+
+test('should handle no recommended products', async () => {
+  const req = {
+    body: {
+      productCategory: 'SkinCare',
+      productTargetedAge: 25,
+      productTargetedSkinType: 'Combination',
+      productTargetedConcerns: 'Acne'
+    }
+  };
+  const res = {
+    status: jest.fn().mockReturnThis(),
+    json: jest.fn()
+  };
+
+
+  jest.spyOn(Product, 'find').mockResolvedValue([]);
+  await getProductRecommendation(req, res);
+
+  expect(res.status).toHaveBeenCalledWith(404);
+  expect(res.json).toHaveBeenCalledWith({ error: 'No recommended products found for the specified category.' });
+});
   
   test('should return an error for missing input parameters', async () => {
     const req = {
@@ -99,6 +121,7 @@ describe('getProductRecommendation', () => {
     expect(res.json).toHaveBeenCalledWith({ error: 'Please provide product category, targeted concerns, and targeted skin type.' });
   },);
 
+  
   test('should handle database errors gracefully', async () => {
     jest.spyOn(Product, 'find').mockRejectedValue(new Error('Database error'));
 
@@ -110,7 +133,7 @@ describe('getProductRecommendation', () => {
         }
     };
     const res = {
-        status: jest.fn(() => res),
+        status: jest.fn().mockReturnThis(),
         json: jest.fn()
     };
 
