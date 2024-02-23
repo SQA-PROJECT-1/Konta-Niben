@@ -36,9 +36,14 @@ jobs:
       working-directory: client
       run: npm install
 
-   
-    - name: Run Development Server
+    - name: Run Backend Development Server
+      working-directory: backend
       run: npm run dev --if-present
 
-    - name: Run Jest Tests
+    - name: Run Client Development Server
+      working-directory: client
+      run: npm run dev --if-present
+
+    - name: Run Backend Jest Tests
+      working-directory: backend
       run: npm test
