@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [Project Name](#project-name-konta-niben)
+  - [Used Technology](#used-technology)
   - [Admin Dashboard](#admin-dashboard)
     - [Features](#features)
     - [Screenshots](#screenshots)
@@ -16,10 +17,24 @@
       - [Instructions for Backend](#instructions-for-backend)
       - [Instructions for Frontend](#instructions-for-frontend)
     - [Testing](#testing)
+      -[Unit Testing](#unit-testing)
+      -[Continuous Integration Testing](#continuous-integration-testing)
     - [JSdoc](#jsdoc)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
 
+## Used Technology  
+
+The following technologies were used in this project:
+
+- Node.js
+- Express.js
+- MongoDB
+- React.js
+- Chart.js
+- Jest
+- JSDoc
+- GitHub Actions
 
 ## Admin Dashboard
 
@@ -120,7 +135,7 @@ These instructions will help you set up and run the project on your local machin
 
    follow the link to get the web application (link like this: http://localhost:5173/)
 
-   then login is required and login with- Email: tazim@gmail.com and Password: 123
+   then login is required and login with- `Email: tazim@gmail.com` and `Password: 123`
 
    then use this link(http://localhost:5173) to get the admin dashboard page 
 
@@ -129,6 +144,8 @@ These instructions will help you set up and run the project on your local machin
    ```
    
 ### Testing
+ 
+ **Unit Testing**
 
    ```bash
    cd backend
@@ -137,7 +154,11 @@ These instructions will help you set up and run the project on your local machin
 
    npm test
    ```
-   
+
+  **Continuous Integration Testing**
+
+  This project includes continuous integration tests using GitHub Actions. The CI tests are automatically triggered on each push or making pull requests to this branch. You can view the workflow file [here](.github/workflows/ci.yml).
+
 
 ### JSdoc
 
@@ -183,6 +204,6 @@ This project is licensed under the MIT License.
 
 ## Ackowledgements
 
-Special Thanks 💚 to our repected supervisor `Dr. Md. Musfique Anwar`
+Special Thanks 💚 to our repected supervisor `Dr. Md. Musfique Anwar` and all the team members.
 
 ![alt text](image.png)
