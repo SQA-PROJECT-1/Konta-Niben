@@ -139,7 +139,7 @@ test('should return 400 if rating is not in the range of 0 to 5', async () => {
             productId: 'mockProductId',
             userId: 'mockUserId',
             message: 'Mock review message',
-            rating: 112, // Rating outside the valid range
+            rating: 100, // Rating outside the valid range
         },
     };
 
