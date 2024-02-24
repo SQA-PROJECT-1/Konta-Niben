@@ -164,7 +164,7 @@ These instructions will help you set up and run the project on your local machin
    
    cd out
    
-   open getProductRecommendation.js.html click the mouse right click and "open with Live server" button.
+   open getProductsById.js.html click the mouse right click and "open with Live server" button.
   
   ```
 
