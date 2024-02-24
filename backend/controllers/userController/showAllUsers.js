@@ -1,12 +1,14 @@
 const User = require('../../models/userModel')
 
 /**
- * Retrieves all users from the database.
+ * Retrieves all users from the database whose role is not 'admin'.
  * @async
  * @function showAllUsers
  * @param {Object} req - The request object sent by the client.
  * @param {Object} res - The response object used to send data back to the client.
- * @returns {Promise<void>} A Promise that resolves with the list of all users retrieved from the database and responds with a 200 OK status, or rejects if an error occurs during the retrieval process.
+ * @returns {Promise} A Promise that resolves with the list of all users retrieved from the database and responds with a 200 OK status, 
+ *                    or rejects with a 500 Internal Server Error status if an error occurs during the retrieval process. 
+ *                    If no users are found, it responds with a 400 Bad Request status.
  */
 
 const showAllUsers = async(req,res)=>{
