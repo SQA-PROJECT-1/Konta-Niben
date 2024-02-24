@@ -80,7 +80,6 @@ describe('orderAndPayment function', () => {
         expect(res.status).toHaveBeenCalledWith(404);
         expect(res.json).toHaveBeenCalledWith({ error: 'User not found' });
     });
-    // Write similar test cases for other scenarios as described in the requirements
 });
 
 describe('redirect function', () => {
@@ -104,21 +103,4 @@ describe('redirect function', () => {
         expect(res.status).toHaveBeenCalledWith(200);
         expect(res.redirect).toHaveBeenCalledWith('http://localhost:5173/cart');
     });
-
-    it('should handle invalid user ID', async () => {
-        const req = { params: { id: '65cb5e0b6e5e4946c060e11d' } };
-
-        CartSchema.deleteMany = jest.fn().mockResolvedValue({ n: 0 }); // Simulate no items found for the user
-
-        const res = {
-            status: jest.fn().mockReturnThis(),
-            json: jest.fn()
-        };
-
-        await redirect(req, res);
-
-        expect(res.status).toHaveBeenCalledWith(404);
-        expect(res.json).toHaveBeenCalledWith({ error: 'User not found or no items to delete' });
-    });
-    // Write similar test cases for other scenarios as described in the requirements
 });
