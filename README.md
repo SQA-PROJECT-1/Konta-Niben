@@ -49,7 +49,7 @@ The Admin Dashboard feature is designed to provide administrators with valuable 
 
 ### Screenshots
 
-![alt text](image-1.png)
+![alt text](/resources/image-1.png)
 
 ## Product Recommendation
 
@@ -65,9 +65,9 @@ The Product Recommendation feature allows users to receive recommendations for p
 
 ### Screenshots
 
-![alt text](image-2.png)
+![alt text](/resources/image-2.png)
 
-![alt text](image-3.png)
+![alt text](/resources/image-3.png)
 
 
 ## Prerequisites
@@ -206,4 +206,4 @@ This project is licensed under the MIT License.
 
 Special Thanks 💚 to our repected supervisor `Dr. Md. Musfique Anwar` and all the team members.
 
-![alt text](image.png)
+![alt text](/resources/image.png)
