@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "sakib-02" ]
   pull_request:
-    branches: [ "sakib-01" ]
+    branches: [ "sakib-02" ]
 
 jobs:
   build:
