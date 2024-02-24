@@ -33,6 +33,7 @@ The following technologies were used in this project:
 - Chart.js
 - Jest
 - JSDoc
+- SSLcommerz
 - GitHub Actions
 
 ## Searching, Sorting and Filtering
