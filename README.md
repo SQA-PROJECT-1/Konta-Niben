@@ -127,7 +127,7 @@ These instructions will help you set up and run the project on your local machin
 
   **Continuous Integration Testing**
 
-  This project includes continuous integration tests using GitHub Actions. The CI tests are automatically triggered on each push or making pull requests to this branch. You can view the workflow file [here](.github/workflows/node.js.yml).
+  This project includes continuous integration tests using GitHub Actions. The CI tests are automatically triggered on each push or making pull requests to this branch. You can view the workflow file [here](.github/workflows/monira_ci.yml).
 
 
 ### JSdoc
