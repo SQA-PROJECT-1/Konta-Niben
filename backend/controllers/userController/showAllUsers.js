@@ -12,6 +12,7 @@ const User = require('../../models/userModel')
 const showAllUsers = async(req,res)=>{
     try{
       const allUsers = await User.find({ userRole: { $ne: 'admin' } });
+      res.status(200).json(allUsers)
     }
     catch(error) {
         res.status(500).json(error)
