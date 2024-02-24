@@ -16,7 +16,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [19.x]
+        node-version: [20.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
@@ -38,4 +38,4 @@ jobs:
 
     - name: Run Backend Jest Tests
       working-directory: backend
-      run: npm test
+      run: npx jest
