@@ -107,9 +107,7 @@ These instructions will help you set up and run the project on your local machin
 
    then login is required and login with- `Email: tazim@gmail.com` and `Password: 123`
 
-   then use this link(http://localhost:5173) to get the admin dashboard page 
-
-   then use this link(http://localhost:5173/home) to get to the home page where you will find Recommendation option in nabvar. Clicking the option will send u another page where you will find a form for getting recommended products.
+   then use this link(http://localhost:5173/home) to get to the home page where you will find Details and Add to cart button. Clicking the details will send u another page where you will view the product details for each product. clicking the add the cart will add product to the cart. In cart icon when you click it, it will take you another page where you can view all the product in the cart. In there you can remove the product keep it in the cart. products.
 
    ```
    
@@ -164,7 +162,7 @@ These instructions will help you set up and run the project on your local machin
    
    cd out
    
-   open getProductRecommendation.js.html click the mouse right click and "open with Live server" button.
+   open getProductsById.js.html click the mouse right click and "open with Live server" button.
   
   ```
 
