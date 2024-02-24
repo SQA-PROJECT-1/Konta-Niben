@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest --verbose --coverage",
+    "test": "jest --verbose --coverage --coverageReporters=html",
     "dev": "nodemon server.js"
   },
   "author": "",
