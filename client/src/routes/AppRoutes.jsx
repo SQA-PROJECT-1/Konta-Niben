@@ -7,6 +7,7 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
 import ProductRecommendationForm from '../pages/ProductRecommendationForm'
 
 
@@ -38,8 +39,12 @@ const AppRoutes = () => {
                     element: <DashboardProducts/>
                 },
                 {
-                    path:'/dashboard/products/:id',
+                    path:'/dashboard/products/details/:id',
                     element:<DashboardProductsDetails/>
+                },
+                {
+                    path:'/dashboard/products/update/:id',
+                    element:<DashboardUpdateProducts/>
                 }
             ]
         },
