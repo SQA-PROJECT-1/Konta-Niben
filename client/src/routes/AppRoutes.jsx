@@ -7,7 +7,7 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
-import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProduc
+import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
 import AllReviews from '../dashboard/pages/AllReview'
 import WishList from '../pages/WishList'
 import { SecureRoute } from './SecureRoute'
