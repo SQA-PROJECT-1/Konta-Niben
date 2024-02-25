@@ -7,18 +7,46 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import ProductDetails from '../pages/ProductDetails'
+import CartPage from '../pages/CartPage'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+import AllReviews from '../dashboard/pages/AllReview'
+import WishList from '../pages/WishList'
+import { SecureRoute } from './SecureRoute'
+import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
+import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
+import ProductRecommendationForm from '../pages/ProductRecommendationForm'
+const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
+
+
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
             path: '/',
             element: <Login />,
-            children: [
-                {
-                    path:"/home",
-                    element: <HomePage />
-                }]
+        },
+        {
+            path:'/home',
+            element: <HomePage />,
+           
+        },
+        {
+                path: '/home/details/:id',
+                element:<ProductDetails/>
+            
+        },
+        {
+            path:'/home/cart',
+            element: <CartPage />
+        },
+        {
+            path:'/cart',
+            element: <CartPage />
+        },
+        {
+            path:'/wishList',
+            element: <WishList />
         },
         {
             path: '/dashboard',
@@ -26,26 +54,52 @@ const AppRoutes = () => {
             children: [
                 {
                   path: '/dashboard',
-                  element: <DashboardBody />
+                  element: secureRouteWrapper(<DashboardBody />)
                 },
                 {
                     path: '/dashboard/addProducts',
-                    element: <AddProducts/>
+                    element: secureRouteWrapper(<AddProducts/>)
                 },
                 {
                     path: '/dashboard/products',
-                    element: <DashboardProducts/>
+                    element: secureRouteWrapper(<DashboardProducts/>)
                 },
                 {
                     path:'/dashboard/products/details/:id',
-                    element:<DashboardProductsDetails/>
+                    element:secureRouteWrapper(<DashboardProductsDetails/>)
+                },
+                  {
+                    path:'/dashboard/products/review/:id',
+                    element:<AllReviews/>
                 },
                 {
                     path:'/dashboard/products/update/:id',
-                    element:<DashboardUpdateProducts/>
+                    element:secureRouteWrapper(<DashboardUpdateProducts/>)
+                },
+                {
+
+                    path:'/dashboard/products/:id',
+                    element:<DashboardProductsDetails/>
+                },
+                {
+                    path:'/dashboard/adminProfile',
+                    element:secureRouteWrapper(<DashboardAdminProfile/>)
+                },
+                {
+                    path:'/dashboard/allUsers',
+                    element:secureRouteWrapper(<DashboardAllUsers/>)
                 }
+
             ]
-        }
+        },
+        {
+            path:'/recommendation-form',
+            element: <ProductRecommendationForm />
+            
+        },
+      
+
+
     ])
     return (
         <div><RouterProvider router={routes} /></div>

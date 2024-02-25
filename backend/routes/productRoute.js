@@ -7,7 +7,11 @@ const { updateProducts } = require('../controllers/productController/updateProdu
 const { getProducts } = require('../controllers/productController/getProducts');
 const { deleteProducts } = require('../controllers/productController/deleteProducts');
 const { setProducts } = require('../controllers/productController/setProducts');
+const { searchAndSortProducts } = require('../controllers/productController/searchAndSortProducts');
 const {getProductsById} = require('../controllers/productController/getProductsById');
+const { getProductRecommendation } = require('../controllers/productController/getProductRecommendation');
+
+const authorization = require('../middleware/auth')
 
 const router = require('express').Router();
 
@@ -33,7 +37,7 @@ router.post("/", setProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.get("/", getProducts);
+router.get("/",getProducts);
 
 /**
  * Route for deleting a product by ID.
@@ -45,7 +49,7 @@ router.get("/", getProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.delete("/:productId", deleteProducts);
+router.delete("/:productId",deleteProducts);
 
 /**
  * Route for updating a product by ID.
@@ -57,8 +61,25 @@ router.delete("/:productId", deleteProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.put("/:productId", updateProducts);
+router.put("/:productId",updateProducts);
+
+/**
+ * Middleware function to handle searching and sorting products.
+ * @name searchAndSortProducts
+ * @function
+ * @memberof module:productRouter
+ * @inner
+ * @param {object} req - Express request object containing search and sort parameters.
+ * @param {object} req.body - Request body containing search parameters like productName, productCategory, productBrandName, etc.
+ * @param {object} req.query - Query parameters containing sorting options like sortBy.
+ * @param {object} res - Express response object to send the search results.
+ * @returns {Promise<void>} - Promise representing the completion of the function.
+ */
+
+router.post("/searchAndSortProducts", searchAndSortProducts)
+router.post('/recommendations', getProductRecommendation);
 
 router.get("/:productId",getProductsById)
+
 
 module.exports = router;
