@@ -7,6 +7,7 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import CartPage from '../pages/CartPage'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
 import AllReviews from '../dashboard/pages/AllReview'
 import WishList from '../pages/WishList'
@@ -26,6 +27,10 @@ const AppRoutes = () => {
         {
             path:'/home',
             element: <HomePage />
+        },
+        {
+            path:'/cart',
+            element: <CartPage />
         },
         {
             path:'/wishList',

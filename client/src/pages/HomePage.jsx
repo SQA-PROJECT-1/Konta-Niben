@@ -1,3 +1,5 @@
+
+import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiHeart } from 'react-icons/fi';
@@ -17,6 +19,8 @@ const HomePage = () => {
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState('');
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const [token,setToken]=useState()
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -120,6 +124,21 @@ const HomePage = () => {
       },
     };
 
+    const addProductToCart = (productId) => {
+    const storedData = localStorage.getItem('set-token-for-user');
+    const data=JSON.parse(storedData)
+    axios 
+      .post(
+        `http://localhost:5000/api/addToCart?userId=${data?.userId}&productId=${productId}`
+      )
+      .then((response) => {
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+      });
+  };
+    
     useEffect(() => {
       let timeoutId;
 
@@ -230,11 +249,11 @@ const HomePage = () => {
         >
           <FiHeart />
         </button>
-        <button
-          className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600 hover:"
-        >
+        <Link to={'/cart'} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        <button>
           <MdOutlineShoppingCart />
         </button>
+        </Link>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         {products.map((product) => (
@@ -243,7 +262,10 @@ const HomePage = () => {
             <div className="text-gray-600 mb-2">Category: {product.productCategory}</div>
             <div className="text-gray-600">Price: ${product.productPrice}</div>
             <div className="flex">
-              <button className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+               <button
+                onClick={() => addProductToCart(product.productId)}
+                className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+              >
                 Add to Cart
               </button>
               <button
