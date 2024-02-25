@@ -1,3 +1,4 @@
+
  const CartList = require('../../models/cartModel'); 
 /**
  * Retrieves all cart items for a given user.
@@ -5,12 +6,16 @@
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
+
 // Get all cart items for a user
+
 exports.getAllCartList = async (req, res) => {
   const { userId } = req.query; // Assuming userId is passed as a parameter in the URL
 
   try {
+
     // Find all cart items for the given userId
+
     const cartListItems = await CartList.find({userId});
 
     res.status(200).json(cartListItems);

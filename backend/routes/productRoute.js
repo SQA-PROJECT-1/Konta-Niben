@@ -10,6 +10,8 @@ const { setProducts } = require('../controllers/productController/setProducts');
 const { searchAndSortProducts } = require('../controllers/productController/searchAndSortProducts');
 const {getProductsById} = require('../controllers/productController/getProductsById');
 
+const authorization = require('../middleware/auth')
+
 const router = require('express').Router();
 
 /**
@@ -34,7 +36,7 @@ router.post("/", setProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.get("/", getProducts);
+router.get("/",getProducts);
 
 /**
  * Route for deleting a product by ID.
@@ -46,7 +48,7 @@ router.get("/", getProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.delete("/:productId", deleteProducts);
+router.delete("/:productId",deleteProducts);
 
 /**
  * Route for updating a product by ID.
@@ -58,7 +60,7 @@ router.delete("/:productId", deleteProducts);
  * @param {Function} middleware - Middleware function to handle the request.
  * @returns {Object} Express router object.
  */
-router.put("/:productId", updateProducts);
+router.put("/:productId",updateProducts);
 
 /**
  * Middleware function to handle searching and sorting products.
@@ -76,5 +78,6 @@ router.put("/:productId", updateProducts);
 router.post("/searchAndSortProducts", searchAndSortProducts)
 
 router.get("/:productId",getProductsById)
+
 
 module.exports = router;

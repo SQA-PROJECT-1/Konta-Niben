@@ -1,4 +1,6 @@
-const { addToCart } = require('./addTocart');
+
+const { addToCart } = require('./addToCart');
+
 const Cart = require('../../models/cartModel');
 
 jest.mock('../../models/cartModel');
@@ -64,4 +66,6 @@ describe('addToCart function', () => {
         expect(res.status).toHaveBeenCalledWith(500);
         expect(res.json).toHaveBeenCalledWith({ message: 'Internal server error' });
     });
+
 });
+
