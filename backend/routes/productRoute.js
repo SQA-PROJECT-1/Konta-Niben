@@ -9,6 +9,7 @@ const { deleteProducts } = require('../controllers/productController/deleteProdu
 const { setProducts } = require('../controllers/productController/setProducts');
 const { searchAndSortProducts } = require('../controllers/productController/searchAndSortProducts');
 const {getProductsById} = require('../controllers/productController/getProductsById');
+const { getProductRecommendation } = require('../controllers/productController/getProductRecommendation');
 
 const authorization = require('../middleware/auth')
 
@@ -76,6 +77,7 @@ router.put("/:productId",updateProducts);
  */
 
 router.post("/searchAndSortProducts", searchAndSortProducts)
+router.post('/recommendations', getProductRecommendation);
 
 router.get("/:productId",getProductsById)
 

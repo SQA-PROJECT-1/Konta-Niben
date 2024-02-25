@@ -2,15 +2,11 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
-
-
 import { Link ,useNavigate} from 'react-router-dom'
 import { FiHeart } from 'react-icons/fi';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import Modal from 'react-modal';
- 
-
+import HomepageNavabar from '../components/HomepageNavbar';
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -213,7 +209,7 @@ const HomePage = () => {
   .then(result=>{
     setProducts(result.data)
   })
-}
+
 const addProductToCart = (productId) => {
     
     // const storedData = localStorage.getItem('set-token-for-user');
@@ -235,6 +231,9 @@ const addProductToCart = (productId) => {
 
 
   return (
+
+    <div> 
+      <HomepageNavabar/>
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-semibold mb-4">Products</h2>
       {loading && <p>Loading...</p>}
@@ -339,6 +338,7 @@ const addProductToCart = (productId) => {
         onClose={handleSuccessModalClose}
         message={message}
       />
+    </div>
     </div>
   );
 };

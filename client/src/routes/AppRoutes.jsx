@@ -15,7 +15,9 @@ import WishList from '../pages/WishList'
 import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
+import ProductRecommendationForm from '../pages/ProductRecommendationForm'
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
+
 
 
 const AppRoutes = () => {
@@ -90,7 +92,14 @@ const AppRoutes = () => {
 
             ]
         },
-        
+        {
+            path:'/recommendation-form',
+            element: <ProductRecommendationForm />
+            
+        },
+      
+
+
     ])
     return (
         <div><RouterProvider router={routes} /></div>
