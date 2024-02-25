@@ -40,6 +40,10 @@ const productSchema = new mongoose.Schema({
     }, 
     productTargetedConcerns: {
         type: String
+    },
+    rating: {
+        type: Number,
+        default: 0 
     }
 });
 

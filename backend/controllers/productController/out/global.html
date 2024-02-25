@@ -105,6 +105,7 @@
 
     
     <h4 class="name" id="getProductRecommendation"><span class="type-signature">(async) </span>getProductRecommendation<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+    <h4 class="name" id="addToCart"><span class="type-signature"></span>addToCart<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -112,7 +113,11 @@
 
 
 <div class="description">
-    Retrieves product recommendations based on specified criteria.This function fetches products from the database that match the provided criteria such as product category,targeted age group, targeted concerns, and targeted skin type.
+
+    Retrieves product recommendations based on specified criteria.
+This function fetches products from the database that match the provided criteria such as product category,
+targeted age group, targeted concerns, and targeted skin type.
+
 </div>
 
 
@@ -332,6 +337,7 @@
 </table>
 
             </td>
+            <td class="description last">The request object containing userId and productId.</td>
         </tr>
 
     
@@ -345,6 +351,7 @@
             
                 
 <span class="param-type">Object</span>
+<span class="param-type">Object</span>
 
 
             
@@ -355,6 +362,7 @@
             
 
             <td class="description last">The response object to send back to the client.</td>
+            <td class="description last">The response object.</td>
         </tr>
 
     
@@ -396,6 +404,7 @@
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
         <a href="getProductRecommendation.js.html">getProductRecommendation.js</a>, <a href="getProductRecommendation.js.html#line19">line 19</a>
+        <a href="addToCart.js.html">addToCart.js</a>, <a href="addToCart.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -418,25 +427,209 @@
 
 
 
-<h5>Throws:</h5>
+
+
+<h5>Returns:</h5>
 
         
+<div class="param-desc">
+    - A Promise representing the completion of the operation.
+</div>
+
+
 
 <dl>
     <dt>
         <div class="param-desc">
         If an error occurs while fetching recommendations.
         </div>
+        Type
     </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getAllCartList"><span class="type-signature"></span>getAllCartList<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Retrieves all cart items for a given user.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
                 
-<span class="param-type">Error</span>
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The request object.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The response object.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="addToCart.js.html">addToCart.js</a>, <a href="addToCart.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise representing the completion of the operation.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
 
 
             </dd>
@@ -446,13 +639,24 @@
 </dl>
 
 
-    
+
+
+
+
+
+
+
+
+
+
+
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
+    - A Promise representing the completion of the operation.
     The recommended products based on the specified criteria.
 </div>
 
@@ -464,7 +668,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Object</span>
+<span class="param-type">Promise.&lt;void></span>
 
 
     </dd>

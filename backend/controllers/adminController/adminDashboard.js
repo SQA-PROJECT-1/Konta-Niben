@@ -11,7 +11,6 @@ const aggregateData = async (pipeline) => {
 };
 
 /**
-
 * Formats aggregated data by associating each item with its name, count,
 * and filtered products based on a provided filter function.
 * @param {Array} data - The aggregated data to be formatted.
@@ -47,7 +46,6 @@ const filterSubcategories = (subcategories, categoryId) => {
  */
 const adminDashboard = async (req, res) => {
     try {
-       
         const countOverallProducts = await Product.countDocuments();
         const countTotalUsers = await User.countDocuments();
         const productsByCategory = await aggregateData([{ $group: { _id: "$productCategory", count: { $sum: 1 } } }]);
@@ -56,7 +54,6 @@ const adminDashboard = async (req, res) => {
         const formattedCategories = formatData(productsByCategory, filterSubcategories, productsBySubcategory);
         const formattedBrands = formatData(productsByBrand, null, null);
 
-       
         return res.status(200).json({
             countOverallProducts,
             formattedCategories,
@@ -64,7 +61,6 @@ const adminDashboard = async (req, res) => {
             countTotalUsers
         });
     } catch (error) {
-        
         return res.status(500).json({ error: "Internal server error. Please try again later." });
     }
 };
