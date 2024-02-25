@@ -38,10 +38,8 @@ const setProducts = async (req, res) => {
         const newProduct = new Product(productObj);
         await newProduct.save();
         res.status(201).json(newProduct);
-    } catch (error) {
-        
+    } catch (error) {     
         res.status(500).send(error.message);
-        throw error;
     }
 }
 

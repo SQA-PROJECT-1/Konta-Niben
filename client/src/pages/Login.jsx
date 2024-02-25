@@ -16,14 +16,23 @@ const Login = () => {
             userPassword: form.password.value,
         };
 
-        console.log(userCredentials)
+       // console.log(userCredentials)
         try {
             const response = await axios.post(loginUrl, userCredentials);
-            console.log(form.email.value)
-            localStorage.setItem('set-token-for-user', JSON.stringify(response.data));
+//             localStorage.setItem('set-token-for-user', JSON.stringify(response.data));
+            localStorage.setItem('set-token-for-user', response.data.accessToken);
+            
+            if(response.data.userRole =="admin"){
+                console.log("yes")
+            }
+            else console.log("no")
             alert("login successfull")
             form.reset();
-            navigate("/dashboard");
+            if(response.data.userRole =="admin"){
+                navigate("/dashboard");
+            }
+            else navigate("/")
+            
             window.location.reload()
         } catch (error) {
             console.log(error);
