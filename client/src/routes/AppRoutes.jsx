@@ -7,7 +7,9 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
-import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProduc
+import AllReviews from '../dashboard/pages/AllReview'
+import WishList from '../pages/WishList'
 import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
@@ -20,11 +22,14 @@ const AppRoutes = () => {
         {
             path: '/',
             element: <Login />,
-            children: [
-                {
-                    path:"/home",
-                    element: <HomePage />
-                }]
+        },
+        {
+            path:'/home',
+            element: <HomePage />
+        },
+        {
+            path:'/wishList',
+            element: <WishList />
         },
         {
             path: '/dashboard',
@@ -45,6 +50,10 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/products/details/:id',
                     element:secureRouteWrapper(<DashboardProductsDetails/>)
+                },
+                  {
+                    path:'/dashboard/products/review/:id',
+                    element:<AllReviews/>
                 },
                 {
                     path:'/dashboard/products/update/:id',

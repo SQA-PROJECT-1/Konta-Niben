@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: adminController/adminDashboard.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: adminController/adminDashboard.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Imports the Product model from the productModel file.
+ * @const {Object}
+ */
+const Product = require('../../models/productModel')
+
+/**
+ * Retrieves statistics and information of products and users for the admin dashboard.
+ * @async
+ * @function adminDashboard
+ * @param {Object} req - The request object sent.
+ * @param {Object} res - The response object used to send data back.
+ * @returns {Promise&lt;void>} A Promise that resolves when the dashboard data is successfully retrieved and sent, or rejects if an error occurs.
+ * @throws {Error} If an error occurs during the retrieval or processing of dashboard data.
+ */
+const adminDashboard = async (req, res) => {
+    try {
+       
+        const countOverallProducts = await Product.find().countDocuments();
+        const productsByCategory = await Product.aggregate([
+            { $group: { _id: "$productCategory", count: { $sum: 1 } } }
+        ]);
+        const productsBySubcategory = await Product.aggregate([
+            { $group: { _id: "$productSubcategory", count: { $sum: 1 }, products: { $push: "$$ROOT" } } }
+        ]);
+
+        
+        const formattedCategories = productsByCategory.map(category => ({
+            /**
+             * The name of the product category.
+             * @type {string}
+             */
+            name: category._id,
+
+            /**
+             * The number of products within this category.
+             * @type {number}
+             */
+            count: category.count,
+
+            /**
+             * Array of products grouped under this category.
+             * @type {Object[]}
+             */
+            products: productsBySubcategory.filter(subcategory => subcategory.products[0].productCategory === category._id)
+        }));
+
+        const countTotalUsers = await User.find().countDocuments();
+
+        
+        return res.status(200).json({
+            /**
+             * The total count of products across all categories.
+             * @type {number}
+             */
+            countOverallProducts,
+
+            /**
+             * Categories with their respective counts and subcategories.
+             * @type {Object[]}
+             */
+            formattedCategories,
+            /**
+             * The total count of users in the database.
+             * @type {number}
+             */
+            countTotalUsers
+        });
+    } catch (error) {
+        /**
+         * Handles errors that occur during the dashboard data retrieval or processing.
+         * @type {Error}
+         */
+        console.error("Error in adminDashboard:", error);
+        res.status(500).json("Internal server error");
+        throw error;
+    }
+}
+
+module.exports = { adminDashboard };
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#Product">Product</a></li><li><a href="global.html#addOrUpdateReview">addOrUpdateReview</a></li><li><a href="global.html#addToWishlist">addToWishlist</a></li><li><a href="global.html#adminDashboard">adminDashboard</a></li><li><a href="global.html#count">count</a></li><li><a href="global.html#countOverallProducts">countOverallProducts</a></li><li><a href="global.html#countTotalUsers">countTotalUsers</a></li><li><a href="global.html#createUsers">createUsers</a></li><li><a href="global.html#deleteProducts">deleteProducts</a></li><li><a href="global.html#deleteUsers">deleteUsers</a></li><li><a href="global.html#formattedCategories">formattedCategories</a></li><li><a href="global.html#getAllReviewsForProduct">getAllReviewsForProduct</a></li><li><a href="global.html#getAllWishlistItems">getAllWishlistItems</a></li><li><a href="global.html#getProducts">getProducts</a></li><li><a href="global.html#isProductInWishlist">isProductInWishlist</a></li><li><a href="global.html#name">name</a></li><li><a href="global.html#products">products</a></li><li><a href="global.html#removeFromWishlist">removeFromWishlist</a></li><li><a href="global.html#searchAndSortProducts">searchAndSortProducts</a></li><li><a href="global.html#setProducts">setProducts</a></li><li><a href="global.html#showAllUsers">showAllUsers</a></li><li><a href="global.html#updateProducts">updateProducts</a></li><li><a href="global.html#updateUsers">updateUsers</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Thu Feb 22 2024 23:14:42 GMT+0600 (Bangladesh Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
