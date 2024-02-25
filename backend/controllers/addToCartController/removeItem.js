@@ -1,11 +1,15 @@
 const CartList = require('../../models/cartModel'); 
 /**
- * Removes a product from the wishlist of a specific user.
+
+ * Removes a product from the cart of a specific user.
+
  * @param {Object} req - The request object containing userId and productId.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-// Remove product from wishlist
+
+// Remove product from cart
+
 exports.removeItem = async (req, res) => {
     const { userId, productId } = req.query;
      try {

@@ -1,3 +1,5 @@
+
+
 // controllers/wishlistController.js
 
 const Cart = require('../../models/cartModel'); 
@@ -7,12 +9,16 @@ const Cart = require('../../models/cartModel');
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-// Get all wishlist items for a user
+
+
+// Get all cart items for a user
 exports.getAllCartList = async (req, res) => {
   //const { userId } = req.query;
 
   try {
-    // Find all wishlist items for the given userId
+
+    // Find all cart items for the given userId
+
     // const cartItems = await Cart.find({}).populate('userId');
     const cartItems = await Cart.find({});
 
@@ -23,24 +29,31 @@ exports.getAllCartList = async (req, res) => {
 };
 
 /**
- * Adds a product to the wishlist for a specific user.
+
+ * Adds a product to the cart for a specific user.
+
  * @param {Object} req - The request object containing userId and productId.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-// Add product to wishlist
+
+// Add product to cart
 exports.addToCart = async (req, res) => {
   const { userId, productId } = req.query;
   
   try {
-    // Check if the product is already in the wishlist
+
+    // Check if the product is already in the cart
+
     const existingCartItem = await Cart.findOne({ userId, productId });
 
     if (existingCartItem) {
       return res.status(400).json({ message: 'Product already exists in the cartlist' });
     }
 
-    // If not, add it to the wishlist
+
+    // If not, add it to the cart
+
     const cartlistItem = new Cart({ userId, productId });
     await cartlistItem.save();
 
@@ -52,12 +65,16 @@ exports.addToCart = async (req, res) => {
 };
 
 /**
- * Removes a product from the wishlist of a specific user.
+
+ * Removes a product from the cart of a specific user.
+
  * @param {Object} req - The request object containing userId and productId.
  * @param {Object} res - The response object.
  * @returns {Promise<void>} - A Promise representing the completion of the operation.
  */
-// Remove product from wishlist
+
+// Remove product from cart
+
 exports.removeItem = async (req, res) => {
   // const { productId } = req.query;
   const productId = (req.params.productId);

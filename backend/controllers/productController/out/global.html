@@ -104,7 +104,7 @@
     
 
     
-    <h4 class="name" id="searchAndSortProducts"><span class="type-signature">(async) </span>searchAndSortProducts<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    <h4 class="name" id="addToCart"><span class="type-signature"></span>addToCart<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
     
 
     
@@ -112,6 +112,7 @@
 
 
 <div class="description">
+
     This function performs a search, filter, and sort operation on products based on the provided criteria.
 It extracts product search and filter parameters from the request body and query parameters.
 It constructs a MongoDB aggregation pipeline to execute the search, filter, and sort operations.
@@ -121,6 +122,7 @@ Then, it constructs the aggregation pipeline with the $match stage using the con
 If sortBy parameter is provided and it's either 'productPrice' or 'productName', it adds a $sort stage to the pipeline based on the sortBy parameter.
 Finally, it executes the aggregation pipeline using the Product model and sends the search results as a JSON response.
 If any error occurs during the execution, it logs the error and sends a 500 status code with a 'Server error' message.
+
 </div>
 
 
@@ -162,7 +164,7 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">Object</span>
 
 
             
@@ -172,7 +174,7 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
 
             
 
-            <td class="description last">Express request object containing product search and filter parameters.</td>
+            <td class="description last">The request object containing userId and productId.</td>
         </tr>
 
     
@@ -185,7 +187,7 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
             <td class="type">
             
                 
-<span class="param-type">object</span>
+<span class="param-type">Object</span>
 
 
             
@@ -195,7 +197,7 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
 
             
 
-            <td class="description last">Express response object to send the search results.</td>
+            <td class="description last">The response object.</td>
         </tr>
 
     
@@ -236,7 +238,7 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="searchAndSortProducts.js.html">searchAndSortProducts.js</a>, <a href="searchAndSortProducts.js.html#line3">line 3</a>
+        <a href="addToCart.js.html">addToCart.js</a>, <a href="addToCart.js.html#line32">line 32</a>
     </li></ul></dd>
     
 
@@ -259,42 +261,377 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        - Throws an error if there's any issue during the execution.
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">Error</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    - Promise representing the completion of the function.
+    - A Promise representing the completion of the operation.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="getAllCartList"><span class="type-signature"></span>getAllCartList<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Retrieves all cart items for a given user.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The request object.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The response object.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="addToCart.js.html">addToCart.js</a>, <a href="addToCart.js.html#line11">line 11</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise representing the completion of the operation.
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise.&lt;void></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id="removeItem"><span class="type-signature"></span>removeItem<span class="signature">(req, res)</span><span class="type-signature"> &rarr; {Promise.&lt;void>}</span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    Removes a product from the cart of a specific user.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The request object containing userId and productId.</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The response object.</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="addToCart.js.html">addToCart.js</a>, <a href="addToCart.js.html#line61">line 61</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    - A Promise representing the completion of the operation.
 </div>
 
 
@@ -333,13 +670,13 @@ If any error occurs during the execution, it logs the error and sends a 500 stat
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#searchAndSortProducts">searchAndSortProducts</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addToCart">addToCart</a></li><li><a href="global.html#getAllCartList">getAllCartList</a></li><li><a href="global.html#removeItem">removeItem</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Wed Feb 14 2024 11:52:24 GMT+0600 (Bangladesh Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Feb 23 2024 21:54:09 GMT+0600 (Bangladesh Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>

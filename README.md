@@ -1,23 +1,30 @@
+
 # Project Name: Konta-Niben
 
 ## Table of Contents
 
 - [Project Name](#project-name-konta-niben)
   - [Used Technology](#used-technology)
+
+  - [Add To Cart](#add-to-cart)
+  - [Product Details](#product-details)
   - [Searching, Sorting and Filtering](#search-sort)
     - [Features](#features)
     - [Screenshots](#screenshots)
   - [Payment Method](#payment-method)
     - [Features](#features)
     - [Screenshots](#screenshots)
+
   - [Prerequisites](#prerequisites)
   - [Getting Started](#getting-started)
     - [Installation](#installation)
       - [Instructions for Backend](#instructions-for-backend)
       - [Instructions for Frontend](#instructions-for-frontend)
     - [Testing](#testing)
+
       -[Unit Testing](#unit-testing)
       -[Continuous Integration Testing](#continuous-integration-testing)
+
     - [JSdoc](#jsdoc)
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
@@ -33,6 +40,15 @@ The following technologies were used in this project:
 - Chart.js
 - Jest
 - JSDoc
+- GitHub Actions
+
+## Add To Cart
+The "Add to Cart" feature enhances the shopping experience by allowing users to conveniently gather desired items for purchase. It enables users to swiftly select products they intend to buy and accumulate them into a virtual shopping cart, facilitating a smooth and efficient shopping process. 
+
+
+## Product Details
+The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
+
 - SSLCommerz
 - GitHub Actions
 
@@ -73,6 +89,7 @@ After adding products to cart, user will get the total amount to be paid and the
 
 ![alt text](/resources/image-p4.PNG)
 
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
@@ -80,20 +97,25 @@ Before you begin, ensure you have met the following requirements:
 - [Node.js](https://nodejs.org/) (at least version Node.js v18.13.0)
 - [npm](https://www.npmjs.com/) (at least version v8: '10.2.154.23-node.21')
 
+
 ## Getting Started
 
 These instructions will help you set up and run the project on your local machine.
 
 ### Installation
 
+
 **Clone the repository**
+
 
    ```bash
    go to any directory and then open your terminal using cmd
    
    git clone git@github.com:SQA-PROJECT-1/Konta-Niben.git
 
+
    **Insturctions for Backend** 
+
 
    cd backend
    
@@ -102,6 +124,7 @@ These instructions will help you set up and run the project on your local machin
    npm install express
    
    npm install dotenv
+
 
    npm install cors
 
@@ -112,15 +135,22 @@ These instructions will help you set up and run the project on your local machin
    npm install sslcommerz-lts
    
    npm install uuid
+
    
    npm run dev
 
    **Insturctions for Frontend**
 
    cd ..
+
+   ```
+
+  **Instructions for Frontend** 
+
+  ```bash
    
    cd client
-   
+
    npm install
 
    npm install react-icons   
@@ -132,15 +162,23 @@ These instructions will help you set up and run the project on your local machin
    npm install jwt-decode
 
    npm install jsonwebtoken
+
    
    npm run dev
 
    follow the link to get the web application (link like this: http://localhost:5173/)
 
-   then login is required and login with- Email: tazim@gmail.com and Password: 123
+   then login is required and login with- `Email: tazim@gmail.com` and `Password: 123`
 
-   then use this link(http://localhost:5173/home) to get to the home page where searching and sorting are done.
+   then use this link(http://localhost:5173/home) to get to the home page where you will find Details and Add to cart button. Clicking the details will send u another page where you will view the product details for each product. clicking the add the cart will add product to the cart. In cart icon when you click it, it will take you another page where you can view all the product in the cart. In there you can remove the product keep it in the cart. products.
+
    ```
+
+   
+### Testing
+ 
+ **Unit Testing**
+=======
 
  **Continuous Integration Testing**
 
@@ -150,20 +188,47 @@ These instructions will help you set up and run the project on your local machin
 
 **Search and sort testing**
 
+
    ```bash
+   cd backend
+	
+   npm install -g jest
+
    npm test
    ```
-   
+
+  **Continuous Integration Testing**
+
+  This project includes continuous integration tests using GitHub Actions. The CI tests are automatically triggered on each push or making pull requests to this branch. You can view the workflow file [here](.github/workflows/monira_ci.yml).
+
 
 ### JSdoc
 
+
+**Add to cart Documentation:**
+
 **Search and sort documentation**
 
+
    ```bash
+
    cd backend
    
    cd controllers
    
+
+   cd addToCartController
+
+   jsdoc addTocart.js
+   
+   cd out
+   
+   open addTocart.js.html click the mouse right click and "open with Live server" button.
+    
+  ```
+
+  **Product Details:**
+
    cd productController
    
    cd out
@@ -172,12 +237,14 @@ These instructions will help you set up and run the project on your local machin
     ```
 **Payment Method**
 
+
    ```bash
 
    cd backend
    
    cd controllers
    
+
    cd paymentController
 
    jsdoc orderAndPayment.js
@@ -197,3 +264,4 @@ This project is licensed under the MIT License.
 Special Thanks 💚 to our repected supervisor `Dr. Md. Musfique Anwar` and all the team members.
 
 ![alt text](/resources/imagep.PNG)
+

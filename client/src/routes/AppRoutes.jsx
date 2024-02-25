@@ -7,6 +7,7 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import ProductDetails from '../pages/ProductDetails'
 import CartPage from '../pages/CartPage'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
 import AllReviews from '../dashboard/pages/AllReview'
@@ -14,9 +15,8 @@ import WishList from '../pages/WishList'
 import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
-
-
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
+
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
@@ -26,7 +26,17 @@ const AppRoutes = () => {
         },
         {
             path:'/home',
-            element: <HomePage />
+            element: <HomePage />,
+           
+        },
+        {
+                path: '/home/details/:id',
+                element:<ProductDetails/>
+            
+        },
+        {
+            path:'/home/cart',
+            element: <CartPage />
         },
         {
             path:'/cart',
@@ -65,6 +75,11 @@ const AppRoutes = () => {
                     element:secureRouteWrapper(<DashboardUpdateProducts/>)
                 },
                 {
+
+                    path:'/dashboard/products/:id',
+                    element:<DashboardProductsDetails/>
+                },
+                {
                     path:'/dashboard/adminProfile',
                     element:secureRouteWrapper(<DashboardAdminProfile/>)
                 },
@@ -74,7 +89,8 @@ const AppRoutes = () => {
                 }
 
             ]
-        }
+        },
+        
     ])
     return (
         <div><RouterProvider router={routes} /></div>

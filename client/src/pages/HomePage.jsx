@@ -2,10 +2,15 @@
 import { Link } from "react-router-dom";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+
+
+
+import { Link ,useNavigate} from 'react-router-dom'
 import { FiHeart } from 'react-icons/fi';
 import { MdOutlineShoppingCart } from 'react-icons/md';
 import Modal from 'react-modal';
-import { useNavigate } from 'react-router-dom';   
+ 
+
 
 const HomePage = () => {
   const navigate = useNavigate();
@@ -14,6 +19,7 @@ const HomePage = () => {
   const [sortBy, setSortBy] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
+
   const [isWishListModalVisible, setIsWishListModalVisible] = useState(false);
   const [isSuccessModalVisible, setIsSuccessModalVisible] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -21,6 +27,7 @@ const HomePage = () => {
   const [selectedProductId, setSelectedProductId] = useState(null);
   const [token,setToken]=useState()
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -202,6 +209,31 @@ const HomePage = () => {
     console.log(checkResponse.data); navigate('/wishlist', { state: { wishListData: checkResponse.data } });
   };
 
+  axios.post(`http://localhost:5000/api/products/searchAndSortProducts?sortBy=${sortBy}`,info)
+  .then(result=>{
+    setProducts(result.data)
+  })
+}
+const addProductToCart = (productId) => {
+    
+    // const storedData = localStorage.getItem('set-token-for-user');
+    // const data=JSON.parse(storedData)
+  
+   const userId=1;
+   
+    axios 
+      .post(
+        `http://localhost:5000/api/addToCart?userId=${userId}&productId=${productId}`
+      )
+      .then((response) => {
+        console.log(response.data.message);
+      })
+      .catch((error) => {
+        console.error("Error adding product to cart:", error);
+      });
+  };
+
+
   return (
     <div className="container mx-auto px-4">
       <h2 className="text-2xl font-semibold mb-4">Products</h2>
@@ -237,6 +269,10 @@ const HomePage = () => {
           <option value="productPrice">Price</option>
           <option value="productName">Name</option>
         </select>
+
+       
+        
+      
         <button
           onClick={fetchProducts}
           className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
@@ -250,6 +286,7 @@ const HomePage = () => {
           <FiHeart />
         </button>
         <Link to={'/cart'} className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+
         <button>
           <MdOutlineShoppingCart />
         </button>
@@ -261,7 +298,16 @@ const HomePage = () => {
             <div className="text-lg font-semibold mb-2 h-16">{product.productName}</div>
             <div className="text-gray-600 mb-2">Category: {product.productCategory}</div>
             <div className="text-gray-600">Price: ${product.productPrice}</div>
-            <div className="flex">
+
+            <div className='flex'>
+            <Link
+                to={`/home/details/${product.productId}`}
+                    className="bg-amber-600 text-white px-3 py-1 rounded-md">
+                    Details
+                </Link>
+            
+
+           
                <button
                 onClick={() => addProductToCart(product.productId)}
                 className="w-full px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
@@ -274,6 +320,7 @@ const HomePage = () => {
               >
                 <FiHeart />
               </button>
+
             </div>
           </div>
         ))}
