@@ -30,7 +30,7 @@ const AllReviews = () => {
 
   return (
     <div>
-    <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>All Reviews for Product ID {id}</h1>
+    <h1  className="text-center mt-4 font-bold">All Reviews for Product ID {id}</h1>
     {Array.isArray(reviews) && reviews.map((review) => (
         <div key={review.id} style={cardStyle}>
           {/* Display individual review information */}
