@@ -3,6 +3,11 @@ const SSLCommerzPayment = require('sslcommerz-lts');
 
 // Mocking dependencies
 jest.mock('sslcommerz-lts');
+jest.mock('../../models/cartModel', () => {
+    return {
+        deleteMany: jest.fn()
+    };
+});
 const userSchema = require("../../models/userModel");
 const CartSchema = require("../../models/cartModel");
 
@@ -82,25 +87,26 @@ describe('orderAndPayment function', () => {
     });
 });
 
+
 describe('redirect function', () => {
     beforeEach(() => {
-        jest.clearAllMocks(); // Clear mock calls between tests
+        jest.clearAllMocks();
     });
 
     it('should handle valid user ID properly', async () => {
         const req = { params: { id: '65cb5e0b6e5e4946c060e11e' } };
-
-        CartSchema.deleteMany = jest.fn().mockResolvedValue({ n: 1 });
 
         const res = {
             status: jest.fn().mockReturnThis(),
             redirect: jest.fn()
         };
 
+        CartSchema.deleteMany.mockResolvedValue({ n: 1 });
+
         await redirect(req, res);
 
         expect(CartSchema.deleteMany).toHaveBeenCalledWith({ userId: '65cb5e0b6e5e4946c060e11e' });
         expect(res.status).toHaveBeenCalledWith(200);
-        expect(res.redirect).toHaveBeenCalledWith('http://localhost:5173/cart');
+        expect(res.redirect).toHaveBeenCalledWith('http://localhost:5173/home/cart');
     });
 });
