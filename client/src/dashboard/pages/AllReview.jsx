@@ -4,6 +4,14 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
+const cardStyle = {
+  border: '1px solid #ccc',
+  padding: '10px',
+  marginBottom: '10px',
+  borderRadius: '8px',
+  boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
+};
+ 
 const AllReviews = () => {
   const { id } = useParams();
   const [reviews, setReviews] = useState([]);
@@ -22,17 +30,16 @@ const AllReviews = () => {
 
   return (
     <div>
-      <h1>All Reviews for Product ID {id}</h1>
-      {Array.isArray(reviews) && reviews.map((review) => (
-        <div>
+    <h1 style={{ textAlign: 'center', marginBottom: '20px' }}>All Reviews for Product ID {id}</h1>
+    {Array.isArray(reviews) && reviews.map((review) => (
+        <div key={review.id} style={cardStyle}>
           {/* Display individual review information */}
           <p>
-          User {review.userId}<br />
-         Review: {review.message} <br />
-          Rating: {review.rating}<br /><br />
-        </p>
-        
-                </div>
+            User ID: {review.userId}<br />
+            Review: {review.message} <br />
+            Rating: {review.rating}<br /><br />
+          </p>
+        </div>
       ))}
     </div>
   );
