@@ -40,6 +40,7 @@ const loginUser = async (req, res) => {
       userObj = user.toJSON(user);
       userObj["accessToken"] = accessToken;
       userObj["refreshToken"] = refreshToken;
+
       userObj["userRole"] = user.userRole
       res.status(201).json(userObj);
     } catch (error) {

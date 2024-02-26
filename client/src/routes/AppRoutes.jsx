@@ -7,25 +7,44 @@ import DashboardBody from '../dashboard/pages/DashboardBody'
 import AddProducts from '../dashboard/pages/AddProducts'
 import DashboardProducts from '../dashboard/pages/DashboardProducts'
 import DashboardProductsDetails from '../dashboard/pages/DashboardProductsDetails'
+import ProductDetails from '../pages/ProductDetails'
+import CartPage from '../pages/CartPage'
 import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
+
+import DashboardAllAdmins from '../dashboard/pages/DashboardAllAdmins'
+
+import AllReviews from '../dashboard/pages/AllReview'
+import WishList from '../pages/WishList'
 import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
-import DashboardAllAdmins from '../dashboard/pages/DashboardAllAdmins'
-
-
+import ProductRecommendationForm from '../pages/ProductRecommendationForm'
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
+
+
+
 
 const AppRoutes = () => {
     const routes = createBrowserRouter([
         {
             path: '/',
             element: <Login />,
-            children: [
-                {
-                    path:"/home",
-                    element: <HomePage />
-                }]
+        },
+        {
+            path:'/home',
+            element: secureRouteWrapper(<HomePage />),
+        },
+        {
+            path:'/home/cart',
+            element: secureRouteWrapper(<CartPage />)
+        },
+        {
+            path: '/home/details/:id',
+            element:secureRouteWrapper(<ProductDetails/>)
+        },
+        {
+            path:'/home/wishList',
+            element: secureRouteWrapper(<WishList />)
         },
         {
             path: '/dashboard',
@@ -45,11 +64,19 @@ const AppRoutes = () => {
                 },
                 {
                     path:'/dashboard/products/details/:id',
-                    element:secureRouteWrapper(<DashboardProductsDetails/>)
+
+                },
+                  {
+                    path:'/dashboard/products/review/:id',
+                    element:<AllReviews/>
                 },
                 {
                     path:'/dashboard/products/update/:id',
                     element:secureRouteWrapper(<DashboardUpdateProducts/>)
+                },
+                {
+                    path:'/dashboard/products/:id',
+                    element:<DashboardProductsDetails/>
                 },
                 {
                     path:'/dashboard/adminProfile',
@@ -58,14 +85,24 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/allUsers',
                     element:secureRouteWrapper(<DashboardAllUsers/>)
+
                 },
                 {
                     path:'/dashboard/allAdmins',
                     element:secureRouteWrapper(<DashboardAllAdmins/>)
+
                 }
 
             ]
-        }
+        },
+        {
+            path:'/recommendation-form',
+            element: <ProductRecommendationForm />
+            
+        },
+      
+
+
     ])
     return (
         <div><RouterProvider router={routes} /></div>

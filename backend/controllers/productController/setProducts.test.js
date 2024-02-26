@@ -20,7 +20,7 @@ describe('setProducts function', () => {
         await setProducts(req, res);
 
         expect(res.status).toHaveBeenCalledWith(400);
-        expect(res.json).toHaveBeenCalledWith({ error: "id, name, price fields are required." });
+        expect(res.json).toHaveBeenCalledWith({ error: "id, name, price and quantity fields are required." });
     });
 
     test('should create and save a new product when all required fields are provided', async () => {

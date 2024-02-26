@@ -30,6 +30,20 @@ const productSchema = new mongoose.Schema({
     },
     productQuantity:{
         type: Number
+    },
+    productTargetedSkinType: {
+        type: String
+    }, 
+    productTargetedAge: {
+        type: Number,
+        default: 0
+    }, 
+    productTargetedConcerns: {
+        type: String
+    },
+    rating: {
+        type: Number,
+        default: 0 
     }
 });
 

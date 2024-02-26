@@ -33,10 +33,12 @@ const DashboardNavbar = () => {
       <div class="flex flex-1 items-center lg:justify-between sm:items-stretch sm:justify-start">
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
+            <Link to="/home" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Home</Link>
             <Link to="/dashboard" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium" aria-current="page">Dashboard</Link>
             <Link to="/dashboard/addProducts" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Add Products</Link>
             <Link to="/dashboard/products" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Products</Link>
             <Link to="/dashboard/allUsers" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All Users</Link>
+
             <Link to="/dashboard/allAdmins" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All Admins</Link>
           </div>
         </div>
@@ -51,10 +53,12 @@ const DashboardNavbar = () => {
         <Link to="/dashboard" className="bg-gray-900 text-white block rounded-md px-3 py-2 text-base font-medium" aria-current="page">Dashboard</Link>
         <Link to="/dashboard/addProducts" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Add Products</Link>
         <Link to="/dashboard/products" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">Projects</Link>
+
         <Link to="/dashboard/allUsers" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All Users</Link>
             <Link to="/dashboard/allAdmins" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">All Admins</Link>
         <Link to="/dashboard/adminProfile" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{profile.userName}</Link>
         
+        <Link to="/dashboard/adminProfile" className="text-gray-300 hover:bg-gray-700 hover:text-white block rounded-md px-3 py-2 text-base font-medium">{profile.userName}</Link>
     </div>
 </div>
 
