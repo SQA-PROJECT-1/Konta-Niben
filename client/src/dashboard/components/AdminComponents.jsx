@@ -1,12 +1,12 @@
 import axios from 'axios'
 import React from 'react'
 
-const UserComponents = ({user}) => {
+const AdminComponents = ({user}) => {
   
   const handleClick =(id)=>{
     console.log(id)
     axios.put(`http://localhost:5000/api/users/${id}`,{
-      userRole:"admin"
+      userRole:"user"
     })
     .then((response) => {
       if (response.status === 200) {
@@ -31,12 +31,12 @@ const UserComponents = ({user}) => {
             Name: {user.userName}
         </p>
         <p class="text-gray-700 text-base">
-            Email: {user.userEamil}
+            Email: {user.userId}
         </p>
-        <button onClick={()=>handleClick(user.userId)} className='bg-slate-500 text-white px-3 py-2 rounded-lg mt-5'>Make Admin</button>
+        <button onClick={()=>handleClick(user.userId)} className='bg-slate-500 text-white px-3 py-2 rounded-lg mt-5'>Remove From Admin</button>
     </div>
 </div>
   )
 }
 
-export default UserComponents
+export default AdminComponents

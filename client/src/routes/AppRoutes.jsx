@@ -11,6 +11,7 @@ import DashboardUpdateProducts from '../dashboard/pages/DashboardUpdateProducts'
 import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
+import DashboardAllAdmins from '../dashboard/pages/DashboardAllAdmins'
 
 
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
@@ -57,6 +58,10 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/allUsers',
                     element:secureRouteWrapper(<DashboardAllUsers/>)
+                },
+                {
+                    path:'/dashboard/allAdmins',
+                    element:secureRouteWrapper(<DashboardAllAdmins/>)
                 }
 
             ]
