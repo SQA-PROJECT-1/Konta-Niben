@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: wishlistController/addItem.js</title>
+    <title>JSDoc: Source: userController/userProfile.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: wishlistController/addItem.js</h1>
+    <h1 class="page-title">Source: userController/userProfile.js</h1>
 
     
 
@@ -26,42 +26,33 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const WishList = require('../../models/wishListModel');
+            <pre class="prettyprint source linenums"><code>const User = require('../../models/userModel')
 
 /**
- * Adds a product to the wishlist for a specific user.
- * @param {Object} req - The request object containing userId and productId.
- * @param {Object} res - The response object.
- * @returns {Promise&lt;void>} - A Promise representing the completion of the operation.
+ * Retrieves the profile of the currently logged-in user.
+ * @async
+ * @param {Object} req - The request object containing user information.
+ * @param {Object} res - The response object to send the user profile.
+ * @returns {Promise&lt;void>} The profile of the logged-in user.
  */
-// Add product to wishlist
-exports.addToWishlist = async (req, res) => {
-    const { userId, productId } = req.query;
 
+const userProfile = async(req,res)=>{
     try {
-        // Check if either userId or productId is missing in the request query
-        if (userId === undefined || productId === undefined) {
-            return res.status(400).json({ message: 'userId and productId are required in the query' });
-        }
+      // Get the email of the logged-in user from the request object
+        const email = req.user.userEmail
+        // Find the user in the database based on the email
+        const admin = await User.findOne({useEmail:email});
 
-        // Check if the product is already in the wishlist
-        const existingWishlistItem = await WishList.findOne({ userId, productId });
+        // Send the user profile in the response
+        res.status(200).json(admin);
+      } catch (error) {
+        // Handle errors
+        console.error(error);
+        res.status(500).json({ message: "Something went wrong to get admin" });
+      }
+}
 
-        if (existingWishlistItem) {
-            return res.status(400).json({ message: 'Product already exists in the wishlist' });
-        }
-
-        // If not, add it to the wishlist
-        const wishlistItem = new WishList({ userId, productId });
-        await wishlistItem.save();
-
-        res.status(201).json({ message: 'Product added to wishlist successfully' });
-    } catch (error) {
-        // console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
-    }
-};
-</code></pre>
+module.exports = userProfile</code></pre>
         </article>
     </section>
 
