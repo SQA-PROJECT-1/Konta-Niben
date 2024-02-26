@@ -190,7 +190,7 @@ Here Searching and sorting are done for finding products using some criteria.
 
 ### Screenshots
 
-![alt text](/resources/palash.png)
+![alt text](/resources/home.jpg)
 
 ## Product Details
 The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
