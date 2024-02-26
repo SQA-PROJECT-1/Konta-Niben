@@ -12,6 +12,7 @@ import { SecureRoute } from './SecureRoute'
 import DashboardAdminProfile from '../dashboard/pages/DashboardAdminProfile'
 import DashboardAllUsers from '../dashboard/pages/DashboardAllUsers'
 import DashboardAllAdmins from '../dashboard/pages/DashboardAllAdmins'
+import Register from '../pages/Register'
 
 
 const secureRouteWrapper = (element) => <SecureRoute>{element}</SecureRoute>;
@@ -25,7 +26,11 @@ const AppRoutes = () => {
                 {
                     path:"/home",
                     element: <HomePage />
-                }]
+                },]
+        },
+        {
+            path:"/register",
+            element:<Register/>
         },
         {
             path: '/dashboard',

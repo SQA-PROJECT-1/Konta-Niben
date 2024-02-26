@@ -66,7 +66,7 @@ const Login = () => {
                 </form>
                 <p class="mt-10 text-center text-sm text-gray-500">
                     Not a member?
-                    <Link to="/register" class="font-semibold leading-6 text-orange-600 hover:text-indigo-500">Login</Link>
+                    <Link to="/register" class="font-semibold leading-6 text-orange-600 hover:text-indigo-500">Register</Link>
                 </p>
             </div>
         </div>
