@@ -198,6 +198,15 @@ The "Product Details" feature provides comprehensive information about individua
 ### Screenshots
 ![alt text](/resources/munira.png)
 
+
+## Register User
+Users can register for this website to buy something or search for something. Or can act as registration .
+
+### Screenshots
+
+![alt text](/resources/RegisterUser.JPG)
+
+
 ## Show All Users
 This feature shows all users. User details are shown in this feature. There are 2 buttons bellow users: 1. Make admin 2. Delete user
 Admin can delete a user and make one user as admin. 
