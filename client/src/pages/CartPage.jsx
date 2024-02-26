@@ -43,7 +43,7 @@ const CartPage = () => {
   };
 
   const makePayment = (totalPrice) => {
-    const storedData = localStorage.getItem('set-token-for-user');
+    const storedData = localStorage.getItem('set-data-for-user');
     const data=JSON.parse(storedData)
     axios 
       .post(

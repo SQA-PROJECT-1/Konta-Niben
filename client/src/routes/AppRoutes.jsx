@@ -27,28 +27,6 @@ const AppRoutes = () => {
             element: <Login />,
         },
         {
-            path:'/home',
-            element: <HomePage />,
-           
-        },
-        {
-                path: '/home/details/:id',
-                element:<ProductDetails/>
-            
-        },
-        {
-            path:'/home/cart',
-            element: <CartPage />
-        },
-        {
-            path:'/cart',
-            element: <CartPage />
-        },
-        {
-            path:'/wishList',
-            element: <WishList />
-        },
-        {
             path: '/dashboard',
             element: <Dashboard />,
             children: [
@@ -88,8 +66,24 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/allUsers',
                     element:secureRouteWrapper(<DashboardAllUsers/>)
-                }
-
+                },
+                {
+                    path:'/dashboard/home',
+                    element: secureRouteWrapper(<HomePage />),
+                   
+                },
+                {
+                    path:'/dashboard/home/cart',
+                    element: secureRouteWrapper(<CartPage />)
+                },
+                {
+                    path: '/dashboard/home/details/:id',
+                    element:secureRouteWrapper(<ProductDetails/>)
+                },
+                {
+                    path:'/dashboard/home/wishList',
+                    element: secureRouteWrapper(<WishList />)
+                },
             ]
         },
         {
