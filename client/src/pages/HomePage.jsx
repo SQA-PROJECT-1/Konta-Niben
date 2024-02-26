@@ -287,7 +287,7 @@ const HomePage = () => {
 
               <div className="flex-col gap-y-2">
                 <Link
-                  to={`dashboard/home/details/${product.productId}`}
+                  to={`details/${product.productId}`}
                   className="bg-amber-600 text-white px-4 py-2 mx-2 rounded-md"
                 >
                   <button>Details</button>
