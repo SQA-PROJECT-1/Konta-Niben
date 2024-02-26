@@ -19,7 +19,7 @@ The purpose of our project (Konta-Niben) is to establish a user-friendly and eff
       - [Unit Testing](#unit-testing)
       - [Continuous Integration Testing](#continuous-integration-testing)
     - [JSdoc](#jsdoc)
-  - [Home page with Searching, Sorting and Filtering](#search-sort)
+  - [Homepage with Searching, Sorting and Filtering](#search-sort)
     - [Features](#features)
     - [Screenshots](#screenshots)
   - [Product Details](#product-details)
@@ -28,13 +28,13 @@ The purpose of our project (Konta-Niben) is to establish a user-friendly and eff
   - [Product Recommendation](#product-recommendation)
     - [Features](#features-1)
     - [Screenshots](#screenshots-1)
-  -[Wishlist Method](#wishlist)
+  - [Wishlist Method](#wishlist)
     - [Features](#features)
     - [Screenshots](#screenshots)
-  -[Add to Cart Method](#add-to-cart)
+  - [Add to Cart Method](#add-to-cart)
     - [Features](#features)
     - [Screenshots](#screenshots)
-  -[Review and Ratings](#review-ratings)
+  - [Review and Ratings](#review-ratings)
     - [Features](#features)
     - [Screenshots](#screenshots)
   - [Payment Method](#payment-method)
@@ -164,7 +164,7 @@ These instructions will help you set up and run the project on your local machin
    npm install -g jest
 
    npm test
-   
+
    ```
 
   **Continuous Integration Testing**
@@ -175,8 +175,81 @@ These instructions will help you set up and run the project on your local machin
 ### JSdoc
 
 
+## Homepage with Searching, Sorting and Filtering
+
+Here Searching and sorting are done for finding products using some criteria.
+
+### Features
+- User can search using product name, category, and brand.
+
+- User can give a price range from minPrice to maxPrice to filter products within user's budget.
+
+- User can sort products in ascending order: sortBy price or sortBy name.
+
+### Screenshots
+
+![alt text](/resources/image-p1.PNG)
+
+## Product Details
+The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
+
+## Product Recommendation
+
+The Product Recommendation feature allows users to receive recommendations for products based on specified criteria such as product category, targeted age group, skin type, and concerns. It fetches products from the database that match the provided criteria and returns them to the user.
+
+### Features
+
+- Retrieves product recommendations based on specified criteria.
+
+- Fetches products from the database that match the provided criteria such as product category, targeted age group, skin type, and concerns.
+
+- Handles errors gracefully and returns appropriate error messages.
+
+### Screenshots
+
+![alt text](/resources/image-2.png)
+
+![alt text](/resources/image-3.png)
+
+## Payment Method
+
+After adding products to cart, user will get the total amount to be paid and then user can make payment using payment option using the help of SSLCommerz payment gateway.
+
+### Features
+
+- User can select the payment method like bKash, Nagad.
+
+- User will get a unique transaction id.
+
+- If successfull transaction then success page will redirect to the cart page.
+
+- After transaction the cart will be empty.
+
+### Screenshots
+
+![alt text](/resources/image-p2.PNG)
+
+![alt text](/resources/image-p3.PNG)
+
+![alt text](/resources/image-p4.PNG)
+
+## Admin Dashboard
+
+The Admin Dashboard feature is designed to provide administrators with valuable insights and metrics about products and users within the system. It aggregates data from the backend server and presents it in a user-friendly interface for easy visualization and analysis.
+
+### Features
+- Display total number of products and users.
+
+- Visualize product statistics by category, subcategory, and brand.
+
+- Utilizes charts to present data in a clear and intuitive manner.
+
+### Screenshots
+
+![alt text](/resources/image-1.png)
+
     
-   
+## License  
 
 This project is licensed under the MIT License.
 
