@@ -39,6 +39,10 @@ const AppRoutes = () => {
             element:secureRouteWrapper(<ProductDetails/>)
         },
         {
+            path:'/home/products/review/:id',
+            element:<AllReviews/>
+        },
+        {
             path:'/home/wishList',
             element: secureRouteWrapper(<WishList />)
         },

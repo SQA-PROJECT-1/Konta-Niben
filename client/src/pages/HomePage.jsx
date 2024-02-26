@@ -64,6 +64,7 @@ const HomePage = () => {
     const storedData = localStorage.getItem('set-data-for-user');
     console.log('Stored Data:', storedData);
     const data = JSON.parse(storedData);
+     
     console.log('Parsed Data:', data);
     axios 
       .post(

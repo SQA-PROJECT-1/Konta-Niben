@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: wishlistController/addItem.js</title>
+    <title>JSDoc: Source: productController/getProductRecommendation.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: wishlistController/addItem.js</h1>
+    <h1 class="page-title">Source: productController/getProductRecommendation.js</h1>
 
     
 
@@ -26,41 +26,62 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const WishList = require('../../models/wishListModel');
+            <pre class="prettyprint source linenums"><code>const Product = require('../../models/productModel');
 
 /**
- * Adds a product to the wishlist for a specific user.
- * @param {Object} req - The request object containing userId and productId.
- * @param {Object} res - The response object.
- * @returns {Promise&lt;void>} - A Promise representing the completion of the operation.
+ * Retrieves product recommendations based on specified criteria.
+ * This function fetches products from the database that match the provided criteria such as product category,
+ * targeted age group, targeted concerns, and targeted skin type.
+ * 
+ * @param {Object} req - The request object containing product category, targeted age, skin type and concerns.
+ * @param {Object} req.body - The request body.
+ * @param {string} req.body.productCategory - The category of the product.
+ * @param {number} req.body.productTargetedAge - The targeted age group for the product.(optional)
+ * @param {string} req.body.productTargetedSkinType - The targeted skin type for the product.
+ * @param {string} req.body.productTargetedConcerns - The concerns the product targets.
+ * @param {Object} res - The response object to send back to the client.
+ * @returns {Object} The recommended products based on the specified criteria.
+ * @throws {Error} If an error occurs while fetching recommendations.
  */
-// Add product to wishlist
-exports.addToWishlist = async (req, res) => {
-    const { userId, productId } = req.query;
 
+const getProductRecommendation = async (req, res) => {
     try {
-        // Check if either userId or productId is missing in the request query
-        if (userId === undefined || productId === undefined) {
-            return res.status(400).json({ message: 'userId and productId are required in the query' });
+        const { productCategory, productTargetedAge, productTargetedConcerns, productTargetedSkinType } = req.body;
+
+    
+        if (!productCategory || !productTargetedConcerns || !productTargetedSkinType) {
+            return res.status(400).json({ error: 'Please provide product category, targeted concerns, and targeted skin type.' });
         }
 
-        // Check if the product is already in the wishlist
-        const existingWishlistItem = await WishList.findOne({ userId, productId });
-
-        if (existingWishlistItem) {
-            return res.status(400).json({ message: 'Product already exists in the wishlist' });
+        if (productTargetedAge &amp;&amp; productTargetedAge &lt; 0) {
+            return res.status(400).json({ error: 'Age cannot be negative.' });
         }
 
-        // If not, add it to the wishlist
-        const wishlistItem = new WishList({ userId, productId });
-        await wishlistItem.save();
+        const conditions = {
+            productCategory,
+            productTargetedConcerns, 
+            productTargetedSkinType 
+        };
 
-        res.status(201).json({ message: 'Product added to wishlist successfully' });
+        if (productTargetedAge) {
+            conditions.productTargetedAge = { $gte: productTargetedAge }; 
+        }
+
+        const recommendedProducts = await Product.find(conditions);
+
+        if (recommendedProducts.length === 0) {
+            return res.status(404).json({ error: 'No recommended products found for the specified category.' });
+        }
+     
+        return res.status(200).json(recommendedProducts);
+
     } catch (error) {
-        // console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+        //console.error('Error recommending products:', error);
+        return res.status(500).json({ error: 'An error occurred.' });
     }
 };
+
+module.exports = { getProductRecommendation };
 </code></pre>
         </article>
     </section>

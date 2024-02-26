@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: wishlistController/addItem.js</title>
+    <title>JSDoc: Source: userController/loginUsers.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: wishlistController/addItem.js</h1>
+    <h1 class="page-title">Source: userController/loginUsers.js</h1>
 
     
 
@@ -26,41 +26,58 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>const WishList = require('../../models/wishListModel');
+            <pre class="prettyprint source linenums"><code>const User = require('../../models/userModel')
+const jwt = require("jsonwebtoken");
+
 
 /**
- * Adds a product to the wishlist for a specific user.
- * @param {Object} req - The request object containing userId and productId.
- * @param {Object} res - The response object.
- * @returns {Promise&lt;void>} - A Promise representing the completion of the operation.
+ * Controller function to handle user login.
+ * @async
+ * @function loginUser
+ * @param {Object} req - Express request object.
+ * @param {Object} res - Express response object.
+ * @returns {Object} - Returns JSON object with user data and tokens or error message.
  */
-// Add product to wishlist
-exports.addToWishlist = async (req, res) => {
-    const { userId, productId } = req.query;
 
-    try {
-        // Check if either userId or productId is missing in the request query
-        if (userId === undefined || productId === undefined) {
-            return res.status(400).json({ message: 'userId and productId are required in the query' });
-        }
+const loginUser = async (req, res) => {
 
-        // Check if the product is already in the wishlist
-        const existingWishlistItem = await WishList.findOne({ userId, productId });
-
-        if (existingWishlistItem) {
-            return res.status(400).json({ message: 'Product already exists in the wishlist' });
-        }
-
-        // If not, add it to the wishlist
-        const wishlistItem = new WishList({ userId, productId });
-        await wishlistItem.save();
-
-        res.status(201).json({ message: 'Product added to wishlist successfully' });
-    } catch (error) {
-        // console.error(error);
-        res.status(500).json({ message: 'Internal server error' });
+    // Destructuring request body to extract userEmail and userPassword
+    const { userEmail, userPassword } = req.body;
+    // Finding user in the database based on userEmail
+    const user = await User.findOne({ userEmail: userEmail });
+     // If user is not found, return status 401 (Unauthorized) with error message
+    if (!user) {
+      return res.status(401).json("User not found");
     }
-};
+     // If userPassword doesn't match, return status 400 (Bad Request) with error message
+    if(userPassword!=user.userPassword){
+        return res.status(400).json("Wrong Password")
+    }
+     
+    try {
+      const accessToken = await jwt.sign(
+        { email: user.userEmail, id: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: "1000000d" }
+      );
+      const refreshToken = await jwt.sign(
+        { email: user.userEmail, id: user._id },
+        process.env.JWT_SECRET,
+        { expiresIn: "1000000d" }
+      );
+      userObj = user.toJSON(user);
+      userObj["accessToken"] = accessToken;
+      userObj["refreshToken"] = refreshToken;
+//       res.status(201).json({token:userObj.accessToken,userId:user._id});
+      userObj["userRole"] = user.userRole
+      res.status(201).json(userObj);
+    } catch (error) {
+      console.log(error);
+      res.status(400).json("User khuje paoa jaccche na");
+    }
+  }
+
+module.exports = {loginUser}
 </code></pre>
         </article>
     </section>
