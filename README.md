@@ -204,7 +204,7 @@ Admin can delete a user and make one user as admin.
 
 ### Screenshots
 
-![alt text](/resources/ShowAllUsers.JPG)
+![alt text](/resources/AllUsers.JPG)
 
 ## Show all Admins
 Showing all admins after clicking "show all admins" . there is a button below admin named "removed from admin" . After clicking this button admin is removed from the admin page and assigned as a user. 
@@ -212,7 +212,7 @@ Showing all admins after clicking "show all admins" . there is a button below ad
 
 ### Screenshots
 
-![alt text](/resources/ShowAllAdmins.JPG)
+![alt text](/resources/AllAdmins.JPG)
 
 ## User profile 
 After login user can see their profile after clicking their username that is shown in the right of the navbar. After entering this user name . Users can see a logout button.
@@ -220,7 +220,7 @@ After login user can see their profile after clicking their username that is sho
 
 ### Screenshots
 
-![alt text](/resources/UserProfile.JPG)
+![alt text](/resources/UseProfile.JPG)
 
 ## Secure Route 
 All routes are secure so that one can't access any of route without login.
