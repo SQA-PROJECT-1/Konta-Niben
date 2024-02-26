@@ -8,7 +8,6 @@ const addToCartRouter = require('./routes/addTocartRouter');
 const paymentRouter = require('./routes/paymentRouter');
 const productRouter = require('./routes/productRoute')
 const adminRouter = require('./routes/adminRouter')
-const addToCartRouter = require('./routes/addTocartRouter');
 const userRouter = require('./routes/userRouter')
 const wishListRouter = require('./routes/wishListRouter')
 const ratingRoute=require("./routes/reviewSystemRoute");

@@ -1,4 +1,4 @@
-import { Auth } from "../hooks/Auth";
+import { Auth } from "../hooks/auth";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 

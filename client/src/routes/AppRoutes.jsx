@@ -28,25 +28,19 @@ const AppRoutes = () => {
         },
         {
             path:'/home',
-            element: <HomePage />,
-           
-        },
-        {
-                path: '/home/details/:id',
-                element:<ProductDetails/>
-            
+            element: secureRouteWrapper(<HomePage />),
         },
         {
             path:'/home/cart',
-            element: <CartPage />
+            element: secureRouteWrapper(<CartPage />)
         },
         {
-            path:'/cart',
-            element: <CartPage />
+            path: '/home/details/:id',
+            element:secureRouteWrapper(<ProductDetails/>)
         },
         {
-            path:'/wishList',
-            element: <WishList />
+            path:'/home/wishList',
+            element: secureRouteWrapper(<WishList />)
         },
         {
             path: '/dashboard',
@@ -89,7 +83,6 @@ const AppRoutes = () => {
                     path:'/dashboard/allUsers',
                     element:secureRouteWrapper(<DashboardAllUsers/>)
                 }
-
             ]
         },
         {
