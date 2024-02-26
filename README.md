@@ -202,6 +202,10 @@ The "Product Details" feature provides comprehensive information about individua
 This feature shows all users. User details are shown in this feature. There are 2 buttons bellow users: 1. Make admin 2. Delete user
 Admin can delete a user and make one user as admin. 
 
+### Screenshots
+
+![alt text](/resources/ShowAllUsers.JPG)
+
 ## Show all Admins
 Showing all admins after clicking "show all admins" . there is a button below admin named "removed from admin" . After clicking this button admin is removed from the admin page and assigned as a user. 
 
