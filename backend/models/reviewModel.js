@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const productReviewSchema = new mongoose.Schema({
     productId: {
-        type: Number,
+        type: String,
         ref: 'Product',
         required: true,
     },
