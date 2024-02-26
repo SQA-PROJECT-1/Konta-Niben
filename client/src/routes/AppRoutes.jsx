@@ -29,7 +29,6 @@ const AppRoutes = () => {
         {
             path:'/home',
             element: secureRouteWrapper(<HomePage />),
-           
         },
         {
             path:'/home/cart',
@@ -83,24 +82,7 @@ const AppRoutes = () => {
                 {
                     path:'/dashboard/allUsers',
                     element:secureRouteWrapper(<DashboardAllUsers/>)
-                },
-                // {
-                //     path:'/dashboard/home',
-                //     element: secureRouteWrapper(<HomePage />),
-                   
-                // },
-                // {
-                //     path:'/dashboard/home/cart',
-                //     element: secureRouteWrapper(<CartPage />)
-                // },
-                // {
-                //     path: '/dashboard/home/details/:id',
-                //     element:secureRouteWrapper(<ProductDetails/>)
-                // },
-                // {
-                //     path:'/dashboard/home/wishList',
-                //     element: secureRouteWrapper(<WishList />)
-                // },
+                }
             ]
         },
         {

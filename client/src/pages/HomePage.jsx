@@ -205,7 +205,7 @@ const HomePage = () => {
       `http://localhost:5000/api/wishList/?userId=${data?._id}`
     );
     console.log(checkResponse.data);
-    navigate("/wishlist", { state: { wishListData: checkResponse.data } });
+    navigate("/home/wishlist", { state: { wishListData: checkResponse.data } });
   };
 
   return (
