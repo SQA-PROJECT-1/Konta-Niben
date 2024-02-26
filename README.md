@@ -19,30 +19,31 @@ The purpose of our project (Konta-Niben) is to establish a user-friendly and eff
       - [Unit Testing](#unit-testing)
       - [Continuous Integration Testing](#continuous-integration-testing)
     - [JSdoc](#jsdoc)
-  - [Homepage with Searching, Sorting and Filtering](#search-sort)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
-  - [Product Details](#product-details)
-    - [Features](#features)
-    - [Screenshots](#screenshots) 
-  - [Product Recommendation](#product-recommendation)
-    - [Features](#features-1)
-    - [Screenshots](#screenshots-1)
-  - [Wishlist Method](#wishlist)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
-  - [Add to Cart Method](#add-to-cart)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
-  - [Review and Ratings](#review-ratings)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
-  - [Payment Method](#payment-method)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
-  - [Admin Dashboard](#admin-dashboard)
-    - [Features](#features)
-    - [Screenshots](#screenshots)
+  - [Examples of Work](#examples-of-work)
+    - [Homepage with Searching, Sorting and Filtering](#search-sort)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
+    - [Product Details](#product-details)
+      - [Features](#features)
+      - [Screenshots](#screenshots) 
+    - [Product Recommendation](#product-recommendation)
+      - [Features](#features-1)
+      - [Screenshots](#screenshots-1)
+    - [Wishlist Method](#wishlist)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
+    - [Add to Cart Method](#add-to-cart)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
+    - [Review and Ratings](#review-ratings)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
+    - [Payment Method](#payment-method)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
+    - [Admin Dashboard](#admin-dashboard)
+      - [Features](#features)
+      - [Screenshots](#screenshots)
   
   - [License](#license)
   - [Acknowledgments](#acknowledgments)
@@ -174,6 +175,7 @@ These instructions will help you set up and run the project on your local machin
 
 ### JSdoc
 
+## Examples of Work:
 
 ## Homepage with Searching, Sorting and Filtering
 
@@ -188,10 +190,14 @@ Here Searching and sorting are done for finding products using some criteria.
 
 ### Screenshots
 
-![alt text](/resources/image-p1.PNG)
+![alt text](/resources/palash.png)
 
 ## Product Details
 The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
+
+### Screenshots
+
+![alt text](/resources/munira.png)
 
 ## Product Recommendation
 
@@ -210,6 +216,21 @@ The Product Recommendation feature allows users to receive recommendations for p
 ![alt text](/resources/image-2.png)
 
 ![alt text](/resources/image-3.png)
+
+## Wishlist Method
+
+### Features
+
+### Screenshots
+
+
+## Add To Cart Method
+
+### Features
+
+### Screenshots
+
+![alt text](/resources/munira1.png)
 
 ## Payment Method
 
