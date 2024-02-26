@@ -93,7 +93,7 @@ const redirect = async (req, res) => {
             return res.status(404).json({ error: 'User not found or no items to delete' });
         }
 
-        res.status(200).redirect('http://localhost:5173/cart');
+        res.status(200).redirect('http://localhost:5173/dashboard/home/cart');
     } catch (error) {
         console.error('Error redirecting after payment:', error);
         res.status(500).json({ error: 'Internal server error' });

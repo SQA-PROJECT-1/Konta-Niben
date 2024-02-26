@@ -47,7 +47,7 @@ const CartPage = () => {
     const data=JSON.parse(storedData)
     axios 
       .post(
-        `http://localhost:5000/api/payment/initiated?userId=${data?.userId}&amount=${totalPrice}`
+        `http://localhost:5000/api/payment/initiated?userId=${data?._id}&amount=${totalPrice}`
       )
       .then((response) => {
         console.log(response.data);

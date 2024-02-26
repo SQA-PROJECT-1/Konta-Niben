@@ -67,7 +67,7 @@ const HomePage = () => {
     console.log('Parsed Data:', data);
     axios 
       .post(
-        `http://localhost:5000/api/addToCart?userId=${data?.userId}&productId=${productId}`
+        `http://localhost:5000/api/addToCart?userId=${data?._id}&productId=${productId}`
       )
       .then((response) => {
         console.log(response.data.message);
@@ -84,7 +84,7 @@ const HomePage = () => {
 
     try {
       const checkResponse = await axios.get(
-        `http://localhost:5000/api/wishList/check/?userId=${data?.userId}&productId=${productId}`
+        `http://localhost:5000/api/wishList/check/?userId=${data?._id}&productId=${productId}`
       );
       console.log(checkResponse.data.statusCode);
 
@@ -96,7 +96,7 @@ const HomePage = () => {
         setIsWishListModalVisible(true);
       } else {
         await axios.post(
-          `http://localhost:5000/api/wishList/?userId=${data?.userId}&productId=${productId}`
+          `http://localhost:5000/api/wishList/?userId=${data?._id}&productId=${productId}`
         );
         setMessage("Product added to wishlist successfully!");
         setIsSuccessModalVisible(true);
@@ -114,7 +114,7 @@ const HomePage = () => {
     try {
       if (selectedProductId) {
         await axios.delete(
-          `http://localhost:5000/api/wishList?userId=${data?.userId}&productId=${selectedProductId}`
+          `http://localhost:5000/api/wishList?userId=${data?._id}&productId=${selectedProductId}`
         );
         console.log("API call successful");
       }
@@ -202,7 +202,7 @@ const HomePage = () => {
     const data = JSON.parse(storedData);
 
     const checkResponse = await axios.get(
-      `http://localhost:5000/api/wishList/?userId=${data?.userId}`
+      `http://localhost:5000/api/wishList/?userId=${data?._id}`
     );
     console.log(checkResponse.data);
     navigate("/wishlist", { state: { wishListData: checkResponse.data } });
