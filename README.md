@@ -196,8 +196,36 @@ Here Searching and sorting are done for finding products using some criteria.
 The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
 
 ### Screenshots
-
 ![alt text](/resources/munira.png)
+
+## Show All Users
+This feature shows all users. User details are shown in this feature. There are 2 buttons bellow users: 1. Make admin 2. Delete user
+Admin can delete a user and make one user as admin. 
+
+### Screenshots
+
+![alt text](/resources/AllUsers.JPG)
+
+## Show all Admins
+Showing all admins after clicking "show all admins" . there is a button below admin named "removed from admin" . After clicking this button admin is removed from the admin page and assigned as a user. 
+
+
+### Screenshots
+
+![alt text](/resources/AllAdmins.JPG)
+
+## User profile 
+After login user can see their profile after clicking their username that is shown in the right of the navbar. After entering this user name . Users can see a logout button.
+
+
+### Screenshots
+
+![alt text](/resources/UseProfile.JPG)
+
+## Secure Route 
+All routes are secure so that one can't access any of route without login.
+
+
 
 ## Product Recommendation
 
