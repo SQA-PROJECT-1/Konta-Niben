@@ -195,6 +195,14 @@ Here Searching and sorting are done for finding products using some criteria.
 ## Product Details
 The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
 
+### Features
+- Users can see the detailed product descriptions that provide a clear understanding of the product.
+  
+- The user can see the ingredients and materials of that product.
+
+- For skin and hair care products, the user can see the specific skin or hair types for which the product is suitable.
+
+
 ### Screenshots
 ![alt text](/resources/munira.png)
 
@@ -264,6 +272,13 @@ The Product Recommendation feature allows users to receive recommendations for p
 ## Add To Cart Method
 
 ### Features
+- Selected products are added to the cart.
+
+- A list of products is shown in the cart if the user adds more than one product.
+
+- The total price of the products is shown below.
+  
+- The checkout button is used to proceed with the payment.
 
 ### Screenshots
 
