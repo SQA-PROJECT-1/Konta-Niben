@@ -259,7 +259,7 @@ const HomePage = () => {
             <FiHeart />
           </button>
           <Link
-            to={"/dashboard/home/cart"}
+            to={"/home/cart"}
             className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
           >
             <button>
@@ -285,27 +285,27 @@ const HomePage = () => {
               </div>
               </div>
 
-              <div className="flex-col gap-y-2">
+              <div className="flex">
                 <Link
                   to={`details/${product.productId}`}
-                  className="bg-amber-600 text-white px-4 py-2 mx-2 rounded-md"
+                  className="bg-amber-600 text-white px-4 py-1 mx-1 rounded-md"
                 >
                   <button>Details</button>
                 </Link>
-                <div className="flex">
+                
                 <button
                   onClick={() => addProductToCart(product.productId)}
-                  className="px-4 py-2 mx-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                  className="px-4 py-1 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 >
                   Add to Cart
                 </button>
                 <button
                   onClick={() => wishListUpdate(product.productId)}
-                  className="px-4 py-2 mr-2 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
+                  className="px-3 py-1 mx-1 bg-blue-500 text-white rounded hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
                 >
                   <FiHeart />
                 </button>
-                </div>
+                
               </div>
             </div>
           ))}
