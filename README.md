@@ -197,6 +197,21 @@ The "Product Details" feature provides comprehensive information about individua
 
 ### Screenshots
 
+## Show All Users
+This feature shows all users. User details are shown in this feature. There are 2 buttons bellow users: 1. Make admin 2. Delete user
+Admin can delete a user and make one user as admin. 
+
+## Show all Admins
+Showing all admins after clicking "show all admins" . there is a button below admin named "removed from admin" . After clicking this button admin is removed from the admin page and assigned as a user. 
+
+## User profile 
+After login user can see their profile after clicking their username that is shown in the right of the navbar. After entering this user name . Users can see a logout button.
+
+## Secure Route 
+All routes are secure so that one can't access any of route without login.
+
+
+
 ![alt text](/resources/munira.png)
 
 ## Product Recommendation
