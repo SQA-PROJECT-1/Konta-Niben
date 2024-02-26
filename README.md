@@ -18,7 +18,6 @@ The purpose of our project (Konta-Niben) is to establish a user-friendly and eff
     - [Testing](#testing)
       - [Unit Testing](#unit-testing)
       - [Continuous Integration Testing](#continuous-integration-testing)
-    - [JSdoc](#jsdoc)
   - [Examples of Work](#examples-of-work)
     - [Homepage with Searching, Sorting and Filtering](#search-sort)
       - [Features](#features)
@@ -173,7 +172,6 @@ These instructions will help you set up and run the project on your local machin
   This project includes continuous integration tests using GitHub Actions. The CI tests are automatically triggered on each push or making pull requests to this branch. You can view the workflow file [here](.github/workflows/master_CI.yml).
 
 
-### JSdoc
 
 ## Examples of Work:
 
@@ -190,7 +188,7 @@ Here Searching and sorting are done for finding products using some criteria.
 
 ### Screenshots
 
-![alt text](/resources/home.jpg)
+![alt text](/resources/homepage1.jpg)
 
 ## Product Details
 The "Product Details" feature provides comprehensive information about individual products, empowering users to make informed purchasing decisions. It offers a detailed view of each product's attributes, specifications, pricing and allowing users to assess the suitability of the product based on their preferences and requirements.
@@ -264,11 +262,14 @@ The Product Recommendation feature allows users to receive recommendations for p
 
 ## Wishlist Method
 
+User can add the product to their wishlist that they desire to buy in future.
+
 ### Features
-
+- Users can add items they are interested in to their wish list while browsing products on the website.
+- Users may have the option to create multiple wish lists, categorize items, and add notes or comments to each item.
 ### Screenshots
-
-
+![alt text](/resources/removewish.jpg)
+![alt text](/resources/allwish.jpg)
 ## Add To Cart Method
 
 ### Features
@@ -283,6 +284,20 @@ The Product Recommendation feature allows users to receive recommendations for p
 ### Screenshots
 
 ![alt text](/resources/munira1.png)
+
+## Review and Ratings
+The review and rating method  will allow users to share their opinions and experiences with products or services, helping other potential buyers make informed decisions.
+
+### Features
+- Users can share their experiences and opinions about products or services.
+- Users can assign a numerical score to indicate their satisfaction level.
+- Users can provide detailed written feedback to elaborate on their experiences.
+
+### Screenshots
+![alt text](/resources/rating1.jpg)
+![alt text](/resources/review1.jpg)
+![alt text](/resources/view%20all%20review.jpg)
+
 
 ## Payment Method
 
